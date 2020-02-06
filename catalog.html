@@ -1,393 +1,406 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <title>Техномарт: Каталог товаров</title>
-	<style>
-		.visually-hidden {
-			position: absolute;
-			width: 1px;
-			height: 1px;
-			margin: -1px;
-			border: 0;
-			padding: 0;
-			clip: rect(0 0 0 0);
-			overflow: hidden;
-		}
-		#path {
-			list-style-image: url(img/icon-right-small.svg);
-		}
-	</style>
-  </head>
-  <body>
-	<header>
-		<p><a>Техномарт</a></p>
-		<form action="" method="get">
-			<label class="visually-hidden" for="search">Поиск</label>
-			<input type="search" name="search" id="search" placeholder="Поиск:" autocomplete ="on">
-		</form>
-		<a href="">Закладки: 0</a>
-        <a href="">Корзина: 10</a>
-        <a href="">Оформить заказ</a>
-		<div>
-			<p>	
-				Интернет-магазин<br>
-				строительных материалов<br>
-				и инструментов для ремонта
-			</p>
+	<head>
+		<meta charset="utf-8">
+		<title>Техномарт: Каталог товаров</title>
+		<style>
+			.visually-hidden {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				margin: -1px;
+				border: 0;
+				padding: 0;
+				clip: rect(0 0 0 0);
+				overflow: hidden;
+			}
+			#path {
+				list-style-image: url(img/icon-right-small.svg);
+			}
+			#path li:first-child {
+				list-style: none;
+			}
+			fieldset {
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
 			<p>
-				<a href="tel:+78125550555">+7(812)555-05-55</a><br>
-				г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8
+				<a href="">
+					<span class="visually-hidden">Главная страница интернет-магазина "</span>
+					Техномарт
+					<span class="visually-hidden">", в котором Вы сейчас находитесь.</span>
+				</a>
 			</p>
-			<div>
-				<a href="">
-					<span class="visually-hidden">Профиль пользователя</span>
-					<img src="img/icon-user-rest-&-click.svg" width="20" height="18" alt='Иконка "Пользователь"'>
-					Равшан Джамшутович
-				</a>
-				<a href="">
-					<span class="visually-hidden">Выйти</span>	
-					<img src="img/icon-logout.svg" width="20" height="17" alt='Иконка "Выход"'>
-				</a>
-			</div>	
-			<a href="">Мои заказы</a>
-			<a href="">Личный кабинет</a>
-		</div>		
-		<nav>
-			<ul>
-				<li><a href="index.html">Главная</a></li>
-				<li><a href="">Компания</a></li>
-				<li><a href="">Каталог</a></li>
-				<li><a href="">Новости</a></li>
-				<li><a href="">Спецпредложения</a></li>
-				<li><a href="">Доставка</a></li>
-				<li><a href="">Контакты</a></li>
-			</ul>
-		</nav>
-	</header>
-	<main>	
-		<ul id="path">
-			<li style="list-style: none;">
-				<a href="index.html">
-					<span class="visually-hidden">На главную</span>
-					<img src="img/icon-home.svg" alt='Иконка "Домик"'>
-				</a>
-			</li>
-			<li><a href="">Каталог</a></li>
-			<li><a href="">Инструмент</a></li>
-			<li><a href="">Перфораторы</a></li>
-		</ul>
-		<h1>Перфораторы</h1>
-		<section>
-			<h2>Фильтр:</h2>
-			<form action="" method="post">
-				<fieldset style="border: none;">
-					<legend>Цена:</legend>
-					<label class="visually-hidden" for="price-range-limits">Границы ценового диапазона</label>
-					<input type="range" name="price-range-limits" id="price-range-limits" multiple min="0" step="1" max="30000" value="0,30000"><br>
-					<label class="visually-hidden" for="lower-price-range-limit">Нижняя граница ценового диапазона</label>
-					<input type="text" id="lower-price-range-limit" value="0"><span> -</span>
-					<label class="visually-hidden" for="higher-price-range-limit">Верхняя граница ценового диапазона</label>
-					<input type="text" id="higher-price-range-limit" value="30000">
-				</fieldset>
-				<hr>
-				<fieldset style="border: none;">	
-					<legend>Производители:</legend>
-					<ul>
-						<li>
-							<input type="checkbox" name="Bosch" id="Bosch" checked>
-							<label for="Bosch">Bosch</label>
-						</li>
-						<li>
-							<input type="checkbox" name="Интерскол" id="Интерскол">
-							<label for="Интерскол">Интерскол</label>							
-						</li>	
-						<li>
-							<input type="checkbox" name="Makita" id="Makita" checked>
-							<label for="Makita">Makita</label>							
-						</li>	
-						<li>
-							<input type="checkbox" name="Dewalt" id="Dewalt">
-							<label for="Dewalt">Dewalt</label>						
-						</li>
-						<li>
-							<input type="checkbox" name="Hitachi" id="Hitachi">
-							<label for="Hitachi">Hitachi</label>							
-						</li>
-					</ul>
-				</fieldset>	
-				<hr>
-				<fieldset style="border: none;">	
-					<legend>Питание:</legend>
-					<ul>
-						<li>							
-							<input type="radio" name="Питание" value="Аккумуляторные" id="Аккумуляторные" checked>
-							<label for="Аккумуляторные">Аккумуляторные</label>
-						</li>
-						<li>
-							<input type="radio" name="Питание" value="Сетевые" id="Сетевые">
-							<label for="Сетевые">Сетевые</label>							
-						</li>
-					</ul>
-				</fieldset>	
-				<button type="submit">Показать</button>
-			</form>			
-		</section>
-		<section>
-			<h2>Сортировка:</h2>
-			<ul>
-				<li><a href="">ПО ЦЕНЕ</a></li>
-				<li><a href="">ПО ТИПУ</a></li>
-				<li><a href="">ПО ФУНКЦИОНАЛУ</a></li>
-				<li><a href="">&#9650;</a></li>
-				<li><a href="">&#9660;</a></li>
-			</ul>	
-		</section>
-		<section>
-			<h2 class="visually-hidden">Список товаров</h2>
-			<ul>
-				<li>
-					<img src="img/perfo-bosch-bfg-3000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 3000</span>
-						</a>
-					</h3>
-					<del><b>22500 Р.</b></del>
-					<a href="">15500 Р.</a>
-					<div>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>
-				</li>
-				<li>
-					<img src="img/perfo-bosch-bfg-6000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 6000</span>
-						</a>
-					</h3>
-					<del><b>30500 Р.</b></del>
-					<a href="">25500 Р.</a>
-					<div>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>
-				</li>
-				<li>
-					<img src="img/perfo-bosch-bfg-2000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 2000</span>
-						</a>
-					</h3>
-					<a href="">12500 Р.</a>
-					<div>			
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>						
-				</li>
-				<li>
-					<img src="img/perfo-bosch-bfg-3000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 3000</span>
-						</a>
-					</h3>
-					<del><b>22500 Р.</b></del>
-					<a href="">15500 Р.</a>
-					<div>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>						
-				</li>
-				<li>
-					<img src="img/perfo-bosch-bfg-6000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 6000</span>
-						</a>
-					</h3>
-					<del><b>30500 Р.</b></del>
-					<a href="">25500 Р.</a>
-					<div>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>						
-				</li>
-				<li>
-					<img src="img/perfo-bosch-bfg-2000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 2000</span>
-						</a>
-					</h3>
-					<a href="">12500 Р.</a>
-					<div>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>
-				</li>
-				<li>
-					<img src="img/perfo-bosch-bfg-3000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 3000</span>
-						</a>
-					</h3>
-					<del><b>22500 Р.</b></del>
-					<a href="">15500 Р.</a>
-					<div>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>						
-				</li>
-				<li>
-					<img src="img/perfo-bosch-bfg-6000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 6000</span>
-						</a>
-					</h3>
-					<del><b>30500 Р.</b></del>
-					<a href="">25500 Р.</a>
-					<div>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>
-				</li>
-				<li>
-					<img src="img/perfo-bosch-bfg-2000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-					<h3>
-						<a href="">
-							<span>Перфоратор</span><span>BOSCH <br>BFG 2000</span>
-						</a>
-					</h3>
-					<a href="">12500 Р.</a>
-					<div>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в корзину</span>
-							Купить
-						</button>
-						<button type="button">
-							<span class="visually-hidden">Добавить товар в закладки</span>
-							В закладки
-						</button>
-					</div>
-				</li>
-			</ul>
-		<section>
-		<div class="cart-ok-popup visually-hidden">
-			<form action="" method="post">
-				Товар добавлен в корзину!
-				<a href="">Оформить заказ</a>
-				<button type="submit">Продолжить покупки</submit>				
+			<form action="" method="get">
+				<label class="visually-hidden" for="search">Поиск</label>
+				<input type="search" name="search" id="search" placeholder="Поиск:" autocomplete ="on">
 			</form>
-		</div>
-		<ul>
-			<li><a href="">1</a></li>
-			<li><a href="">2</a></li>
-			<li><a href="">3</a></li>
-			<li><a href="">Следующая</a></li>
-		</ul>
-		<section>
-			<h2>ПАРА СЛОВ О ПЕРФОРАТОРАХ</h2>
-			<p>
-				Перфоратор - универсальный строительный инструмент. Предназначен для сверления и долбления отверстий в кирпиче, бетоне и камне.<br>
-				Существуют электромеханические и пневматические перфораторы. Современные модели могут выполнять функции дрели, шуруповерта и отбойного молотка.<br>
-				В ассортиментном ряду есть выбор &laquo;трехрежимников&raquo;: в одном устройстве будут совмещены отбойный молоток и ударная дрель.
-			</p>	
-		</section>		
-	</main>
-	<footer>
-		<div>
-			<p><a href="">Техномарт</a></p>
-			<ul>
-				<li><a href="">Компания</a></li>
-				<li><a href="">Новости</a></li>		
+			<a href="">Закладки: 0</a>
+			<a href="">Корзина: 10</a>
+			<a href="">Оформить заказ</a>
+			<div>
+				<p>	
+					Интернет-магазин<br>
+					строительных материалов<br>
+					и инструментов для ремонта
+				</p>
+				<p>
+					<a href="tel:+78125550555">+7(812)555-05-55</a><br>
+					г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8
+				</p>
+				<div>
+					<a href="">
+						<span class="visually-hidden">Профиль пользователя</span>
+						<img src="img/icon-user-rest-&-click.svg" width="20" height="18" alt="">
+						Равшан Джамшутович
+					</a>
+					<a href="">
+						<span class="visually-hidden">Выйти</span>	
+						<img src="img/icon-logout.svg" width="20" height="17" alt="">
+					</a>
+				</div>	
+				<a href="">Мои заказы</a>
+				<a href="">Личный кабинет</a>
+			</div>		
+			<nav>
+				<ul>
+					<li><a href="index.html">Главная</a></li>
+					<li><a href="">Компания</a></li>
+					<li><a href="">Каталог</a></li>
+					<li><a href="">Новости</a></li>
+					<li><a href="">Спецпредложения</a></li>
+					<li><a href="">Доставка</a></li>
+					<li><a href="">Контакты</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>	
+			<ul id="path">
+				<li>
+					<a href="index.html">
+						<span class="visually-hidden">На главную</span>
+						<img src="img/icon-home.svg" alt="">
+					</a>
+				</li>
 				<li><a href="">Каталог</a></li>
-				<li><a href="">Доставка</a></li>
-				<li><a href="">Конакты</a></li>
-			</ul>
-		</div>
-		<div>
-			<p>
-				г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8<br>
-				+7(812)555-05-55
-			</p>
-			<ul>
-				<li><a href="">Материалы</a></li>		
-				<li><a href="">Техника</a></li>
 				<li><a href="">Инструмент</a></li>
-				<li><a href="">Спецпредложения</a></li>
+				<li><a href="">Перфораторы</a></li>
 			</ul>
-		</div>	
-		<div>
-			<p>
-				©2010-2016 Компания «Техномарт»<br>
-				Все права защищены
-			</p>
+			<h1>Перфораторы</h1>
+			<section>
+				<h2>Фильтр:</h2>
+				<form action="" method="post">
+					<fieldset>
+						<legend>Цена:</legend>
+						<label class="visually-hidden" for="price-range-limits">Границы ценового диапазона</label>
+						<input type="range" name="price-range-limits" id="price-range-limits" multiple min="0" step="1" max="30000" value="0,30000"><br>
+						<label class="visually-hidden" for="lower-price-range-limit">Нижняя граница ценового диапазона</label>
+						<input type="text" id="lower-price-range-limit" value="0"><span> -</span>
+						<label class="visually-hidden" for="higher-price-range-limit">Верхняя граница ценового диапазона</label>
+						<input type="text" id="higher-price-range-limit" value="30000">
+					</fieldset>
+					<hr>
+					<fieldset>	
+						<legend>Производители:</legend>
+						<ul>
+							<li>
+								<input type="checkbox" name="Bosch" id="Bosch" checked>
+								<label for="Bosch">Bosch</label>
+							</li>
+							<li>
+								<input type="checkbox" name="Интерскол" id="Интерскол">
+								<label for="Интерскол">Интерскол</label>							
+							</li>	
+							<li>
+								<input type="checkbox" name="Makita" id="Makita" checked>
+								<label for="Makita">Makita</label>							
+							</li>	
+							<li>
+								<input type="checkbox" name="Dewalt" id="Dewalt">
+								<label for="Dewalt">Dewalt</label>						
+							</li>
+							<li>
+								<input type="checkbox" name="Hitachi" id="Hitachi">
+								<label for="Hitachi">Hitachi</label>							
+							</li>
+						</ul>
+					</fieldset>	
+					<hr>
+					<fieldset>	
+						<legend>Питание:</legend>
+						<ul>
+							<li>							
+								<input type="radio" name="Питание" value="Аккумуляторные" id="Аккумуляторные" checked>
+								<label for="Аккумуляторные">Аккумуляторные</label>
+							</li>
+							<li>
+								<input type="radio" name="Питание" value="Сетевые" id="Сетевые">
+								<label for="Сетевые">Сетевые</label>							
+							</li>
+						</ul>
+					</fieldset>	
+					<button type="submit">Показать</button>
+				</form>			
+			</section>
+			<section>
+				<h2>Сортировка:</h2>
+				<ul>
+					<li><a href="">ПО ЦЕНЕ</a></li>
+					<li><a href="">ПО ТИПУ</a></li>
+					<li><a href="">ПО ФУНКЦИОНАЛУ</a></li>
+					<li><a href="">&#9650;</a></li>
+					<li><a href="">&#9660;</a></li>
+				</ul>	
+			</section>
+			<section>
+				<h2 class="visually-hidden">Список товаров</h2>
+				<ul>
+					<li>
+						<img src="img/perfo-bosch-bfg-3000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 3000</span>
+							</a>
+						</h3>
+						<del><b>22500 Р.</b></del>
+						<a href="">15500 Р.</a>
+						<div>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>
+					</li>
+					<li>
+						<img src="img/perfo-bosch-bfg-6000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 6000</span>
+							</a>
+						</h3>
+						<del><b>30500 Р.</b></del>
+						<a href="">25500 Р.</a>
+						<div>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>
+					</li>
+					<li>
+						<img src="img/perfo-bosch-bfg-2000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 2000</span>
+							</a>
+						</h3>
+						<a href="">12500 Р.</a>
+						<div>			
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>						
+					</li>
+					<li>
+						<img src="img/perfo-bosch-bfg-3000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 3000</span>
+							</a>
+						</h3>
+						<del><b>22500 Р.</b></del>
+						<a href="">15500 Р.</a>
+						<div>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>						
+					</li>
+					<li>
+						<img src="img/perfo-bosch-bfg-6000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 6000</span>
+							</a>
+						</h3>
+						<del><b>30500 Р.</b></del>
+						<a href="">25500 Р.</a>
+						<div>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>						
+					</li>
+					<li>
+						<img src="img/perfo-bosch-bfg-2000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 2000</span>
+							</a>
+						</h3>
+						<a href="">12500 Р.</a>
+						<div>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>
+					</li>
+					<li>
+						<img src="img/perfo-bosch-bfg-3000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 3000</span>
+							</a>
+						</h3>
+						<del><b>22500 Р.</b></del>
+						<a href="">15500 Р.</a>
+						<div>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>						
+					</li>
+					<li>
+						<img src="img/perfo-bosch-bfg-6000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 6000</span>
+							</a>
+						</h3>
+						<del><b>30500 Р.</b></del>
+						<a href="">25500 Р.</a>
+						<div>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>
+					</li>
+					<li>
+						<img src="img/perfo-bosch-bfg-2000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с чёрной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
+						<h3>
+							<a href="">
+								<span>Перфоратор</span><span>BOSCH <br>BFG 2000</span>
+							</a>
+						</h3>
+						<a href="">12500 Р.</a>
+						<div>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								купить
+							</button>
+							<button type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+						</div>
+					</li>
+				</ul>
+			<section>
+			<div class="cart-ok-popup visually-hidden">
+				<form action="" method="post">
+					Товар добавлен в корзину!
+					<a href="">Оформить заказ</a>
+					<button type="submit">Продолжить покупки</submit>				
+				</form>
+			</div>
 			<ul>
-				<li><a href=""><img src="" alt='Иконка "Вконтакте"'></a></li>
-				<li><a href=""><img src="" alt='Иконка "Facebook"'></a></li>
-				<li><a href=""><img src="" alt='Иконка "Инстаграм"'></a></li>
+				<li><a href="">1</a></li>
+				<li><a href="">2</a></li>
+				<li><a href="">3</a></li>
+				<li><a href="">Следующая</a></li>
 			</ul>
-			<p>
-				Обратная связь: </br>
-				<a href="mailto:mail@htmlacademy.ru">mail@htmlacademy.ru</a>
-			</p>
-			<p>
-				Разработано - <br>
-				<a href="https://htmlacademy.ru">htmlacademy.ru</a>
-			</p>
-		</div>
-  </body>
+			<section>
+				<h2>ПАРА СЛОВ О ПЕРФОРАТОРАХ</h2>
+				<p>
+					Перфоратор - универсальный строительный инструмент. Предназначен для сверления и долбления отверстий в кирпиче, бетоне и камне.<br>
+					Существуют электромеханические и пневматические перфораторы. Современные модели могут выполнять функции дрели, шуруповерта и отбойного молотка.<br>
+					В ассортиментном ряду есть выбор &laquo;трехрежимников&raquo;: в одном устройстве будут совмещены отбойный молоток и ударная дрель.
+				</p>	
+			</section>		
+		</main>
+		<footer>
+			<div>
+				<p><a href="">Техномарт</a></p>
+				<ul>
+					<li><a href="">Компания</a></li>
+					<li><a href="">Новости</a></li>		
+					<li><a href="">Каталог</a></li>
+					<li><a href="">Доставка</a></li>
+					<li><a href="">Конакты</a></li>
+				</ul>
+			</div>
+			<div>
+				<p>
+					г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8<br>
+					+7(812)555-05-55
+				</p>
+				<ul>
+					<li><a href="">Материалы</a></li>		
+					<li><a href="">Техника</a></li>
+					<li><a href="">Инструмент</a></li>
+					<li><a href="">Спецпредложения</a></li>
+				</ul>
+			</div>	
+			<div>
+				<p>
+					©2010-2016 Компания «Техномарт»<br>
+					Все права защищены
+				</p>
+				<ul>
+					<li><a href=""><img src="" alt='Иконка "Вконтакте"'></a></li>
+					<li><a href=""><img src="" alt='Иконка "Facebook"'></a></li>
+					<li><a href=""><img src="" alt='Иконка "Инстаграм"'></a></li>
+				</ul>
+				<p>
+					Обратная связь: </br>
+					<a href="mailto:mail@htmlacademy.ru">mail@htmlacademy.ru</a>
+				</p>
+				<p>
+					Разработано - <br>
+					<a href="https://htmlacademy.ru">htmlacademy.ru</a>
+				</p>
+			</div>
+		</footer>	
+	</body>
 </html>
