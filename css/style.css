@@ -1,0 +1,2080 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *::before, *::after { box-sizing: inherit;}
+
+body {
+	width: 1366px; /* Если не сделать ширину body равной ширине экрана, то ширина body будет равной ширине вьюпорта, из-за этого элменты будут некорректно смещаться и выпадать из body */
+	margin: 0;
+	padding: 0;
+	
+	font-family: Cuprum, Arial, sans-serif;
+	font-weight: 400;
+
+	background-position: top center; /*Почему не top left, например?*/
+	background-repeat: no-repeat;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	max-width:  100%; /* Чтобы изображение не выпадало из родителя, если его ширина окажется больше, чем ширина родителя */
+	height: auto; /* Для того, чтобы при max-width: 100%; сохранялись пропорции */
+}
+
+.visually-hidden:not(:focus):not(:active),
+.product-card:hover .product-img,
+.product-card:not(:hover) .add-buttons,
+.visually-hidden:active,  /* Это необходимо для того, чтобы при нажатии на label соответствующий ему input[type="radio"] не появлялся */
+.visually-hidden:checked, /* Это необходимо для того, чтобы выбранный input[type="radio"] не появлялся */
+.visually-hidden:not(:checked),  /* Это необходимо для того, чтобы невыбранный input[type="radio"] не появлялся */
+.input[type="checkbox"].visually-hidden,
+.input[type="radio"].visually-hidden/*,
+.gall-radio:checked + .gall-label*/,
+.man-checkbox:not(:checked) + .manufact-label .checkbox-on-icon, 
+.supp-type-radio:not(:checked) + .supp-type-label .radio-on-icon {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* Стиль общий для всех кнопок и "кнопок" */
+.button {
+	text-align: center;
+	color: #ffffff;
+
+	border: none;
+	
+	cursor: pointer;
+}
+
+/* Часто встречающийся стиль кнопки и "кнопки" */
+.common-btn {
+	display: inline-block; /* Не просто block, чтобы можно было не обязательно задавать ширину, а просто указать пэддинги как в макете, так как всё-равно расстояние от надписи до левого и правого краев "кнопки" */
+	/* нужно будет в некоторых случаях указывать явно, а не через text-align: center;, так как на большинстве кнопок левый и правый паддинги не равны между собой (отличаются на 1px)*/
+	/* Расширяем область действия ссылки и вместе с тем ее визуальные размеры */
+	padding-top: 13px;
+	padding-bottom: 13px;
+	
+	font-size: 14px;
+	line-height: /*18*/12px; /* Считаю, что line-height как в макете (18px) здесь указывать не нужно, потому что из-за нее сложнее вычислить вертикальные пэддинги. */
+							 /* При этом указывать line-height: 18px; нет никакого смысла, так как текст в данной кнопке не может быть многострочным */	
+	text-transform: uppercase;
+	/*color: #ffffff; странно, но в данном случае цвет текста ссылки откуда-то унаследовался */
+
+	border-radius: 3px;
+}
+
+/* Стиль практически для всех списков сайта */
+.clean-list {
+	margin-top: 0; /* Почему-то по-умолчанию был марджин в 16px; */
+	margin-bottom: 0; /* Почему-то по-умолчанию был марджин в 16px; */
+	padding-left: 0;
+	
+	list-style: none;	
+}
+
+.page-header {
+	padding-bottom: 60px;
+	
+	background-color: #f1f5f7;
+}
+
+.buyer-panel {
+	display: flex; /* Если не указыать display: flex; и здесь тоже, то wrapper неправильно центрирует всё содержимое */
+	height: 42px;
+		
+	background-color: #293449;
+}	
+
+.centering-wrapper {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.width-940px {
+	width: 940px;
+}
+
+.logo-space {
+	width: 220px;
+}
+
+.search-field {
+	width: 270px;
+	height: 42px;
+		
+	font-size: 17px;
+	line-height: 18px;
+		
+	background-color: #293449;
+	border-style: none;	
+	border-radius: 0;
+	outline: none;
+}
+
+/*Псевдоклассы настройки параметров отображения текста плейсхолдера в разных браузерах*/
+
+/* webkit: Safary, Chrome, Opera */
+.search-field::-webkit-input-placeholder {
+	font-size: 17px;
+	line-height: 18px;
+	color: #ffffff;	
+}
+
+/* Firefox 18- */
+.search-field:-moz-placeholder {
+	font-size: 17px;
+	line-height: 18px;
+	color: #ffffff;
+}
+
+/* Firefox 19+ */
+.search-field::-moz-placeholder {
+	font-size: 17px;
+	/*line-height: 18px;*/
+	/*color: #ffffff;*/
+} 
+
+/* IE */
+.search-field:-ms-input-placeholder {
+	font-size: 17px;
+	line-height: 18px;
+	color: #ffffff;
+}
+
+/* Edge */
+.search-field::-ms-input-placeholder {
+	font-size: 17px;
+	line-height: 18px;
+	color: #ffffff;	
+}
+
+.search-field:hover {
+	color: #ffffff;
+	
+	background-color: #212a3a;
+}
+
+/* Для того, чтобы при потери наведения и фокуса текст, набранный пользователем не оставался темным на темном фоне */
+.search-field:not(:hover):not(:focus) {
+	color: #ffffff;
+}
+
+.search-field:focus {
+	color: #000000; /* Возвращаем темный цвет тексту */
+	
+	background-color: #ffffff;
+}
+
+.buyer-button {
+	width: 150px;
+	
+	font-size: 17px;
+	line-height: 18px;
+}
+
+.bookmarks-btn,
+.cart-button {
+	background-color: #293449;
+}
+
+.bookmarks-btn:hover,
+.cart-button:hover {
+	background-color: #212a3a;	
+}
+
+.bookmarks-btn:active,
+.cart-button:active {
+	color: rgba(255, 255, 255, 0.6);
+	
+	background-color: #161d29;
+}
+
+.order-button {	
+	background-color: #63a63e;	
+}
+
+.order-button:hover {
+	background-color: #5fbb2d;	
+}
+
+.order-button:active {
+	color: rgba(255, 255, 255, 0.5);
+	
+	background-color: #518534;	
+}
+
+.padding-left-53px { /* Это нужно для того, чтобы дополнительно не оборачивать содержимое centering-wrapper в промежуточный контейнер и при этом не менять свойства */
+	padding-left: 53px; /* centering-wrapper, так как эта обертка используется еще в другом месте, где пэддинг не нужен. */
+} /* считаю, что логически правильнее здесь использовать именно padding, а не указывать margin для .company-info, так как мы сдвигаем относительно центра ВСЁ содержимое wrapper'а */
+
+.marg-top-46px {
+	margin-top: 46px;
+}	
+
+.marg-bottom-44px {
+	margin-bottom: 44px;
+}
+
+.company-info {
+	display: flex;
+}
+
+.description-p {
+	margin-top: 5px;  /* Почему-то по-умолчанию было 16px */
+	margin-bottom: 0px; /* Аналогично */
+	
+	font-style: italic;
+	font-size: 16px;
+	line-height: 23px;
+	color: #ee3643;
+}
+
+.contacts-p {
+	margin-top: 0px; /* Почему-то по-умолчанию было 16px */
+	margin-bottom: 0px; /* Аналогично */
+	width: 270px;
+	margin-left: 71px;	
+}
+
+.tel-number-a {
+	display: block;
+	width: 270px;
+	height: 45px;
+	padding-top: 10px;
+		
+	font-size: 21px;	
+	line-height: 21px;
+	text-align: center;
+	color: #e9292a;
+
+	border: solid 3px #ffffff;
+}
+
+.address {
+	display: block;
+	margin-top: 4px;
+
+	font-size: 14px;
+	line-height: 24px;
+	text-align: center;
+	color: #32425c;
+}
+
+.space {
+	width: 50px;
+}
+
+.user-nav-space {
+	width: 299px;
+}
+
+.main-navigation {
+
+}
+
+/* Позиционирующая и центрирующая обертка */
+.pos-center-wrapper {
+	position: relative; /* Для правильного позиционирования дочерних элементов: header-logo и user-navigation и других с относительным позиционированием*/	
+
+	width: 940px; /* Если не задать ширину и не отцентрировать, то при изменении ширины страницы положение дочерних элементов будет менятся не так, как нужно, */
+	margin-left: auto; /* а отцентрировав, мы добиваемся того, что положение по горизонтали дочерних элементов автоматически изменяется и они располагаются */
+	margin-right: auto; /* ровно по краям обертки, совпадающим с краями главного меню, которое также отцентрировано. */
+    /* Проще говоря, без центрирования мы бы вообще не смогли адаптировать положение дочерних элементов по горизонтали под ширину страницы */
+}   /* Нужное нам в конкретный момент положение дочерних элементов невозможо рассчитать от левого края страницы, но возможно рассчитать от левого края обертки, */  
+	/* так как это положение зависит от положения краев главного меню и, соответственно, от краев обертки */ 
+
+.logo {
+	display: block;
+	width: 220px;
+	background-color: #ee3643;
+	box-shadow: inset 0 -5px 0 0 rgba(0, 0, 0, 0.24);	
+}
+
+.header-logo {
+	position: absolute;
+	top: -206px;
+	left: 0;
+	
+	height: 47px;
+}
+
+.header-logo:hover {
+	background-color: #ca2c37;
+}
+
+.header-logo:active {
+	background-color: #ba2732;
+}
+
+.header-logo-img {
+	display: inline-block;
+	margin-top: 13px;
+}
+
+.user-navigation {
+	position: absolute;
+	top: -118px;
+	right: 0;
+}
+
+.unathorized-nav,
+.athorized-nav {
+	display: flex;
+}
+
+.unathorized-nav {
+	margin-left: 18px;
+}
+
+.user-button {
+	height: 45px;
+	
+	font-size: 21px;
+	line-height: 21px;
+
+	color: #000000;
+	
+	background-color: #ffffff;
+}
+
+.user-button:hover {
+	color: #ee3643;
+}
+
+.user-button:active {
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.login-button {
+	width: 121px;
+}
+
+.reg-button {
+	margin-left: 10px;
+	width: 150px;
+}
+
+.authorized-nav {
+
+}
+
+.prof-logout-btn {
+	display: flex;
+	align-items: center;
+
+	width: 299px;
+	padding-left: 13px;
+}
+
+.profile-a {
+	display: flex;
+
+	margin-right: 36px;
+}
+
+.profile-a:hover .user-icon {
+	fill: #32425c;
+}
+
+.profile-a:active .user-icon {
+	fill: #c5c5c5;	
+}
+
+.profile-a:active .user-name {
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.user-icon {
+	margin-top: 1px;
+	margin-right: 12px;
+}	
+
+.user-name {
+	width: 186px;
+	margin-top: 0px;
+
+	color: #000000;
+}
+
+.logout-a {
+	margin-top: 3px;
+}
+
+.logout-a:hover .logout-icon {
+	fill: #32425c;
+}
+
+.logout-a:active .logout-icon {
+	fill: #c5c5c5;
+}
+
+.personal-nav {
+	display: flex; /* Иначе у горизонтального списка не отображаются бУллиты */
+	margin-top: 8px; /* Почему-то по-умолчанию около 16px; */
+	margin-bottom: 0; /* Почему-то по-умолчанию около 16px; */
+	margin-left: 17px;
+	padding-left: 0; /* Почему-то по-умолчанию около 40px; */
+	
+	color: #32425c;
+}
+
+.unbullet-item { /* Подумать, может быть стоит вынести этот код в самый верх к .button */	
+	list-style: none;	
+}
+
+.personal-nav .unbullet-item {
+	margin-right: 32px;
+}
+
+.pers-nav-item:not(.unbullet-item) {
+	padding-left: 4px;  /* чтобы маркер списка (точку-разделитель) отодвинуть чуть левее элемента списка */
+	font-size: 12px;  /* для того, чтобы шрифт точки-разделителя сделать поменьше основного шрифта */
+}
+
+.pers-nav-a {	
+	font-size: 16px;	
+	text-decoration: underline;
+	color: inherit;
+}
+
+.pers-nav-a:hover {
+	color: #ee3643;
+}
+
+.pers-nav-a:active {
+	color: rgba(0, 0, 0, 0.3);
+}	
+
+.site-navigation {
+	height: 60px;
+	padding-left: 18px;
+	padding-right: 18px;
+	
+	font-size: 17px;
+	line-height: 17px;
+	
+	background-color: #32425c;
+	box-shadow: inset 0 -5px 0 0 #293449;
+}
+
+.site-nav-item {
+	
+}
+
+.site-nav-item:hover .site-nav-a {
+	background-color: #293449;
+}
+
+.site-nav-item:active .site-nav-a {
+	color: rgba(255, 255, 255, 0.5);
+	background-color: #1d2739;
+}
+
+/* увеличиваем по-вертикали область действия ссылки на всю высоту site-nav-item */
+.site-nav-item:nth-child(n) .site-nav-a {
+	padding-top: 21px;
+	padding-bottom: 21px;
+}
+
+.site-nav-item:first-child .site-nav-a {
+	padding-left: 34px;
+	padding-right: 34px;
+}
+
+.site-nav-item:nth-child(2) .site-nav-a {
+	padding-left: 31px;
+	padding-right: 31px;
+}
+
+.site-nav-item:nth-child(3) .site-nav-a {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.site-nav-item:nth-child(4) .site-nav-a {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.site-nav-item:nth-child(5) .site-nav-a {
+	padding-left: 29px;
+	padding-right: 29px;
+}
+
+.site-nav-item:nth-child(6) .site-nav-a {
+	padding-left: 33px;
+	padding-right: 33px;
+}
+
+.site-nav-item:last-child .site-nav-a {
+	padding-left: 31px;
+	padding-right: 31px;
+}
+
+.site-nav-a {
+	display: block; /* Для того, чтобы можно было задать вертикальные пэддинги ссылкам (см. лекцию) */
+	color: #ffffff;
+}
+
+.index-main {
+	padding-top: 61px;
+}
+
+.flex-container {
+	display: flex;
+	justify-content: space-between; /* Раздвигаем флекс-элементы по-горизонтали (по главной оси) на всю ширину родительского элемента */
+	align-content: space-between; /* Раздвигаем флекс-элементы по-вертикали (по поперечной оси) на всю высоту родительского элемента */ 
+	flex-wrap: wrap;
+}
+
+.marg-bottom-20px {
+	margin-bottom: 20px;
+}
+
+.promo-item {
+	position: relative; /* Для того, чтобы можно было установить метку "new" точно в уголок */
+
+	width: 300px;
+	height: 123px;
+
+	padding-top: 22px;
+	padding-left: 22px;
+}
+
+.promo-item-capt {
+	display: block;
+
+	margin-bottom: 14px;
+	
+	font-size: 24px;
+	line-height: 27px;
+	/* font-weight: bold; Почему-то в макете указан bold, но когда его ставим, получается жирнее, чем на макете */
+	color: #ffffff; 	
+}
+
+.promo-item:nth-child(1) {
+	background-color: #f6b22d;
+	background-image: url(../img/icon-1.svg);
+	background-position: 213px 31px;
+	background-repeat: no-repeat;	
+}
+
+.promo-item:nth-child(2) {
+	background-color: #3bbce3;
+	background-image: url(../img/icon-2.svg);
+	background-position: 197px 33px;
+	background-repeat: no-repeat;
+}
+
+.promo-item:nth-child(3) {
+	background-color: #dc91d8;
+	background-image: url(../img/icon-3.svg);
+	background-position: 191px 31px;
+	background-repeat: no-repeat;	
+}
+
+.gallary-slider {
+	position: relative;
+	
+	display: inline-block;
+	width: 620px; /* Здесь указыать размеры обязательно, так как иначе при абсолютном позиционировании изображения слайдер выпадает из потока */
+	height: 266px;
+	margin-right: 20px;
+}
+
+.gall-label {
+	position: absolute;
+	top: 114px;
+
+	z-index: 2;
+
+	font-family: 'MS Gothic', Arial, sans-serif;
+	font-size: 52px;
+	line-height: 44px;
+	color: #ffffff;
+}
+
+.gall-label-1 {
+	left: 25px;
+}
+
+.gall-label-2 {
+	right: 20px;
+}
+
+.gall-slide-keeper {
+	background-color: #b5b8ba;
+}
+
+.gall-slide-keeper::before {
+	content: '';
+	
+	position: absolute;
+	top: 220px;
+	left: 295px;
+	
+	z-index: 2;
+
+	display: block;
+	width: 10px;
+	height: 10px;
+  
+	background-color: #ffffff;
+	border-radius: 50%;	
+}
+
+.gall-slide-keeper::after {
+	content: '';	
+	
+	position: absolute;
+	top: 220px;
+	left: 315px;
+
+	z-index: 2;
+
+	display: block;	
+	
+	width: 10px;
+	height: 10px;
+  
+	background-color: #ffffff;
+	border-radius: 50%;	
+}
+
+.gall-radio-1:checked ~ ::before,
+.gall-radio-2:checked ~ ::after {
+	background-color: #ee3643;
+	border: 2px solid #ffffff;
+}
+
+.gall-radio-1:checked ~ .gall-slide-keeper .man-n-perfo,
+.gall-radio-2:checked ~ .gall-slide-keeper .man-n-drill {
+	z-index: 1;
+}
+
+.gallary-slide {
+	position: relative;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;	
+	margin-right: 0;
+}
+
+.gall-figure {
+	position: absolute;
+	width: 620px; /* Работает и без этого, но наи всякий случай указал, если вдруг будут загружать изображение, которое шире, чем 620px */
+	height: 266px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 0;
+	margin-left: 0;
+}
+
+.gall-fig-capt {
+	position: absolute;
+	top: 26px;
+	left: 24px;
+	
+	color: #ffffff;
+}
+
+.gall-fig-capt .heading {
+	display: block;
+	
+	margin-bottom: 8px;
+	
+	font-size: 36px;
+	line-height: 30px;
+	font-weight: bold;	
+	text-transform: uppercase;
+}
+
+.gall-fig-capt .slogan {
+	display: block;
+	
+	font-family: 'PT Sans', Arial, sana-serif;
+	font-size: 18px;
+	line-height: 17px;
+}
+
+.catalog-a {
+	position: absolute;
+	left: 25px;
+	bottom: 22px;
+	z-index: 2;
+
+	padding-left: 49px;
+	padding-right: 45px;
+}
+
+.red-button { /* Как ни странно, такое название кнопки оправдано, так как отличительным признаком данной кнопки является ее цвет */ 
+	background-color: #ee3643; /* И так как она встречается очень часто и практически во всех разделах и служит для разных целей, */
+}							/* мы просто не можем именовать ее каким-то другим способом, кроме как по цвету */
+/* А именовать ее нам просто необходимо для изменения ее внешнего вида при ховере и клике */
+/* Можно было бы дать название common-button, но такое название уже носит более общий класс кнопок */
+
+.red-button:hover {
+	background-color: #ca2c37;
+}
+
+.red-button:active {
+	background-color: #ba2732;
+}
+
+.red-button:active {
+	outline: none;
+}
+
+/* Обертка, объединяющая промо-пункты*/
+.uniting-wrapper {
+	display: inline-block;
+	
+	width: 300px;
+	
+	vertical-align: top;
+}
+
+.uniting-wrapper .promo-item:first-child {
+	margin-bottom: 20px;
+
+	background-color: #8ed78f;
+	background-image: url(../img/icon-4.svg);	
+	background-position: 196px 26px;
+	background-repeat: no-repeat;	
+}
+
+.uniting-wrapper .promo-item:last-child {
+	background-color: #ffc047;
+	background-image: url(../img/icon-5.svg);
+	background-position: 191px 32px;
+	background-repeat: no-repeat;
+}
+
+.width-135px {
+	width: 135px;
+}
+
+.promo-button {	
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.promo-button:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.promo-button:active {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.popular-products {
+	margin-top: 53px;
+	margin-bottom: 21px;
+}
+
+/* Модификатор для pos-center-wrapper */
+.height-89px {
+	height: 89px;
+}
+
+/* Модификатор для pos-center-wrapper */
+.marg-bottom-20px {
+	margin-bottom: 20px;
+}
+
+.bg-color-f9f5f0 {
+	background-color: #f9f5f0;
+}
+
+.popular-h2,
+.catalog-h1 {
+	position: absolute;
+	top: 34px;
+	left: 30px;
+	
+	margin-top: 0; /* Почему-то был 24.9px */
+	margin-bottom: 0;  /* Почему-то был 24.9px */
+	
+	font-size: 30px;
+	font-weight: normal; /* Переопределяем стиль заголовка h2 */
+	line-height: 21px;/* В макете было 30px; но высота букв 21px, поэтому мы указали последнее, чтобы не вычислять отступ сверху */
+	text-transform: uppercase;
+	color: #32425c;
+}
+
+.popular-btn {
+	position: absolute;
+	top: 25px;
+	right: 24px;
+	
+	width: 253px;
+}
+
+/* Задаем высоту списку, чтобы не забыть в будущем увеличить ее после добавления новых пунктов списка для align-content: space-between; */
+.height-324px {
+	height: 324px;
+}
+
+.pop-prod-item {
+	position: relative;
+}
+
+/* Здесь использование псевдо-элементов оправданно, так как позволяет не меняя html-структуры элементов отмечать конкретные пункты классом marked-item. */
+/* Это проще, чем добавлять метку блоком внутрь каждого пункта (промо-списка и списка товаров), а потом у большинства пунктов скрывать ее с помощью visually-hidden */
+.marked-item::before {
+	content: '';
+	
+	position: absolute;
+	z-index: 1;
+	top: -18px;
+	right: -32px;
+	
+	width: 84px;
+	
+	border: 28px solid transparent;
+	border-bottom-color: #ee3643;
+	transform: rotate(45deg);
+}
+
+/* Добавляем надпись после ленты, иначе надпись скроется под лентой */
+.marked-item::after {
+	content: 'new';
+	
+	position: absolute;
+	z-index: 2;
+	top: 30px;
+	right: -45px;
+	
+	width: 84px;
+	
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-size: 16px;
+	font-stretch: semi-condensed; /* Чтобы было максимальное сходство с картинкой, иначе буквы выглядят шире, чем на картинке */
+	color: #ffffff;
+	
+	transform: rotate(42.8deg);
+}
+
+.product-card {
+	width: 220px;
+	padding-bottom: 20px;
+	text-align: center;
+	border: 1px solid #eaeaea;
+}		
+
+.product-card:hover {
+	border: none;
+	border-top: 1px solid #ffffff; /* Для того, чтобы верхний марджин добавляющих кнопок не выпадал из карточки */
+	box-shadow: 0px 10px 25px 0 rgba(41, 52, 73, 0.5);
+}
+
+.product-img {
+	margin-bottom: 5px; /* почему-то у img снизу есть непонятный невидимый отступ в 4 пикселя */
+}
+
+/* Контейнер для добавляющих кнопок */
+.add-buttons {
+	margin-top: 44px;
+	margin-bottom: 52px; /* Задаем этот отступ здесь, а не в заголовке, так как если кнопки будут невидимы, от изображения до заголовка будет уже другой отступ */ 
+}
+
+.pt-sans-bold {
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-weight: bold;
+}
+	
+.prod-card-h3 {	
+	margin-top: 0px;
+	margin-bottom: 14px; /* Задаем этот отступ здесь, так как логичнее задать отступ заголовку, чем цене */
+	
+	font-size: 18px;
+	line-height: 20px;
+}
+
+.cart-add-btn {
+	background-color: #63a63e;
+	box-shadow: inset 0 -3px 0 0 #367315;
+	margin-bottom: 7px;
+}
+
+.cart-add-btn:hover {
+	background-color: #5fbb2d;
+}
+
+.cart-add-btn:active {
+	background-color: #518534;
+	box-shadow: none;
+}
+
+.cart-add-btn:active {	
+	outline: none;
+}
+
+.bookmarks-add-btn {
+	height: 38px;
+	padding-top: 11px; /* Переопределили стиль common-button, так как у последнего высота задавалась с помощью пэддингов, а т. к. здесь мы добавили 3px-рамку, произошло смещение */
+					   /* контента (надписи) вниз на 3px */
+	color: #32425c;
+	
+	background-color: #ffffff;
+	border: 3px solid #63a63e;
+}
+
+.bookmarks-add-btn:hover,
+.bookmarks-add-btn:active {
+	border-color: #32425c;
+}
+
+.bookmarks-add-btn:active {
+	opacity: 0.3;
+}
+
+.bookmarks-add-btn:active {
+	outline: none;
+}
+
+.old-price {
+	display: block; /* иначе не удастся задать нижний марджин */
+	height: 12px;
+	margin-bottom: 13px;
+	
+	font-size: 17px;
+	line-height: 12px; /* Если указать как на макете (18px), то сложно будет вычислить нижний отступ */
+	text-transform: uppercase; 
+	text-decoration: line-through;
+	color: #a9a9a9;
+}
+
+.prod-detail-btn {
+	position: relative;
+	width: 122px;/*141px;*/
+	
+	font-size: 17px;
+	font-weight: inherit; /* Именно inherit, потому что по-умолчанию кнопка не наследует полужирное начертание */
+	
+	border-radius: 0;
+}	/* Почему-то именно на этой кнопке PT Sans Bold смотрится по-другому, чем на макете. */
+
+.prod-detail-btn::after {
+	content: '';
+	
+	position: absolute;
+	bottom: 6px;
+	right: -13px; /* -19px; Исправил на -13px, так как квадрат выпадает из контента вправо примерно на 3px из-за того, что его вытесняет надпись с ценой */
+	/* Исправил именно на -13, а не на -16 из-за того, что при повороте на 45 градусов нужно задавать дополнительное смещение как по-вертикали, так и по-горизонтали */ 
+
+	width: 19.83pt; 
+	height: 19.83pt; /* ~=26.87px - округление числа (38 / (корень из 2)) (определение длины стороны квадрата по длине диагонали или катета прямоугольного равнобедренного треугольника) */
+	/* указал в пунктах, так как дробные значения пунктов не игнорируются, а значит указать в пунктах можно более точно, чем в пикселях (в пикселях ромб вылазил вверх на 1 пиксель */
+	background-color: #ee3643;
+	transform: rotate(45deg);
+}
+
+.prod-detail-btn:hover::after {
+	background-color: #ca2c37;
+}
+
+.prod-detail-btn:active::after {
+	background-color: #ba2732;
+}
+
+.pop-manufact-rs {
+	margin-bottom: 85px;
+}
+	
+.height-310px {
+	height: 310px;
+}	
+
+.pop-man-item {
+	width: 220px;
+	height: 145px;
+
+	text-align: center;
+	
+	border: 1px solid #eaeaea;	
+}
+
+.pop-man-item:hover,
+.pop-man-item:active {
+	border: none;
+}
+
+.pop-man-item:hover {
+	box-shadow: 0px 10px 25px 0 rgba(41, 52, 73, 0.5);
+}
+
+.pop-man-item:active {
+	opacity: 0.3;
+	box-shadow: 0px 4px 10px 0 rgba(41, 52, 73, 0.5);	
+}
+
+.manufact-a {
+	display: block;
+	width: 220px;
+	height: 145px;
+}
+
+.pop-man-item:first-child .manufact-img {
+	margin-top: 53px;
+}
+
+.pop-man-item:nth-child(2) .manufact-img {
+	margin-top: 50px;	
+}
+
+.pop-man-item:nth-child(3) .manufact-img {
+	margin-top: 48px;	
+}
+
+.pop-man-item:nth-child(4) .manufact-img {
+	margin-top: 21px;	
+}
+
+.pop-man-item:nth-child(5) .manufact-img {
+	margin-top: 58px;	
+}
+
+.pop-man-item:nth-child(6) .manufact-img {
+	margin-top: 35px;	
+}
+
+.pop-man-item:nth-child(7) .manufact-img {
+	margin-top: 23px;	
+}
+
+.pop-man-item:last-child .manufact-img {
+	margin-top: 34px;	
+}
+
+.services {
+	padding-top: 68px;
+	padding-bottom: 99px;
+	background-color: #f4f7f9;
+}
+
+.lower-sections-h2 {
+	margin-top: 0;
+	margin-bottom: 30px;
+	
+	font-size: 30px;
+	line-height: 23px; /* 30px; - заменили на 23px, чтобы проще было вычислять отступы */
+	font-weight: normal;
+	text-transform: uppercase;	
+	color: #000000;
+}
+
+.lower-sections-p {
+	margin-top: 0;
+	margin-bottom: 24px;
+	font-family: 'PT Sans', Arial, sans-sarif;
+	font-size: 13px;
+	line-height: 24px;
+	color: #000000;
+}
+
+.services-slider {
+	position: relative;
+	
+	margin-top: 74px;
+}
+
+
+.services-slider:before {
+	content: '';
+
+	position: absolute;
+	z-index: 1;
+	top: -44px;
+	right: 600px;
+	
+	width: 100px;
+	height: 279px;
+	
+	background-color: transparent;
+	border-radius: 25% / 90%;
+	box-shadow: -1px 0 6px 3px rgba(0, 0, 0, 0.5);
+}
+
+.services-slider:after {
+	content: '';
+
+	position: absolute;
+	z-index: 2;
+	top: -55px;
+	right: 590px;
+	
+	width: 110px;
+	height: 300px;
+	background-color: #f4f7f9;
+}
+
+.serv-slide-keeper {
+	position: absolute;
+	
+	display: inline-block;
+}
+
+.service-slide {
+	position: relative;	
+}
+
+.service-label:active {
+	outline: none; /* Для отмены аутлайна при клике */
+}
+
+
+
+.service-label:hover {
+	background-color: #293449;
+	box-shadow: inset 0 -1px 0 0 #293449, inset 0 1px 0 0 #405069;	
+}
+
+.service-label:focus {
+	/*box-shadow: 0 0 3px 0 blue; - Не работает при фокусе, срабатывает только при клике. */
+}
+
+.service-label {
+    display: block;
+
+	width: 240px;
+	height: 61px;
+	padding-top: 18px;
+	padding-left: 22px;
+	
+	font-size: 21px;
+	line-height: 23px;/*30px;*/
+	font-weight: bold;
+	text-align: left;
+	color: #ffffff;
+	
+	background-color: #32425c;
+	box-shadow: inset 0 -1px 0 0 #293449, inset 0 1px 0 0 #405069;
+	border-radius: 0;
+	cursor: pointer;
+}
+
+.service-radio:checked + .service-label {
+	color: #32425c;
+	
+	background-color: #ffffff;
+	box-shadow: inset 0 -1px 0 0 #ffffff, inset 0 -1px 0 0 #ffffff;
+	outline: 0; /* Для отмены аутлайна при дабл-клике */
+}
+
+.delivery,
+.warranty,
+.credit {
+	position: absolute;
+	top: -183px;
+	left: 320px;
+
+	width: 619px;
+	height: 282px;
+	
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	background-color: #f4f7f9;
+}
+
+.delivery {
+	background-image: url("../img/lorry.png");
+}
+
+.warranty {
+	background-image: url("../img/seal.png");	
+}
+
+.credit {
+	background-image: url("../img/doc-&-money.png");
+}
+
+.delivery-radio:checked ~ .serv-slide-keeper .delivery,
+.warranty-radio:checked ~ .serv-slide-keeper .warranty,
+.credit-radio:checked ~ .serv-slide-keeper .credit {
+	z-index: 3;
+}
+
+.service-h3 {
+	margin-top: 0;
+	margin-bottom: 28px;
+
+	font-size: 36px;
+	line-height: 32px;
+	font-weight: normal;
+	text-transform: uppercase;
+	color: #32425c;
+}
+
+.request-btn {
+	padding-left: 44px;
+	padding-right: 44px;
+}
+
+.height-536px {
+	height: 536px;
+}
+
+.padd-top-82px {
+	padding-top: 82px;
+}
+
+.company-descript {
+	position: absolute;
+	left: 0;
+}
+
+.partners-list {
+	margin-top: -1px; /* Чтобы не уменьшать нижний отступ всем параграфам нижних разделов, так как это приведет к расхождениям с макетом сразу в нескольких местах */ 
+	
+	font-size: 18px;
+	line-height: 18px; /* Не 20px, как на макете, чтобы было проще вычислить нижний марджин для каждого пункта списка*/
+	font-weight: bold; /* Исправлено на bold, так как если указать normal (как на макете), то шрифт выглядит не так, как на макете */
+}
+
+.partners-list {
+	padding-left: 36px;
+	margin-bottom: 37px;
+}
+
+.partner-item {
+	position: relative;
+	
+	margin-bottom: 22px;
+}
+
+/* Делаю это без помощи ::before, т. к. в content нельзя добавить такое широкое тире */
+.partner-item .bullet {
+	position: absolute; /* Без этого нельзя сдвинуть буллит вниз относительно названия фирмы-партнера (оно начинает смещаться вместе с бУллитом) */
+	
+	top: -2px;
+	left: -36px;
+	
+	font-family: Arial, sans-serif; /* Arial, потому что на Google-Fonts нет толщины 300 для Cuprum'а */
+	font-size: 26px;
+	font-weight: 300; 
+	color: #ee3643;
+}
+
+/* Используем селектор по потомку, так как иначе специфичность не дает применить данное правило */
+.partner-item .top--3px {
+	top: -3px;	
+}
+
+.comp-detail-btn {
+	width: 220px;
+}
+
+.contacts {
+	position: absolute;
+	right: 0;	
+}
+
+.map-a {
+	display: block;
+	width: 300px;
+	height: 158px;
+	margin-top: 33px;
+	margin-bottom: 37px;
+	
+	background-color: #b5b8ba;
+}
+
+.write-us-btn {
+	width: 300px;
+}
+
+.popup {
+	position: fixed;
+	left: 27%;
+	
+	width: 620px;
+	border-top: 7px solid #ee3643;
+}
+
+.popup::before {
+	content: '';
+	
+	position: absolute;
+	top: 6px;
+	right: 18px;
+	
+	width: 4px;
+	height: 27px;
+	
+	border-radius: 2pt;
+	
+	background-color: #ee3643;
+	transform: rotate(45deg);
+}
+
+.popup::after {
+	content: '';
+	
+	position: absolute;	
+	top: 6px;
+	right: 18px;	
+	
+	width: 4px;
+	height: 27px;
+	
+	border-radius: 2pt;
+	
+	background-color: #ee3643;
+	transform: rotate(-45deg);
+}
+
+.popup-lower {
+	padding-top: 37px;
+	padding-left: 80px;
+	height: 112px;
+	background-color: #f1f1f1;
+}
+
+.write-us-popup {
+	top: 16%;
+	z-index: 3;
+	
+	height: 430px;
+	box-shadow: 0px 20px 40px 0 rgba(0, 0, 0, 0.75);
+}
+
+.w-us-p-high {
+	height: 311px;
+	padding-top: 48px;
+	padding-left: 81px;
+	background-color: #ffffff;
+}
+
+.full-name-div,
+.e-mail-div {
+	display: inline-block;
+}
+
+.full-name-label,
+.e-mail-label,
+.lett-text-label {
+	display: block;
+	
+	margin-bottom: 11px;
+	
+	font-size: 18px;
+	line-height: 15px;
+}
+
+/*Псевдоклассы настройки параметров отображения текста плейсхолдера в разных браузерах*/
+
+/* webkit: Safary, Chrome, Opera */
+.full-name-field::-webkit-input-placeholder,
+.e-mail-field::-webkit-input-placeholder,
+.lett-text-field::-webkit-input-placeholder {
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-size: 13px;
+	line-height: 13px;
+	color: #a9a9a9;
+}
+
+/* Firefox 18- */
+.full-name-field::-webkit-input-placeholder,
+.e-mail-field::-webkit-input-placeholder,
+.lett-text-field::-webkit-input-placeholder {
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-size: 13px;
+	line-height: 13px;
+	color: #a9a9a9;
+}
+
+/* Firefox 19+ */
+.full-name-field::-webkit-input-placeholder,
+.e-mail-field::-webkit-input-placeholder,
+.lett-text-field::-webkit-input-placeholder {
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-size: 13px;
+	line-height: 13px;
+	color: #a9a9a9;
+} 
+
+/* IE */
+.full-name-field::-webkit-input-placeholder,
+.e-mail-field::-webkit-input-placeholder,
+.lett-text-field::-webkit-input-placeholder {
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-size: 13px;
+	line-height: 13px;
+	color: #a9a9a9;
+}
+
+/* Edge */
+.full-name-field::-webkit-input-placeholder,
+.e-mail-field::-webkit-input-placeholder,
+.lett-text-field::-webkit-input-placeholder {
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-size: 13px;
+	line-height: 13px;
+	color: #a9a9a9;
+}	
+
+.full-name-field,
+.e-mail-field {
+	width: 220px;
+	height: 38px;
+	padding-bottom: 3px;
+	padding-left: 14px;
+}
+
+.lett-text-field {
+	width: 460px;
+	height: 114px;
+	padding-top: 10px;
+}
+
+.full-name-field,
+.e-mail-field,
+.lett-text-field {
+	border: solid 2px #dee3e4;
+	border-radius: 3px;
+}
+
+.lett-text-field {
+	padding-left: 15px;
+}
+
+.full-name-field:hover,
+.e-mail-field:hover,
+.lett-text-field:hover {
+	border-color: #b5b5b5;	
+}
+
+.full-name-field:focus,
+.e-mail-field:focus,
+.lett-text-field:focus {
+	outline: none;
+	border-color: #ee3643;	
+}
+
+.full-name-div {
+	margin-right: 20px;
+}
+
+.letter-text-div {
+	margin-top: 22px;
+}
+
+
+
+.send-button {
+	width: 460px;
+}
+
+.high-footer {
+	padding-bottom: 49px;
+	
+	font-size: 18px;
+	line-height: 24px;
+
+	background-color: #32425c;
+}
+
+.marg-bottom-32px {
+	margin-bottom: 32px;
+}
+
+.footer-logo {
+	height: 68px;
+}
+
+.top-nav,
+.bottom-nav {
+	display: flex;
+	justify-content: space-between;
+	align-content: space-between;
+	flex-wrap: wrap;
+}
+
+.top-nav {
+	width: 547px;
+	padding-top: 38px;
+}	
+
+.top-nav-a {
+	color: #f1f5f7;
+}	
+
+.high-footer-p,
+.lower-footer-p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.high-footer-p {
+	color: #f3f7f9;
+}
+
+.bottom-nav {
+	width: 524px;
+}
+
+.bottom-nav-a,
+.lower-footer-a {
+	color: #ffd180;
+}
+
+.footer-logo-img {
+	display: inline-block;
+	margin-top: 20px;
+}
+
+.lower-footer {
+	padding-top: 35px;
+	padding-bottom: 28px;
+	
+	font-size: 16px;
+	line-height: 18px;
+	color: #ffffff;
+	background-color: #293449;
+}
+
+.social-list {
+	display: inline-flex; /* Именно здесь нужен именно inline-flex, так как список соц-ссылок должен быть flex-container'ом и при этом инлайновым элементом, */
+						  /* чтобы вместе с соседними элементами выстроится в строчку. Если укажем просто inline - тогда он не будет flex-container'ом */
+	vertical-align: top;  /* Это значение нужно задавать всем инлайновым элементам, в одной строке с которыми находятся другие элементы, */
+}						  /* Иначе у инлайнового элемента появляется непонятный и непредсказуемый по величине отступ сверху */
+
+.width-135px {
+	width: 135px;
+}
+
+.social-a {
+	display: block;
+	width: 42px;
+	height: 42px;
+	
+	text-align: center;
+	
+	background-color: #212a3a;
+	border-radius: 50%;
+}
+
+.vk-a {
+	padding-top: 13px;
+}
+
+.fb-a,
+.insta-a {
+	padding-top: 10px;
+}
+
+.lower-footer-p {
+	display: inline-block;
+}
+
+.copyrights-p {
+	margin-right: 161px;
+}
+
+.social-list {
+	margin-right: 119px;
+}
+
+.feedback-p {
+	margin-right: 53px;
+}
+
+.breadcrumbs {
+	display: flex;
+	justify-content: space-between;
+	
+	width: 357px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.breadcrumbs-item {
+	position: relative;
+}
+
+.breadcrumbs-item:first-child {
+	margin-top: 1px;
+}
+
+.breadcrumbs-item:not(.unbullet-item)::before {
+	content: '>';
+
+	position: absolute;
+	top: -1px;
+	left: -24px;
+	font-family: 'MS Gothic', Arial, sans-serif;
+	font-size: 13pt;
+	font-weight: 550;
+	color: rgb(198 ,202 , 210);
+}
+
+.breadcrumbs-a,
+.panel,
+.catalog-h2 {
+	font-size: 13px;
+	line-height: 18px;
+}
+
+.breadcrumbs-a,
+.panel,
+.catalog-h2,
+.filter-body {
+	display: inline-block;
+	
+	font-family: 'PT Sans', Arial, sans-serif;
+
+	text-transform: uppercase;
+	color: #000000;
+}
+
+.bg-color-f2f6f8 {
+	background-color: #f2f6f8;
+}
+
+.filter-body {
+	font-size: 15px;
+	line-height: 11px;
+}	
+
+.panel {
+	height: 38px;
+	padding-left: 19px;
+	
+	background-color: #f7f3ec;
+	border-radius: 3px;
+}
+
+.width-220px {
+	width: 220px;
+}
+
+.catalog-h2 {
+	margin-right: 139px;
+	
+	font-weight: normal;
+}
+
+.width-700px {
+	width: 700px;
+}
+
+.sorter,
+.sort-kind-item,
+.sort-kind { /* Иначе (при inline) не сможем уменьшить расстояние от текста ссылки до нижней рамки */
+	display: inline-block;
+}
+
+.sort-kind-item:first-child {
+	margin-right: 71px;
+}
+
+.sort-kind-item:nth-child(2) {
+	margin-right: 65px;
+}
+
+.sort-kind-item:nth-child(3) {
+	margin-right: 44px;
+}
+
+.sort-kind-item:nth-child(4) {
+	margin-right: 17px;
+}
+
+.sort-kind-item:nth-child(4),
+.sort-kind-item:last-child {
+	font-size: 16px;
+}
+
+.sort-kind {
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+	padding-right: 0;
+
+	background-color: transparent;
+	border: 0;	
+}
+
+.sort-kind-label, /* Для отмены outline'а при даблклике */
+.sort-kind-label:active {
+	outline: none;
+}
+
+.sort-kind-item:first-child .sort-kind-label,
+.sort-kind-item:nth-child(2) .sort-kind-label,
+.sort-kind-item:nth-child(3) .sort-kind-label {
+	line-height: 15px; /* Чтобы уменьшить расстояние от текста до нижней рамки */
+	color: rgba(0, 0, 0, 0.3);
+	border-bottom: 1px dotted #ee3643;	
+}
+
+.sort-kind-item:nth-child(4) .sort-kind-label,
+.sort-kind-item:nth-child(5) .sort-kind-label {
+	color: #c5c5c5;
+}
+
+.sort-kind-label:active {
+	color: #ee3643; /* Почему-то не работает */
+	text-decoration: none;  /* Почему-то не работает */
+}
+
+.by-price-radio:checked + .by-price-label,
+.by-type-radio:checked + .by-type-label,
+.by-funct-radio:checked + .by-funct-label {
+	color: #ee3643;
+	border-bottom: none;
+}
+
+.ascend-radio:checked + .ascend-label,
+.descend-radio:checked + .descend-label {
+	color: #ee3643;
+}
+
+.by-price-radio:not(:checked):hover + .by-price-label,
+.by-type-radio:not(:checked):hover + .by-type-label,
+.by-funct-radio:not(:checked):hover + .by-funct-label {
+	color: #000000;
+	
+	border-bottom: 1px solid #ee3643;	
+	cursor: pointer;
+}
+
+.ascend-radio:not(:checked):hover + .ascend-label,
+.descend-radio:not(:checked):hover + .descend-label {
+	color: rgb(30, 25, 26);
+	
+	border-bottom: none;	
+	cursor: pointer;
+}
+
+.price-lim-switch {
+	margin-bottom: 25px; /* Правильнее было бы указать padding-bottom: 25px, но почему-то не удается задать пэддинг данному филдсету */
+}
+
+.switch-name {
+	margin-bottom: 22px;
+	
+	font-size: 17px;
+	line-height: 13px;
+	font-weight: bold;
+}
+
+.filter-fieldset {
+	margin-left: 0;
+	margin-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;	
+	padding-left: 0;
+	padding-right: 0;
+	
+	border: none;
+}
+
+.price-range-panel {
+	width: 220px;
+	height: 80px;
+	margin-bottom: 9px;
+	padding-top: 39px;
+	padding-left: 20px;
+	
+	background-color: #f7f3ec;
+	border-radius: 5px;
+}
+
+.styled-price-range {
+	position: relative;
+	
+	width: 180px;
+	height: 2px;
+	
+	border-left: 0px solid #d7dcde;
+	border-right: 20px solid #d7dcde;
+	background-color: rgb(0, 203, 117);
+}
+
+.styled-price-range::before {
+	content: '';
+
+	position: absolute;
+	top: -8px;
+	left: 140px;
+	
+	width: 20px;
+	height: 20px;
+	
+	background-color: rgb(172, 172, 172);
+	border: 8px solid #ffffff;
+	border-radius: 50%;
+	box-shadow: 0 2px 0 0 rgb(225, 222, 217);
+	
+	cursor: pointer;
+}
+
+.styled-price-range::after {
+	content: '';	
+
+	position: absolute;
+	top: -8px;
+	
+	width: 20px;
+	height: 20px;
+	
+	background-color: rgb(172, 172, 172);
+	border: 8px solid #ffffff;
+	border-radius: 50%;
+	box-shadow: 0 2px 0 0 rgb(225, 222, 217);	
+	
+	cursor: pointer;	
+}
+
+.price-fields {
+	display: flex;
+	align-items: center;
+	
+	height: 38px;
+}
+
+.min-price-field,
+.mdash,
+.max-price-field {
+	font-size: 17px;
+	line-height: 13px;
+}
+
+.min-price-field,
+.max-price-field {
+	
+	width: 95px;
+	
+	border: none;	
+}
+
+.min-price-field,
+.mdash {
+	margin-right: 8px;
+}
+
+.mdash {
+	margin-bottom: 1px; /* Странно работает с флексом (прибавляет 1 пиксель после прибавления 3 пикселей), с инлайн-блоком не работает вообще */
+}
+
+.hr {
+	height: 1px;
+	margin-top: 0;
+	margin-bottom: 25px;
+	
+	background-color: rgb(230, 230, 230);
+	border: none;
+}
+
+.manufact-switch,
+.supp-type-switch {
+	padding-bottom: 27px;
+}
+
+.supp-type-switch {
+	margin-top: 26px;
+	margin-bottom: 56px;
+}
+
+.height-994px {
+	height: 994px;
+}
+
+.manufact-label,
+.supp-type-label {
+	position: relative;
+	
+	display: inline-block;
+	margin-top: 4px;
+	margin-bottom: 25px;
+	padding-left: 35px;
+}
+
+.hitachi-label,
+.ac-power-label {
+	margin-bottom: 0;
+}
+
+.checkbox-on-icon,
+.checkbox-off-icon,
+.radio-on-icon,
+.radio-off-icon {	
+	position: absolute;
+	top: -6px;
+	left: 0;
+}
+
+.manufact-label:hover,
+.supp-type-label:hover,
+.manufact-label:hover .checkbox-on-icon,
+.manufact-label:hover .checkbox-off-icon,
+.supp-type-label:hover .radio-on-icon,
+.supp-type-label:hover .radio-off-icon {
+	fill: #b5b5b5;
+	
+	cursor: pointer;
+}
+
+.man-checkbox:disabled + .manufact-label .checkbox-on-icon,
+.man-checkbox:disabled + .manufact-label .checkbox-off-icon,
+.supp-type-radio:disabled + .supp-type-label .radio-on-icon,
+.supp-type-radio:disabled + .supp-type-label .radio-off-icon {
+	fill: rgb(234, 234, 234);
+
+	cursor: default;
+}
+
+.man-checkbox:disabled + .manufact-label,
+.supp-type-radio:disabled + .supp-type-label {
+	color: rgba(0, 0, 0, 0.4);
+	
+	cursor: default;
+}
+
+.catalog-btn {
+	display: block; /* Это нужно для ссылок пагинации, которых большинство (4 из 5) */
+	
+	height: 38px;
+	
+	font-family: 'PT-Sans', Arial, sans-serif; /* Это нужно для ссылок пагинации, которых большинство (4 из 5) */
+	font-size: 13px;
+	line-height: 9px;
+	text-transform: uppercase;
+	text-align: center; /* Это нужно для ссылок пагинации, которых большинство (4 из 5) */
+	color: #000000;  /* Это нужно для ссылок пагинации, которых большинство (4 из 5) */
+
+	background-color: #ffffff;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+}
+
+.width-140px {
+	width: 140px;
+}
+
+.cart-ok-popup {
+	top: 28%;
+	
+	height: 282px;
+	
+	box-shadow: 0px 20px 40px 0 rgba(41, 52, 73, 0.75);
+}
+
+.cart-ok-p-high {
+	height: 172px;
+	padding-top: 65px;
+	padding-left: 179px;
+	background-color: #ffffff;
+}
+
+/* Уведомляющая надпись */
+.notif-message {
+	position: relative;
+	
+	display: block; /* Для того, чтобы можно было добавить before и он был видимым */
+	font-size: 30px;
+	line-height: 30px;
+}
+
+.notif-message::before {
+	content: '';
+	
+	position: absolute;
+	top: -17px;
+	left: -98px;
+
+	width: 66px;
+	height: 66px;
+	
+	background-size: 66px 66px;
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-image: url(../img/icon-mark.svg);
+}
+
+.place-order-btn, /* Разместить заказ */
+.go-on-shopp-btn {
+	width: 220px;
+}
+
+.place-order-btn {
+	margin-right: 20px;
+}
+
+.go-on-shopp-btn {
+	color: #000000;
+	background-color: #ffffff;
+}
+
+.just-cont-end {
+	justify-content: flex-end;
+}
+
+.padd-right-416px {
+	padding-right: 416px;
+}
+
+.pagination {
+	margin-top: 52px;
+	margin-bottom: 60px;
+}
+
+.pagination-item {
+	display: inline-block;
+}
+
+.pagination-item:first-child,
+.pagination-item:nth-child(2),
+.pagination-item:nth-child(3) {
+	margin-right: 10px;
+}	
+
+.width-38px {
+	width: 38px;
+}
+
+.active-btn {
+	color: #ffffff;
+	
+	background-color: #ee3643;
+	border-color: #ee3643;
+}
+
+.pagination :not(.active-btn):hover {
+	border-color: #bdc6ca;
+}
+
+.pagination .catalog-btn:active {
+	border-color: #ee3643;
+}
+
+.padd-top-14px {
+	padding-top: 14px;
+}	
+	
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.about-perfo {
+	padding-top: 67px;
+	padding-bottom: 44px;
+	
+	background-color: #f4f7f9;
+}
