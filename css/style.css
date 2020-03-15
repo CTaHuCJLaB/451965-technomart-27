@@ -5,20 +5,42 @@ html {
 *, *::before, *::after { box-sizing: inherit;}
 
 body {
-	width: 1366px; /* Если не сделать ширину body равной ширине экрана, то ширина body будет равной ширине вьюпорта, из-за этого элменты будут некорректно смещаться и выпадать из body */
-	margin: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
 	padding: 0;
 	
 	font-family: Cuprum, Arial, sans-serif;
 	font-weight: 400;
+	word-wrap: break-word;
+	letter-spacing: normal;
 
 	background-position: top center; /*Почему не top left, например?*/
 	background-repeat: no-repeat;
 }
 
 a {
+	color: inherit;
 	text-decoration: none;
+	
+	/*outline: none;*/
 }
+
+a:hover {
+	outline: none;
+}
+
+/*a:focus:not(:active):not(:hover) {
+	box-shadow: inset 0 0 4px 4px rgb(0, 150, 0);
+}*/
+
+/* Chrome, Edge, Safary, Firefox */
+/*@supports (display: -webkit-flex) {
+	a:focus:not(:active):not(:hover) {
+		box-shadow: 0 0 4px 4px rgb(0, 150, 0);
+	}
+}*/
 
 img {
 	max-width:  100%; /* Чтобы изображение не выпадало из родителя, если его ширина окажется больше, чем ширина родителя */
@@ -26,14 +48,13 @@ img {
 }
 
 .visually-hidden:not(:focus):not(:active),
-.product-card:hover .product-img,
-.product-card:not(:hover) .add-buttons,
 .visually-hidden:active,  /* Это необходимо для того, чтобы при нажатии на label соответствующий ему input[type="radio"] не появлялся */
 .visually-hidden:checked, /* Это необходимо для того, чтобы выбранный input[type="radio"] не появлялся */
 .visually-hidden:not(:checked),  /* Это необходимо для того, чтобы невыбранный input[type="radio"] не появлялся */
 .input[type="checkbox"].visually-hidden,
-.input[type="radio"].visually-hidden/*,
-.gall-radio:checked + .gall-label*/,
+.input[type="radio"].visually-hidden,
+.man-checkbox:checked + .manufact-label .checkbox-off-icon, 
+.supp-type-radio:checked + .supp-type-label .radio-off-icon,
 .man-checkbox:not(:checked) + .manufact-label .checkbox-on-icon, 
 .supp-type-radio:not(:checked) + .supp-type-label .radio-on-icon {
   position: absolute;
@@ -58,33 +79,48 @@ img {
 
 	border: none;
 	
+	/*outline: none;*/
+	
 	cursor: pointer;
 }
 
+.button:hover {
+	outline: none;
+}
+
+/*.button:focus:not(:active):not(:hover) {
+	box-shadow: 0 0 4px 4px rgb(0, 150, 0);
+}*/
+
 /* Часто встречающийся стиль кнопки и "кнопки" */
 .common-btn {
-	display: inline-block; /* Не просто block, чтобы можно было не обязательно задавать ширину, а просто указать пэддинги как в макете, так как всё-равно расстояние от надписи до левого и правого краев "кнопки" */
-	/* нужно будет в некоторых случаях указывать явно, а не через text-align: center;, так как на большинстве кнопок левый и правый паддинги не равны между собой (отличаются на 1px)*/
-	/* Расширяем область действия ссылки и вместе с тем ее визуальные размеры */
-	padding-top: 13px;
-	padding-bottom: 13px;
+	display: inline-block;
+
+	width: 135px;
+	min-height: 38px;
+	padding-top: 11px;
+	padding-bottom: 9px;
 	
 	font-size: 14px;
-	line-height: /*18*/12px; /* Считаю, что line-height как в макете (18px) здесь указывать не нужно, потому что из-за нее сложнее вычислить вертикальные пэддинги. */
-							 /* При этом указывать line-height: 18px; нет никакого смысла, так как текст в данной кнопке не может быть многострочным */	
+	line-height: 18px;	
 	text-transform: uppercase;
-	/*color: #ffffff; странно, но в данном случае цвет текста ссылки откуда-то унаследовался */
+	
+	vertical-align: top;
 
 	border-radius: 3px;
 }
 
 /* Стиль практически для всех списков сайта */
 .clean-list {
-	margin-top: 0; /* Почему-то по-умолчанию был марджин в 16px; */
-	margin-bottom: 0; /* Почему-то по-умолчанию был марджин в 16px; */
+	margin-top: 0;
+	margin-bottom: 0;
 	padding-left: 0;
 	
-	list-style: none;	
+	list-style: none;
+}
+
+.index-main {
+	padding-top: 59px;
 }
 
 .page-header {
@@ -93,14 +129,21 @@ img {
 	background-color: #f1f5f7;
 }
 
-.buyer-panel {
-	display: flex; /* Если не указыать display: flex; и здесь тоже, то wrapper неправильно центрирует всё содержимое */
-	height: 42px;
-		
-	background-color: #293449;
-}	
+.flexbox {
+	display: flex;
+	flex-wrap: wrap;	
+}
 
-.centering-wrapper {
+.top-header {
+	background-color: #293449;	
+}
+
+.logo-buy-wrapper {
+	min-width: 940px;
+	width: 940px;
+}
+
+.center {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -109,14 +152,112 @@ img {
 	width: 940px;
 }
 
-.logo-space {
+.logo-column {
+	max-width: 220px;
+	
+	overflow: hidden;	
+}
+
+.align-cont-fs {
+	align-content: flex-start;
+}
+
+.marg-bottom--5px {
+	margin-bottom: -5px;
+}
+
+.logo {
+	position: relative;
+	
+	display: block;
 	width: 220px;
+	margin-bottom: 5px;
+	
+	background-color: #ee3643;
+}
+
+/* Делаем псевдоэлементом, а не рамкой и не тенью для того, чтобы верхний логотип не растягивал top-header на высоту, превышаюшую макетную. */
+.logo::after {
+	content: '';
+	
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	
+	display: block; /* Для того, чтобы псевдоэлемент разместился точно под надписью логотипа, чтобы не вычислять left */	
+	width: 220px;
+	height: 5px;
+	background-color: rgb(182, 36, 47);
+}
+
+.logo:hover {
+	background-color: #ca2c37;
+}
+
+.logo:hover::after {
+	background-color: rgb(155, 27, 37);
+}
+
+.logo:active {
+	background-color: #ba2732;
+	outline: none;
+}
+
+.logo:active::after {
+	background-color: rgb(143, 24, 33);
+}
+
+/*.logo:focus:not(:active):not(:hover) {
+	box-shadow: inset 0 0 4px 4px rgb(0, 150, 0);
+}*/
+
+.header-logo {
+	padding-top: 13px;
+	padding-bottom: 5px;
+	padding-left: 54px;
+	padding-right: 55px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.header-logo {
+		padding-bottom: 6px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.header-logo {
+		padding-bottom: 5px;
+	}
+}
+
+.buyer-panel {
+	width: 720px;
+}
+
+.just-cont-fe {
+	justify-content: flex-end;
+}
+
+.buyer-panel :nth-child(n) {
+	min-height: 42px;
+}
+
+.search-form {
+	position: relative;
+}	
+
+.search-label {
+	position: absolute;
+	left: 17px;	
 }
 
 .search-field {
 	width: 270px;
-	height: 42px;
-		
+	padding-top: 0px;
+	padding-left: 49px;
+	
 	font-size: 17px;
 	line-height: 18px;
 		
@@ -126,8 +267,6 @@ img {
 	outline: none;
 }
 
-/*Псевдоклассы настройки параметров отображения текста плейсхолдера в разных браузерах*/
-
 /* webkit: Safary, Chrome, Opera */
 .search-field::-webkit-input-placeholder {
 	font-size: 17px;
@@ -135,18 +274,18 @@ img {
 	color: #ffffff;	
 }
 
-/* Firefox 18- */
-.search-field:-moz-placeholder {
-	font-size: 17px;
-	line-height: 18px;
-	color: #ffffff;
-}
-
 /* Firefox 19+ */
 .search-field::-moz-placeholder {
 	font-size: 17px;
-	/*line-height: 18px;*/
-	/*color: #ffffff;*/
+
+	opacity: 1;
+} 
+
+/* Firefox 19+ */
+.search-field:focus::-moz-placeholder {
+	font-size: 17px;
+	
+	opacity: 0;
 } 
 
 /* IE */
@@ -163,10 +302,24 @@ img {
 	color: #ffffff;	
 }
 
+/* IE */
+.search-field::-ms-clear {  display: none; width : 0; height: 0; }
+.search-field::-ms-reveal {  display: none; width : 0; height: 0; }
+
+/* Chrome, Edge, Safary */
+.search-field::-webkit-search-decoration,
+.search-field::-webkit-search-cancel-button,
+.search-field::-webkit-search-results-button,
+.search-field::-webkit-search-results-decoration { display: none; }
+
 .search-field:hover {
 	color: #ffffff;
 	
 	background-color: #212a3a;
+}
+
+.search-field:hover + .search-label .search-icon {
+	fill-opacity: 1;
 }
 
 /* Для того, чтобы при потери наведения и фокуса текст, набранный пользователем не оставался темным на темном фоне */
@@ -174,10 +327,15 @@ img {
 	color: #ffffff;
 }
 
-.search-field:focus {
+.search-field:focus {	
 	color: #000000; /* Возвращаем темный цвет тексту */
 	
 	background-color: #ffffff;
+}
+
+.search-field:focus + .search-label .search-icon {
+	fill: #ee3643;
+	fill-opacity: 1;
 }
 
 .buyer-button {
@@ -185,16 +343,49 @@ img {
 	
 	font-size: 17px;
 	line-height: 18px;
+	border-radius: 0;	
+}
+
+.buyer-button:focus {
+	z-index: 1;
 }
 
 .bookmarks-btn,
 .cart-button {
+	position: relative;
 	background-color: #293449;
+}
+
+.bookmarks-btn {
+	padding-top: 11px;
+	padding-bottom: 12px;
+	padding-left: 44px;
+	padding-right: 27px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.bookmarks-btn {
+		padding-top: 12px;
+		padding-bottom: 11px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.bookmarks-btn {
+		padding-top: 11px;
+		padding-bottom: 12px;	
+	}
 }
 
 .bookmarks-btn:hover,
 .cart-button:hover {
 	background-color: #212a3a;	
+}
+
+.bookmarks-btn:hover .bookmark-icon {
+	fill-opacity: 1;
 }
 
 .bookmarks-btn:active,
@@ -204,12 +395,108 @@ img {
 	background-color: #161d29;
 }
 
-.order-button {	
+.bookmarks-btn:active .bookmark-icon {
+	fill-opacity: 0.3;
+}
+
+.bookmark-icon {
+	position: absolute;
+	top: -1px;
+	left: 17px;
+}
+
+.cart-button {
+	padding-top: 11px;
+	padding-bottom: 12px;
+	padding-left: 47px;
+	padding-right: 27px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.cart-button {
+		padding-top: 12px;
+		padding-bottom: 11px;
+		padding-left: 46px;
+		padding-right: 28px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.cart-button {	
+		padding-top: 11px;
+		padding-bottom: 12px;
+		padding-left: 47px;
+		padding-right: 27px;
+	}	
+}
+
+.cat-cart-btn {
+	padding-left: 50px;
+	padding-right: 24px;	
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.cat-cart-btn {
+		padding-left: 49px;
+		padding-right: 25px;	
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.cat-cart-btn {	
+		padding-left: 50px;
+		padding-right: 24px;	
+	}	
+}
+
+
+.cart-button:hover .cart-icon {
+	fill-opacity: 1;
+}
+
+.cart-button:active .cart-icon {
+	fill-opacity: 0.3;
+}
+
+.cart-button .cart-icon {
+	position: absolute;
+	top: -2px;
+	left: 18px;
+}
+
+.order-button {
+	padding-top: 11px;
+	padding-bottom: 12px;
+	padding-left: 21px;
+	padding-right: 21px;
+	
 	background-color: #63a63e;	
 }
 
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.order-button {
+		padding-top: 12px;
+		padding-bottom: 11px;
+		padding-left: 20px;
+		padding-right: 22px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.order-button {	
+		padding-top: 11px;
+		padding-bottom: 12px;
+	}
+}
+
 .order-button:hover {
-	background-color: #5fbb2d;	
+	background-color: #5fbb2d;
 }
 
 .order-button:active {
@@ -218,56 +505,144 @@ img {
 	background-color: #518534;	
 }
 
-.padding-left-53px { /* Это нужно для того, чтобы дополнительно не оборачивать содержимое centering-wrapper в промежуточный контейнер и при этом не менять свойства */
-	padding-left: 53px; /* centering-wrapper, так как эта обертка используется еще в другом месте, где пэддинг не нужен. */
-} /* считаю, что логически правильнее здесь использовать именно padding, а не указывать margin для .company-info, так как мы сдвигаем относительно центра ВСЁ содержимое wrapper'а */
-
-.marg-top-46px {
-	margin-top: 46px;
-}	
-
-.marg-bottom-44px {
-	margin-bottom: 44px;
+.middle-header {
+	padding-top: 46px;
+	padding-bottom: 40px;
+	padding-left: 53px;	
 }
 
-.company-info {
-	display: flex;
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.middle-header {
+		padding-bottom: 39px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.middle-header {
+	}
+}
+
+.width-537px {
+	width: 537px;
 }
 
 .description-p {
-	margin-top: 5px;  /* Почему-то по-умолчанию было 16px */
-	margin-bottom: 0px; /* Аналогично */
-	
+	width: 197px;
+	min-height: 60px;
+	margin-top: 2px;
+	margin-bottom: 0px;	
+
 	font-style: italic;
 	font-size: 16px;
 	line-height: 23px;
 	color: #ee3643;
 }
 
-.contacts-p {
-	margin-top: 0px; /* Почему-то по-умолчанию было 16px */
-	margin-bottom: 0px; /* Аналогично */
-	width: 270px;
-	margin-left: 71px;	
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.description-p {
+		margin-top: 3px;		
+	}
 }
 
-.tel-number-a {
-	display: block;
+/* Firefox */
+@-moz-document url-prefix() {
+	.description-p {
+		margin-top: 2px;	
+	}
+}
+
+.contacts {
+	margin-top: 0px;
+	margin-bottom: 0px;
 	width: 270px;
-	height: 45px;
-	padding-top: 10px;
+}
+
+.links {
+	width: 270px;
+	min-height: 45px;
+	padding-top: 9px;
+	padding-bottom: 6px;
+	padding-left: 68px;
+	padding-right: 45px;
+	margin-bottom: 3px;
 		
-	font-size: 21px;	
+	font-size: 21px;
 	line-height: 21px;
+	letter-spacing: 0.42px;
 	text-align: center;
-	color: #e9292a;
 
 	border: solid 3px #ffffff;
 }
 
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.links {
+		padding-top: 10px;
+		padding-bottom: 5px;
+		padding-left: 68px;
+		padding-right: 45px;		
+		margin-bottom: 4px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.links {
+		padding-top: 9px;
+	}
+}
+
+.header-tel-a {
+	position: relative;
+	
+	width: 152px;
+	
+	color: #e9292a;
+	
+	letter-spacing: normal;	
+}
+
+.header-tel-a:active {
+	color: #b92222;
+}
+
+.header-tel-a::before {
+	content: '';
+	
+	position: absolute;
+	
+	top: 1px;
+	left: -56px;
+	
+	width: 19px;
+	height: 19px;
+	
+	background-image: url(../img/icon-phone.svg);
+	background-position: 0 0;
+	background-repeat: no-repeat;	
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.header-tel-a::before {
+		top: 0;		
+		left: -56px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.header-tel-a::before {
+		left: -55px;
+	}	
+}
+
 .address {
 	display: block;
-	margin-top: 4px;
+	padding-left: 1px;
 
 	font-size: 14px;
 	line-height: 24px;
@@ -275,61 +650,22 @@ img {
 	color: #32425c;
 }
 
-.space {
-	width: 50px;
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.address {
+		padding-left: 0;
+	}
 }
 
-.user-nav-space {
-	width: 299px;
+/* Firefox */
+@-moz-document url-prefix() {
+	.address {
+		padding-left: 1px;
+	}	
 }
 
-.main-navigation {
-
-}
-
-/* Позиционирующая и центрирующая обертка */
-.pos-center-wrapper {
-	position: relative; /* Для правильного позиционирования дочерних элементов: header-logo и user-navigation и других с относительным позиционированием*/	
-
-	width: 940px; /* Если не задать ширину и не отцентрировать, то при изменении ширины страницы положение дочерних элементов будет менятся не так, как нужно, */
-	margin-left: auto; /* а отцентрировав, мы добиваемся того, что положение по горизонтали дочерних элементов автоматически изменяется и они располагаются */
-	margin-right: auto; /* ровно по краям обертки, совпадающим с краями главного меню, которое также отцентрировано. */
-    /* Проще говоря, без центрирования мы бы вообще не смогли адаптировать положение дочерних элементов по горизонтали под ширину страницы */
-}   /* Нужное нам в конкретный момент положение дочерних элементов невозможо рассчитать от левого края страницы, но возможно рассчитать от левого края обертки, */  
-	/* так как это положение зависит от положения краев главного меню и, соответственно, от краев обертки */ 
-
-.logo {
-	display: block;
-	width: 220px;
-	background-color: #ee3643;
-	box-shadow: inset 0 -5px 0 0 rgba(0, 0, 0, 0.24);	
-}
-
-.header-logo {
-	position: absolute;
-	top: -206px;
-	left: 0;
-	
-	height: 47px;
-}
-
-.header-logo:hover {
-	background-color: #ca2c37;
-}
-
-.header-logo:active {
-	background-color: #ba2732;
-}
-
-.header-logo-img {
-	display: inline-block;
-	margin-top: 13px;
-}
-
-.user-navigation {
-	position: absolute;
-	top: -118px;
-	right: 0;
+.padd-left-51px {
+	padding-left: 51px;	
 }
 
 .unathorized-nav,
@@ -341,8 +677,8 @@ img {
 	margin-left: 18px;
 }
 
-.user-button {
-	height: 45px;
+.user-button {	
+	min-height: 45px;
 	
 	font-size: 21px;
 	line-height: 21px;
@@ -361,12 +697,71 @@ img {
 }
 
 .login-button {
+	position: relative;
 	width: 121px;
+	padding-top: 11px;
+	padding-bottom: 11px;
+	padding-left: 44px;
+	padding-right: 22px;
+	margin-right: 10px;	
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.login-button {
+		padding-top: 12px;
+		padding-bottom: 10px;	
+		padding-left: 43px;
+		padding-right: 23px;		
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.login-button {	
+		padding-top: 11px;
+		padding-bottom: 11px;		
+		padding-left: 44px;
+		padding-right: 22px;		
+	}
+}
+
+.login-button:hover:not(:active) .login-icon {
+	fill: #32425c;
+}
+
+.login-icon {
+	position: absolute;
+	left: 14px;
+	top: 14px;
 }
 
 .reg-button {
-	margin-left: 10px;
 	width: 150px;
+	padding-top: 11px;
+	padding-bottom: 13px;
+	padding-right: 23px;
+	padding-left: 21px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.reg-button {
+		padding-top: 12px;
+		padding-bottom: 12px;		
+		padding-left: 22px;
+		padding-right: 22px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.reg-button {
+		padding-top: 11px;
+		padding-bottom: 13px;		
+		padding-left: 23px;
+		padding-right: 21px;		
+	}
 }
 
 .authorized-nav {
@@ -374,16 +769,14 @@ img {
 }
 
 .prof-logout-btn {
-	display: flex;
-	align-items: center;
-
 	width: 299px;
+	padding-top: 13px;
+	padding-bottom: 10px;
 	padding-left: 13px;
+	padding-right: 10px;
 }
 
 .profile-a {
-	display: flex;
-
 	margin-right: 36px;
 }
 
@@ -400,19 +793,18 @@ img {
 }
 
 .user-icon {
-	margin-top: 1px;
-	margin-right: 12px;
+	margin-right: 13px;
 }	
 
 .user-name {
 	width: 186px;
-	margin-top: 0px;
+	margin-top: -1px;
 
 	color: #000000;
 }
 
 .logout-a {
-	margin-top: 3px;
+	margin-top: 1px;
 }
 
 .logout-a:hover .logout-icon {
@@ -433,23 +825,15 @@ img {
 	color: #32425c;
 }
 
-.unbullet-item { /* Подумать, может быть стоит вынести этот код в самый верх к .button */	
-	list-style: none;	
+.personal-nav {
+	margin-top: 7px;
+	
+	font-size: 16px;
+	line-height: 18px;	
 }
 
-.personal-nav .unbullet-item {
-	margin-right: 32px;
-}
-
-.pers-nav-item:not(.unbullet-item) {
-	padding-left: 4px;  /* чтобы маркер списка (точку-разделитель) отодвинуть чуть левее элемента списка */
-	font-size: 12px;  /* для того, чтобы шрифт точки-разделителя сделать поменьше основного шрифта */
-}
-
-.pers-nav-a {	
-	font-size: 16px;	
+.pers-nav-a {
 	text-decoration: underline;
-	color: inherit;
 }
 
 .pers-nav-a:hover {
@@ -458,88 +842,118 @@ img {
 
 .pers-nav-a:active {
 	color: rgba(0, 0, 0, 0.3);
-}	
+}
+
+.pers-nav-a:first-child {
+	max-width: 121px;
+	margin-right: 14px;
+}
+
+.bull {
+	margin-top: 1px;
+	font-family: Arial, sans-serif;
+}
+
+.pers-nav-a:last-child {
+	max-width: 121px;
+	margin-left: 13px;
+}
 
 .site-navigation {
-	height: 60px;
-	padding-left: 18px;
-	padding-right: 18px;
+	position: relative;
+	
+	padding-left: 19px;
+	padding-right: 14px;
 	
 	font-size: 17px;
 	line-height: 17px;
 	
 	background-color: #32425c;
-	box-shadow: inset 0 -5px 0 0 #293449;
 }
 
-.site-nav-item {
+.site-navigation::before {
+	content: '';
 	
-}
+	position: absolute;
+	bottom: 0;
+	left: 0;
 
-.site-nav-item:hover .site-nav-a {
+	width: 940px;
+	height: 5px;
 	background-color: #293449;
 }
 
-.site-nav-item:active .site-nav-a {
+.site-nav-a:hover {
+	background-color: #293449;
+}
+
+.site-nav-a:active {
 	color: rgba(255, 255, 255, 0.5);
 	background-color: #1d2739;
 }
 
-/* увеличиваем по-вертикали область действия ссылки на всю высоту site-nav-item */
-.site-nav-item:nth-child(n) .site-nav-a {
-	padding-top: 21px;
-	padding-bottom: 21px;
+.site-nav-a:active,
+.site-nav-a:focus {
+	z-index: 1;
 }
 
-.site-nav-item:first-child .site-nav-a {
-	padding-left: 34px;
+/* Задаем усредненные пэддинги для пунктов меню, которые будут добавлены в будущем */
+.site-nav-a {
+	display: block; /* Для того, чтобы можно было задать вертикальные пэддинги ссылкам (см. лекцию) */
+	max-width: 185px;
+	padding-top: 20px;
+	padding-bottom: 23px;
+	padding-left: 31px;
+	padding-right: 31px;
+	
+	color: #ffffff;
+}
+
+/* Обращаемся к пункту списка не как к nth-child, а по имени класса, иначе при добавлении нового пункта между i и i+1 нумерация, начиная с i+1 сдвинется и стили для i+1
+применятся не к нему, а к вновь добавленному пункту. Это касается боковых пэддингов ссылок, так как они разные у каждого пункта меню. Также нельзя использовать last-child, 
+так как могут добавить в конец и заданные для последнего усредненные пэддинги применятся предпоследнему (и наоборот), так как последний при добавлении нового станет предпоследним. */
+
+.main-a {
+	padding-left: 33px;
 	padding-right: 34px;
 }
 
-.site-nav-item:nth-child(2) .site-nav-a {
-	padding-left: 31px;
-	padding-right: 31px;
-}
-
-.site-nav-item:nth-child(3) .site-nav-a {
+.company-a {
 	padding-left: 30px;
 	padding-right: 30px;
 }
 
-.site-nav-item:nth-child(4) .site-nav-a {
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-.site-nav-item:nth-child(5) .site-nav-a {
+.catalog-a {
 	padding-left: 29px;
 	padding-right: 29px;
 }
 
-.site-nav-item:nth-child(6) .site-nav-a {
-	padding-left: 33px;
-	padding-right: 33px;
-}
-
-.site-nav-item:last-child .site-nav-a {
+.news-a {
 	padding-left: 31px;
 	padding-right: 31px;
 }
 
-.site-nav-a {
-	display: block; /* Для того, чтобы можно было задать вертикальные пэддинги ссылкам (см. лекцию) */
-	color: #ffffff;
+.special-offers-a {
+	padding-left: 28px;
+	padding-right: 29px;
 }
 
-.index-main {
-	padding-top: 61px;
+.delivery-a {
+	padding-left: 33px;
+	padding-right: 33px;
 }
 
-.flex-container {
-	display: flex;
-	justify-content: space-between; /* Раздвигаем флекс-элементы по-горизонтали (по главной оси) на всю ширину родительского элемента */
-	align-content: space-between; /* Раздвигаем флекс-элементы по-вертикали (по поперечной оси) на всю высоту родительского элемента */ 
-	flex-wrap: wrap;
+.contacts-a {
+	padding-left: 30px;
+	padding-right: 33px;
+}
+
+.just-cont-sb {
+	justify-content: space-between;
+}
+
+.marg-bottom--20px {
+	margin-bottom: -20px;
 }
 
 .marg-bottom-20px {
@@ -547,55 +961,132 @@ img {
 }
 
 .promo-item {
-	position: relative; /* Для того, чтобы можно было установить метку "new" точно в уголок */
+	position: relative;
 
 	width: 300px;
-	height: 123px;
+	min-height: 123px;
 
 	padding-top: 22px;
+	padding-bottom: 22px;
 	padding-left: 22px;
 }
 
-.promo-item-capt {
-	display: block;
-
-	margin-bottom: 14px;
+.marked-item::before {
+	content: '';
 	
-	font-size: 24px;
-	line-height: 27px;
-	/* font-weight: bold; Почему-то в макете указан bold, но когда его ставим, получается жирнее, чем на макете */
-	color: #ffffff; 	
+	position: absolute;
+	z-index: 1;
+	top: -13.8pt;
+	right: -24.4pt;
+	
+	width: 84px;
+	
+	border: 28px solid transparent;
+	border-bottom-color: #ee3643;
+	transform: rotate(45deg);
 }
 
-.promo-item:nth-child(1) {
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.marked-item::before {
+		top: -18px;
+		right: -32px;
+	}
+}
+
+.marked-item::after {
+	content: 'new';
+	
+	position: absolute;
+	z-index: 2;
+	top: 33px;
+	right: -47px;
+	
+	width: 84px;
+	
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-size: 12px;
+	color: #ffffff;
+	
+	transform: rotate(42.8deg) scale(1.05, 1.3) skew(0, 1.1deg);
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.marked-item::after {
+		top: 35px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.marked-item::after {
+		top: 10px;
+		right: 6px;
+		
+		width: 29px;
+		height: 20px;
+		padding-top: 1px;
+		padding-bottom: 9px;
+		
+		text-align: center;
+		
+		background-color: rgb(238, 51, 65);
+	}
+}
+
+.three-pr-items .promo-item:nth-child(1) {
 	background-color: #f6b22d;
 	background-image: url(../img/icon-1.svg);
 	background-position: 213px 31px;
 	background-repeat: no-repeat;	
 }
 
-.promo-item:nth-child(2) {
+.three-pr-items .promo-item:nth-child(2) {
 	background-color: #3bbce3;
 	background-image: url(../img/icon-2.svg);
 	background-position: 197px 33px;
 	background-repeat: no-repeat;
 }
 
-.promo-item:nth-child(3) {
+.three-pr-items .promo-item:nth-child(3) {
 	background-color: #dc91d8;
 	background-image: url(../img/icon-3.svg);
 	background-position: 191px 31px;
 	background-repeat: no-repeat;	
 }
 
+.promo-item-capt {
+	display: block;
+	width: 150px;
+	margin-top: -1px;
+	margin-bottom: 12px;
+	margin-left: 1px;
+	
+	font-size: 24px;
+	line-height: 30px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.promo-button {
+	padding-left: 22px;
+	padding-right: 22px;
+	margin-left: 3px;
+	
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
 .gallary-slider {
 	position: relative;
 	
-	display: inline-block;
-	width: 620px; /* Здесь указыать размеры обязательно, так как иначе при абсолютном позиционировании изображения слайдер выпадает из потока */
+	width: 620px;
 	height: 266px;
-	margin-right: 20px;
 }
+
+/*.gall-radio:focus:not(:active) ~ .gallary-slide-switch .gall-label {
+	box-shadow: 0 0 4px 4px rgb(0, 150, 0);
+}*/
 
 .gall-label {
 	position: absolute;
@@ -607,14 +1098,34 @@ img {
 	font-size: 52px;
 	line-height: 44px;
 	color: #ffffff;
+	
+	cursor: pointer;
+}
+
+.gall-label:active,
+.gall-label:focus {
+	outline: 0;
+	/*box-shadow: none;*/
 }
 
 .gall-label-1 {
-	left: 25px;
+	left: 22px;
+
+	width: 25px;
+
+	white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .gall-label-2 {
-	right: 20px;
+	right: 19px;
+	
+	width: 25px;	
+	
+	white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;	
 }
 
 .gall-slide-keeper {
@@ -656,28 +1167,37 @@ img {
 	border-radius: 50%;	
 }
 
-.gall-radio-1:checked ~ ::before,
-.gall-radio-2:checked ~ ::after {
+.gall-radio-1:checked ~ .gall-slide-keeper::before,
+.gall-radio-2:checked ~ .gall-slide-keeper::after {
 	background-color: #ee3643;
 	border: 2px solid #ffffff;
 }
 
-.gall-radio-1:checked ~ .gall-slide-keeper .man-n-perfo,
-.gall-radio-2:checked ~ .gall-slide-keeper .man-n-drill {
-	z-index: 1;
-}
-
 .gallary-slide {
-	position: relative;
+	z-index: 1;
+	
+	display: none;
 	margin-top: 0;
 	margin-bottom: 0;
 	margin-left: 0;	
 	margin-right: 0;
 }
 
+.perfo-slide {
+	background-color: rgb(217, 200, 182);
+}
+
+.drill-slide {
+	background-color: rgb(161, 118, 109);	
+}
+
+.gall-radio-1:checked ~ .gall-slide-keeper .perfo-slide,
+.gall-radio-2:checked ~ .gall-slide-keeper .drill-slide {
+	display: flex;
+}
+
 .gall-figure {
-	position: absolute;
-	width: 620px; /* Работает и без этого, но наи всякий случай указал, если вдруг будут загружать изображение, которое шире, чем 620px */
+	width: 620px; 
 	height: 266px;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -686,20 +1206,25 @@ img {
 }
 
 .gall-fig-capt {
-	position: absolute;
-	top: 26px;
+	position: absolute;	
+	top: 23px;
 	left: 24px;
 	
+	width: 568px;
+	
 	color: #ffffff;
+	
+	white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .gall-fig-capt .heading {
 	display: block;
-	
-	margin-bottom: 8px;
+	margin-bottom: 1px;
 	
 	font-size: 36px;
-	line-height: 30px;
+	line-height: 36px;
 	font-weight: bold;	
 	text-transform: uppercase;
 }
@@ -707,26 +1232,32 @@ img {
 .gall-fig-capt .slogan {
 	display: block;
 	
-	font-family: 'PT Sans', Arial, sana-serif;
+	font-family: 'PT Sans', Arial, sans-serif;
 	font-size: 18px;
-	line-height: 17px;
+	line-height: 24px;
 }
 
-.catalog-a {
+.slider-btn {
+	width: 195px;
+}
+
+.catalog-gall-a {
 	position: absolute;
 	left: 25px;
 	bottom: 22px;
 	z-index: 2;
 
 	padding-left: 49px;
-	padding-right: 45px;
+	padding-right: 44px;
+	
+    white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;	
 }
 
-.red-button { /* Как ни странно, такое название кнопки оправдано, так как отличительным признаком данной кнопки является ее цвет */ 
-	background-color: #ee3643; /* И так как она встречается очень часто и практически во всех разделах и служит для разных целей, */
-}							/* мы просто не можем именовать ее каким-то другим способом, кроме как по цвету */
-/* А именовать ее нам просто необходимо для изменения ее внешнего вида при ховере и клике */
-/* Можно было бы дать название common-button, но такое название уже носит более общий класс кнопок */
+.red-button {
+	background-color: #ee3643;
+}
 
 .red-button:hover {
 	background-color: #ca2c37;
@@ -736,41 +1267,18 @@ img {
 	background-color: #ba2732;
 }
 
-.red-button:active {
-	outline: none;
-}
-
-/* Обертка, объединяющая промо-пункты*/
-.uniting-wrapper {
-	display: inline-block;
-	
-	width: 300px;
-	
-	vertical-align: top;
-}
-
-.uniting-wrapper .promo-item:first-child {
-	margin-bottom: 20px;
-
+.two-pr-items .promo-item:first-child {
 	background-color: #8ed78f;
 	background-image: url(../img/icon-4.svg);	
 	background-position: 196px 26px;
 	background-repeat: no-repeat;	
 }
 
-.uniting-wrapper .promo-item:last-child {
+.two-pr-items .promo-item:last-child {
 	background-color: #ffc047;
 	background-image: url(../img/icon-5.svg);
 	background-position: 191px 32px;
 	background-repeat: no-repeat;
-}
-
-.width-135px {
-	width: 135px;
-}
-
-.promo-button {	
-	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .promo-button:hover {
@@ -781,134 +1289,158 @@ img {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
+.index-h2-panel,
+.catalog-h1-panel {
+	min-height: 89px;
+	margin-bottom: 20px;
+	padding-top: 25px;
+	padding-bottom: 26px;
+	padding-left: 28px;
+	padding-right: 24px;
+}
+
+.h2-column {
+	width: 520px;
+}
+
+.button-column {
+	width: 253px;	
+}
+
 .popular-products {
 	margin-top: 53px;
 	margin-bottom: 21px;
 }
 
-/* Модификатор для pos-center-wrapper */
-.height-89px {
-	height: 89px;
-}
-
-/* Модификатор для pos-center-wrapper */
-.marg-bottom-20px {
-	margin-bottom: 20px;
-}
-
-.bg-color-f9f5f0 {
+.index-h2-panel {
 	background-color: #f9f5f0;
 }
 
 .popular-h2,
 .catalog-h1 {
-	position: absolute;
-	top: 34px;
-	left: 30px;
-	
-	margin-top: 0; /* Почему-то был 24.9px */
-	margin-bottom: 0;  /* Почему-то был 24.9px */
+	width: 520px;	
+	margin-top: 5px;
+	margin-bottom: 3px;
 	
 	font-size: 30px;
 	font-weight: normal; /* Переопределяем стиль заголовка h2 */
-	line-height: 21px;/* В макете было 30px; но высота букв 21px, поэтому мы указали последнее, чтобы не вычислять отступ сверху */
+	line-height: 30px;
 	text-transform: uppercase;
 	color: #32425c;
 }
 
 .popular-btn {
-	position: absolute;
-	top: 25px;
-	right: 24px;
-	
 	width: 253px;
+	padding-left: 53px;
+	padding-right: 53px;
 }
 
 /* Задаем высоту списку, чтобы не забыть в будущем увеличить ее после добавления новых пунктов списка для align-content: space-between; */
-.height-324px {
-	height: 324px;
+.pop-prod-list {
+	min-height: 318px;
 }
 
-.pop-prod-item {
+.product-item {
 	position: relative;
 }
 
-/* Здесь использование псевдо-элементов оправданно, так как позволяет не меняя html-структуры элементов отмечать конкретные пункты классом marked-item. */
-/* Это проще, чем добавлять метку блоком внутрь каждого пункта (промо-списка и списка товаров), а потом у большинства пунктов скрывать ее с помощью visually-hidden */
-.marked-item::before {
-	content: '';
-	
-	position: absolute;
-	z-index: 1;
-	top: -18px;
-	right: -32px;
-	
-	width: 84px;
-	
-	border: 28px solid transparent;
-	border-bottom-color: #ee3643;
-	transform: rotate(45deg);
-}
-
-/* Добавляем надпись после ленты, иначе надпись скроется под лентой */
-.marked-item::after {
-	content: 'new';
-	
-	position: absolute;
+.product-item:hover {
 	z-index: 2;
-	top: 30px;
-	right: -45px;
-	
-	width: 84px;
-	
-	font-family: 'PT Sans', Arial, sans-serif;
-	font-size: 16px;
-	font-stretch: semi-condensed; /* Чтобы было максимальное сходство с картинкой, иначе буквы выглядят шире, чем на картинке */
-	color: #ffffff;
-	
-	transform: rotate(42.8deg);
 }
 
 .product-card {
 	width: 220px;
 	padding-bottom: 20px;
+	
 	text-align: center;
+
+	overflow: hidden;	
+	
 	border: 1px solid #eaeaea;
-}		
+}
+
+.just-cont-c {
+	justify-content: center;
+}
+
+.product-card:hover .product-img,
+.product-card:not(:hover) .cart-add-btn,
+.product-card:not(:hover) .bookmarks-add-btn {
+	display: none;
+}
 
 .product-card:hover {
 	border: none;
-	border-top: 1px solid #ffffff; /* Для того, чтобы верхний марджин добавляющих кнопок не выпадал из карточки */
-	box-shadow: 0px 10px 25px 0 rgba(41, 52, 73, 0.5);
+	padding-top: 1px;
+	padding-bottom: 21px;
+	box-shadow: 0px 10px 37px 0 rgba(41, 52, 73, 0.5);
 }
 
-.product-img {
-	margin-bottom: 5px; /* почему-то у img снизу есть непонятный невидимый отступ в 4 пикселя */
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.product-card:hover {
+		box-shadow: 0px 10px 25px 0 rgba(41, 52, 73, 0.5);
+	}
 }
 
-/* Контейнер для добавляющих кнопок */
-.add-buttons {
-	margin-top: 44px;
-	margin-bottom: 52px; /* Задаем этот отступ здесь, а не в заголовке, так как если кнопки будут невидимы, от изображения до заголовка будет уже другой отступ */ 
+.product-img {	
+	margin-bottom: 8px;
+	width: 218px;
+	min-height: 170px;
+	
+	background-color: rgb(48, 116, 153);
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.product-img {	
+		margin-bottom: 9px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.product-img {	
+		margin-bottom: 8px;
+	}	
 }
 
 .pt-sans-bold {
 	font-family: 'PT Sans', Arial, sans-serif;
 	font-weight: bold;
 }
-	
+
 .prod-card-h3 {	
 	margin-top: 0px;
-	margin-bottom: 14px; /* Задаем этот отступ здесь, так как логичнее задать отступ заголовку, чем цене */
+	margin-bottom: 11px;
+	margin-right: 1px;
 	
 	font-size: 18px;
 	line-height: 20px;
 }
 
-.cart-add-btn {
+.cart-add-btn {	
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 0;
+	padding-right: 44px;
+	margin-top: 44px;
+	margin-bottom: 7px;
+	margin-right: 1px;
+	
+	overflow: hidden;
+	
 	background-color: #63a63e;
 	box-shadow: inset 0 -3px 0 0 #367315;
-	margin-bottom: 7px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.cart-add-btn {
+		padding-top: 11px;
+		padding-bottom: 9px;
+		padding-left: 21px;
+	}
 }
 
 .cart-add-btn:hover {
@@ -916,22 +1448,105 @@ img {
 }
 
 .cart-add-btn:active {
+    padding-top: 9px;
+	padding-bottom: 11px;
+	padding-left: 11px;
+	padding-right: 45px;
+	
 	background-color: #518534;
-	box-shadow: none;
-}
+/*	box-shadow: none;*/
 
-.cart-add-btn:active {	
 	outline: none;
 }
 
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.cart-add-btn:active {
+		padding-top: 11px;
+		padding-bottom: 9px;
+		padding-left: 12px;
+		padding-right: 44px;
+	}
+}
+
+.cart-add-btn:active:not(:hover) {
+    padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 12px;
+	padding-right: 44px;	
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.cart-add-btn:active:not(:hover) {
+		padding-top: 11px;
+		padding-bottom: 9px;		
+	}
+}
+
+.cart-add-btn .cart-icon {
+	margin-top: 1px;
+	margin-left: -9px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.cart-add-btn .cart-icon {
+		margin-top: 0;
+		margin-bottom: 2px;
+		margin-left: -9px;
+	}
+}
+
+.cart-add-btn:hover .cart-icon,
+.cart-add-btn:active .cart-icon {
+	fill-opacity: 1;
+}
+
+.cart-add-btn:active .cart-icon {
+	margin-left: -21px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.cart-add-btn:active .cart-icon {
+		margin-left: 0;
+	}
+}
+
+.ca-btn-capt {
+	width: 42px;
+}
+
 .bookmarks-add-btn {
-	height: 38px;
-	padding-top: 11px; /* Переопределили стиль common-button, так как у последнего высота задавалась с помощью пэддингов, а т. к. здесь мы добавили 3px-рамку, произошло смещение */
-					   /* контента (надписи) вниз на 3px */
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-right: 4px;
+	margin-bottom: 51px;
+	margin-right: 1px;
+
 	color: #32425c;
 	
 	background-color: #ffffff;
 	border: 3px solid #63a63e;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.bookmarks-add-btn {
+		padding-top: 8px;
+		padding-bottom: 6px;
+		padding-right: 2px;
+		margin-bottom: 52px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.bookmarks-add-btn {
+		padding-right: 4px;
+		margin-bottom: 51px;		
+	}	
 }
 
 .bookmarks-add-btn:hover,
@@ -940,48 +1555,149 @@ img {
 }
 
 .bookmarks-add-btn:active {
-	opacity: 0.3;
-}
+	padding-top: 6px;
+	padding-bottom: 8px;
+	padding-right: 6px;
 
-.bookmarks-add-btn:active {
+	opacity: 0.3;
+
 	outline: none;
 }
 
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.bookmarks-add-btn:active {
+		padding-top: 8px;
+		padding-bottom: 6px;
+		padding-right: 2px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.bookmarks-add-btn:active {
+		padding-right: 5px;		
+	}
+}
+
+.bookmarks-add-btn:active:not(:hover) {
+	padding-top: 7px;
+	padding-bottom: 7px;	
+	padding-right: 4px;	
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.bookmarks-add-btn:active:not(:hover) {
+		padding-top: 8px;
+		padding-bottom: 6px;		
+		padding-right: 2px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.bookmarks-add-btn:active:not(:hover) {
+		padding-top: 8px;
+		padding-bottom: 6px;		
+		padding-right: 4px;		
+	}
+}
+
 .old-price {
-	display: block; /* иначе не удастся задать нижний марджин */
+	display: block;
 	height: 12px;
-	margin-bottom: 13px;
+	margin-bottom: 17px;
+	margin-left: 4px;
 	
 	font-size: 17px;
-	line-height: 12px; /* Если указать как на макете (18px), то сложно будет вычислить нижний отступ */
+	line-height: 18px;
 	text-transform: uppercase; 
 	text-decoration: line-through;
 	color: #a9a9a9;
 }
 
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.old-price {
+		margin-bottom: 16px;
+	}
+}
+
 .prod-detail-btn {
 	position: relative;
-	width: 122px;/*141px;*/
-	
+
+	width: 123px;
+	padding-top: 9px;
+	padding-bottom: 11px;
+	padding-left: 22px;
+	margin-right: 10px;
+
 	font-size: 17px;
-	font-weight: inherit; /* Именно inherit, потому что по-умолчанию кнопка не наследует полужирное начертание */
-	
-	border-radius: 0;
-}	/* Почему-то именно на этой кнопке PT Sans Bold смотрится по-другому, чем на макете. */
+	font-weight: inherit;
+}
 
-.prod-detail-btn::after {
-	content: '';
-	
-	position: absolute;
-	bottom: 6px;
-	right: -13px; /* -19px; Исправил на -13px, так как квадрат выпадает из контента вправо примерно на 3px из-за того, что его вытесняет надпись с ценой */
-	/* Исправил именно на -13, а не на -16 из-за того, что при повороте на 45 градусов нужно задавать дополнительное смещение как по-вертикали, так и по-горизонтали */ 
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.prod-detail-btn {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 21px;
+	}
+}
 
-	width: 19.83pt; 
-	height: 19.83pt; /* ~=26.87px - округление числа (38 / (корень из 2)) (определение длины стороны квадрата по длине диагонали или катета прямоугольного равнобедренного треугольника) */
-	/* указал в пунктах, так как дробные значения пунктов не игнорируются, а значит указать в пунктах можно более точно, чем в пикселях (в пикселях ромб вылазил вверх на 1 пиксель */
-	background-color: #ee3643;
-	transform: rotate(45deg);
+/* Firefox */
+@-moz-document url-prefix() {
+	.prod-detail-btn {
+		padding-left: 22px;
+	}	
+}
+
+.prod-detail-btn:active {
+	padding-top: 8px;
+	padding-bottom: 12px;
+	padding-left: 20px;
+	
+	outline: none;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.prod-detail-btn:active {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 21px;
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.prod-detail-btn:active {
+		padding-left: 22px;
+		padding-right: 8px;
+	}
+}
+
+.prod-detail-btn:active:not(:hover) {
+	padding-top: 9px;
+	padding-bottom: 11px;
+	padding-left: 22px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.prod-detail-btn:active:not(:hover) {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 21px;				
+	}
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.prod-detail-btn:active:not(:hover) {
+		padding-left: 22px;
+	}		
 }
 
 .prod-detail-btn:hover::after {
@@ -992,87 +1708,199 @@ img {
 	background-color: #ba2732;
 }
 
+.prod-detail-btn::after {
+	content: '';
+	
+	position: absolute;
+	bottom: 6px;
+	right: -9.33pt;
+
+	width: 19.83pt; 
+	height: 19.83pt; /* ~=26.87px - округление числа (38 / (корень из 2)) (определение длины стороны квадрата по длине диагонали или катета прямоугольного равнобедренного треугольника) */
+	/* указал в пунктах, так как дробные значения пунктов не игнорируются, а значит указать в пунктах можно более точно, чем в пикселях */
+	background-color: #ee3643;
+	transform: rotate(45deg);
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+	.prod-detail-btn::after {
+		bottom: 6px;
+	}
+}
+
 .pop-manufact-rs {
 	margin-bottom: 85px;
 }
-	
-.height-310px {
-	height: 310px;
-}	
 
-.pop-man-item {
+.manufact-item {
+	position: relative;
+	
 	width: 220px;
-	height: 145px;
+}
+
+.manufact-a {
+	display: block;
+	width: 220px;	
+	min-height: 145px;
 
 	text-align: center;
 	
 	border: 1px solid #eaeaea;	
 }
 
-.pop-man-item:hover,
-.pop-man-item:active {
-	border: none;
-}
-
-.pop-man-item:hover {
+.manufact-a:hover {
+	z-index: 1;
+	
 	box-shadow: 0px 10px 25px 0 rgba(41, 52, 73, 0.5);
 }
 
-.pop-man-item:active {
+.manufact-a:hover,
+.manufact-a:active {
+	padding-top: 1px;
+	padding-bottom: 1px;
+	
+	border: none;
+}
+
+.manufact-a:active {
 	opacity: 0.3;
-	box-shadow: 0px 4px 10px 0 rgba(41, 52, 73, 0.5);	
+	box-shadow: 0px 4px 10px 0 rgba(41, 52, 73, 0.5);
 }
 
-.manufact-a {
+.bosch-a {
+
+}
+
+.makita-a {
+	padding-right: 1px;
+}
+
+.dewalt-a {
+
+}
+
+.interskol-a {
+	padding-right: 2px;	
+}
+
+.hitachi-a {
+	padding-left: 5px;
+}
+
+.lg-a {
+	padding-right: 3px;
+}
+
+.aeg-a {
+	padding-left: 1px;
+}
+
+.metabo-a {
+	padding-left: 4px;
+}
+
+.manufact-img {
 	display: block;
-	width: 220px;
-	height: 145px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.pop-man-item:first-child .manufact-img {
-	margin-top: 53px;
+.bosch-img {
+	width: 126px;
+	min-height: 37px;
+	
+	margin-top: 52px;
+	margin-bottom: 54px;
+	
+	background-color: rgb(254, 52, 45);
 }
 
-.pop-man-item:nth-child(2) .manufact-img {
-	margin-top: 50px;	
+.makita-img {
+	width: 123px;
+	min-height: 40px;
+	margin-top: 49px;
+	margin-bottom: 54px;
+
+	background-color: rgb(253, 58, 53);	
 }
 
-.pop-man-item:nth-child(3) .manufact-img {
-	margin-top: 48px;	
+.dewalt-img {
+	width: 146px;
+	min-height: 44px;	
+	margin-top: 47px;
+	margin-bottom: 52px;
+	
+	background-color: rgb(255, 213, 44);	
 }
 
-.pop-man-item:nth-child(4) .manufact-img {
-	margin-top: 21px;	
+.interskol-img {
+	width: 200px;
+	min-height: 88px;	
+	margin-top: 20px;
+	margin-bottom: 35px;
+	
+	background-color: rgb(239, 41, 19);
 }
 
-.pop-man-item:nth-child(5) .manufact-img {
-	margin-top: 58px;	
+.hitachi-img {
+	width: 169px;
+	min-height: 31px;	
+	margin-top: 57px;
+	margin-bottom: 55px;
+	
+	background-color: rgb(255, 47, 22);
 }
 
-.pop-man-item:nth-child(6) .manufact-img {
-	margin-top: 35px;	
+.lg-img {
+	width: 121px;
+	min-height: 73px;	
+	margin-top: 34px;
+	margin-bottom: 36px;
+
+	background-color: rgb(214, 36, 48);
 }
 
-.pop-man-item:nth-child(7) .manufact-img {
-	margin-top: 23px;	
+.aeg-img {
+	width: 151px;
+	min-height: 96px;	
+	margin-top: 22px;
+	margin-bottom: 25px;
+	
+	background-color: rgb(246, 62, 50);
 }
 
-.pop-man-item:last-child .manufact-img {
-	margin-top: 34px;	
+.metabo-img {
+	width: 204px;
+	min-height: 69px;	
+	margin-top: 33px;
+	margin-bottom: 41px;
+	
+	color: #ffffff;
+	
+	background-color: rgb(32, 83, 80);
 }
 
-.services {
+.services-sect {
 	padding-top: 68px;
-	padding-bottom: 99px;
+	padding-bottom: 98px;
 	background-color: #f4f7f9;
 }
 
+.width-960px {
+	width: 960px;
+}
+
+.padd-left-10px {
+	padding-left: 10px;
+}
+
 .lower-sections-h2 {
-	margin-top: 0;
-	margin-bottom: 30px;
+	margin-top: -3px;
+	margin-bottom: 26px;
 	
 	font-size: 30px;
-	line-height: 23px; /* 30px; - заменили на 23px, чтобы проще было вычислять отступы */
+	line-height: 30px;
 	font-weight: normal;
 	text-transform: uppercase;	
 	color: #000000;
@@ -1087,226 +1915,318 @@ img {
 	color: #000000;
 }
 
-.services-slider {
-	position: relative;
-	
-	margin-top: 74px;
+.services-h2,
+.services-p {
+	width: 399px;
 }
 
+.services-slider {
+	margin-top: 69px;
+}
 
-.services-slider:before {
+.align-items-fs {
+	align-items: flex-start;
+}
+
+.serv-slide-switch {
+	position: relative;
+	
+	flex-direction: column;
+	justify-content: stretch;
+	margin-left: -81px;
+}
+
+/* Chrome, Edge, Safary, Firefox */
+@supports (display: -webkit-flex) {
+	.serv-slide-switch {	
+		margin-left: 0;
+	}
+}
+
+/*.service-radio:focus ~ .serv-slide-switch:not(:active):not(:hover) {
+	box-shadow: 0 0 4px 4px rgb(0, 150, 0);	
+}*/
+
+.serv-slide-switch:before {
 	content: '';
 
 	position: absolute;
 	z-index: 1;
 	top: -44px;
-	right: 600px;
+	right: -100px;
 	
 	width: 100px;
-	height: 279px;
+	min-height: calc(100% + 95px);
 	
 	background-color: transparent;
 	border-radius: 25% / 90%;
-	box-shadow: -1px 0 6px 3px rgba(0, 0, 0, 0.5);
+	box-shadow: -1px 0 6px 3px rgba(0, 0, 0, 0.35);
 }
 
-.services-slider:after {
+.serv-slide-switch:after {
 	content: '';
 
 	position: absolute;
 	z-index: 2;
 	top: -55px;
-	right: 590px;
+	right: -110px;
 	
 	width: 110px;
-	height: 300px;
+	min-height: calc(100% + 115px);
 	background-color: #f4f7f9;
 }
 
-.serv-slide-keeper {
-	position: absolute;
-	
-	display: inline-block;
-}
-
-.service-slide {
-	position: relative;	
-}
-
-.service-label:active {
-	outline: none; /* Для отмены аутлайна при клике */
-}
-
-
-
-.service-label:hover {
-	background-color: #293449;
-	box-shadow: inset 0 -1px 0 0 #293449, inset 0 1px 0 0 #405069;	
-}
-
-.service-label:focus {
-	/*box-shadow: 0 0 3px 0 blue; - Не работает при фокусе, срабатывает только при клике. */
-}
-
 .service-label {
-    display: block;
-
 	width: 240px;
-	height: 61px;
-	padding-top: 18px;
+	min-height: 62px;
+	padding-top: 13px;
+	padding-bottom: 17px;	
 	padding-left: 22px;
+	padding-right: 22px;	
 	
 	font-size: 21px;
-	line-height: 23px;/*30px;*/
+	line-height: 30px;
 	font-weight: bold;
 	text-align: left;
 	color: #ffffff;
 	
 	background-color: #32425c;
-	box-shadow: inset 0 -1px 0 0 #293449, inset 0 1px 0 0 #405069;
+	border-top: 1px solid #405069;
+	border-bottom: 1px solid #293449;
+	/*box-shadow: inset 0 -1px 0 0 #293449, inset 0 1px 0 0 #405069;*/
 	border-radius: 0;
 	cursor: pointer;
 }
 
-.service-radio:checked + .service-label {
+.service-label:active {
+	outline: none;
+}
+
+.service-label:hover {
+	background-color: #293449;
+	border-top: 1px solid #405069;
+	border-bottom: 1px solid #293449;
+	/*box-shadow: inset 0 -1px 0 0 #293449, inset 0 1px 0 0 #405069;*/	
+}
+
+.delivery-radio:checked ~ .serv-slide-switch .service-label[for="delivery"],
+.warranty-radio:checked ~ .serv-slide-switch .service-label[for="warranty"],
+.credit-radio:checked ~ .serv-slide-switch .service-label[for="credit"] {
 	color: #32425c;
 	
 	background-color: #ffffff;
-	box-shadow: inset 0 -1px 0 0 #ffffff, inset 0 -1px 0 0 #ffffff;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	/*box-shadow: inset 0 -1px 0 0 #ffffff, inset 0 -1px 0 0 #ffffff;*/
 	outline: 0; /* Для отмены аутлайна при дабл-клике */
 }
 
 .delivery,
 .warranty,
 .credit {
-	position: absolute;
-	top: -183px;
-	left: 320px;
-
-	width: 619px;
-	height: 282px;
+	z-index: 3;
 	
-	background-position: bottom right;
+	display: none;
+	width: 619px;
+	min-height: 284px;
+	margin-bottom: -98px;
+	
 	background-repeat: no-repeat;
 	background-color: #f4f7f9;
 }
 
 .delivery {
+	background-position: 140px 23px;
 	background-image: url("../img/lorry.png");
 }
 
 .warranty {
-	background-image: url("../img/seal.png");	
+	background-position: 228px 1px;
+	background-image: url("../img/seal.png");
 }
 
 .credit {
+	background-position: 154px -1px;	
 	background-image: url("../img/doc-&-money.png");
 }
 
 .delivery-radio:checked ~ .serv-slide-keeper .delivery,
 .warranty-radio:checked ~ .serv-slide-keeper .warranty,
 .credit-radio:checked ~ .serv-slide-keeper .credit {
-	z-index: 3;
+	display: flex;
 }
 
 .service-h3 {
-	margin-top: 0;
-	margin-bottom: 28px;
+	margin-top: -2px;
+	margin-bottom: 25px;
 
 	font-size: 36px;
-	line-height: 32px;
+	line-height: 36px;
 	font-weight: normal;
 	text-transform: uppercase;
 	color: #32425c;
 }
 
+.service-h3,
+.service-p {
+	margin-left: -11px;
+}
+
+.delivery-h3,
+.delivery-p {
+	width: 275px;
+}
+
+.warranty-h3,
+.warranty-p {
+	width: 379px;
+}
+
+.credit-h3,
+.credit-p {
+	width: 280px;
+}
+
+.delivery-p,
+.warranty-p {
+	margin-bottom: 77px;
+}
+
 .request-btn {
 	padding-left: 44px;
 	padding-right: 44px;
+	margin-top: 2px;
+	margin-bottom: 98px;
+	margin-left: -11px;
 }
 
-.height-536px {
-	height: 536px;
-}
-
-.padd-top-82px {
+.lower-sections {
+	min-height: 536px;
 	padding-top: 82px;
+	padding-bottom: 86px;
 }
 
-.company-descript {
-	position: absolute;
-	left: 0;
+.comp-descr-h2,
+.comp-descr-p1 {
+	width: 519px;
+}
+
+.comp-descr-p2 {
+	width: 387px;
 }
 
 .partners-list {
-	margin-top: -1px; /* Чтобы не уменьшать нижний отступ всем параграфам нижних разделов, так как это приведет к расхождениям с макетом сразу в нескольких местах */ 
+	margin-top: -1px;
 	
 	font-size: 18px;
-	line-height: 18px; /* Не 20px, как на макете, чтобы было проще вычислить нижний марджин для каждого пункта списка*/
-	font-weight: bold; /* Исправлено на bold, так как если указать normal (как на макете), то шрифт выглядит не так, как на макете */
+	line-height: 20px;
 }
 
 .partners-list {
 	padding-left: 36px;
-	margin-bottom: 37px;
+	margin-top: -3px;
+	margin-bottom: 36px;
 }
 
 .partner-item {
 	position: relative;
 	
-	margin-bottom: 22px;
+	width: 139px;
+	margin-bottom: 20px;
 }
 
 /* Делаю это без помощи ::before, т. к. в content нельзя добавить такое широкое тире */
 .partner-item .bullet {
 	position: absolute; /* Без этого нельзя сдвинуть буллит вниз относительно названия фирмы-партнера (оно начинает смещаться вместе с бУллитом) */
 	
-	top: -2px;
+	top: -3px;
 	left: -36px;
 	
 	font-family: Arial, sans-serif; /* Arial, потому что на Google-Fonts нет толщины 300 для Cuprum'а */
-	font-size: 26px;
+	font-size: 25px;
 	font-weight: 300; 
 	color: #ee3643;
 }
 
-/* Используем селектор по потомку, так как иначе специфичность не дает применить данное правило */
 .partner-item .top--3px {
-	top: -3px;	
+	top: -4px;
 }
 
 .comp-detail-btn {
 	width: 220px;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
-.contacts {
-	position: absolute;
-	right: 0;	
+.contacts-h2,
+.contacts-p {
+	width: 300px;
 }
 
 .map-a {
 	display: block;
 	width: 300px;
 	height: 158px;
-	margin-top: 33px;
-	margin-bottom: 37px;
+	margin-top: 31px;
+	margin-bottom: 40px;
 	
-	background-color: #b5b8ba;
+	background-color: rgb(244, 242, 236);
+}
+
+.map-a:active {
+	outline: 2px solid rgba(166, 199, 254, 0.9)
+	/*box-shadow: 0 0 4px 4px rgb(0, 150, 0);*/
 }
 
 .write-us-btn {
 	width: 300px;
+	padding-left: 63px;
+	padding-right: 58px;
+}
+
+.fixed-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+	z-index: 4;
+
+    width: 100%;
+    height: 100%;
+    overflow: auto;	
 }
 
 .popup {
-	position: fixed;
-	left: 27%;
-	
-	width: 620px;
-	border-top: 7px solid #ee3643;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+	overflow: auto;
 }
 
-.popup::before {
+.map-popup {
+	width: 940px;
+	height: 446.2px;
+    margin-top: -223.1px;
+	margin-left: -470px;
+	
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-color: rgb(245, 243, 237);
+	background-image: url(../img/map-big.png);
+	
+	box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.55);
+}
+
+.write-us-popup,
+.cart-ok-popup {
+	width: 620px;
+	margin-left: -310px;
+	
+	border-top: 7px solid #ee3643;
+}
+	
+.popup::before,
+.popup::after {
 	content: '';
 	
 	position: absolute;
@@ -1319,61 +2239,69 @@ img {
 	border-radius: 2pt;
 	
 	background-color: #ee3643;
+	
+	cursor: pointer;
+}
+
+.popup::before {
 	transform: rotate(45deg);
 }
 
 .popup::after {
-	content: '';
-	
-	position: absolute;	
-	top: 6px;
-	right: 18px;	
-	
-	width: 4px;
-	height: 27px;
-	
-	border-radius: 2pt;
-	
-	background-color: #ee3643;
 	transform: rotate(-45deg);
 }
 
 .popup-lower {
+	min-height: 112px;	
 	padding-top: 37px;
+	padding-bottom: 17px;	
 	padding-left: 80px;
-	height: 112px;
+	padding-right: 80px;
+	overflow: hidden;
+
 	background-color: #f1f1f1;
 }
 
 .write-us-popup {
-	top: 16%;
-	z-index: 3;
-	
 	height: 430px;
+    margin-top: -215px;
+	
 	box-shadow: 0px 20px 40px 0 rgba(0, 0, 0, 0.75);
 }
 
 .w-us-p-high {
-	height: 311px;
+	min-height: 311px;
 	padding-top: 48px;
-	padding-left: 81px;
+	padding-bottom: 12px;
+	padding-left: 80px;
+	padding-right: 80px;
+	overflow: hidden;	
+	
 	background-color: #ffffff;
 }
 
-.full-name-div,
-.e-mail-div {
-	display: inline-block;
+.name-email-wrapper,
+.order-shopp-wrapper {
+	min-width: 460px;
+	width: 460px;
+}
+
+.full-name-col,
+.e-mail-col {
+	width: 220px;	
+	margin-top: -1px;
 }
 
 .full-name-label,
 .e-mail-label,
 .lett-text-label {
 	display: block;
-	
-	margin-bottom: 11px;
+	width: 180px;
+	margin-bottom: 9px;
+	margin-left: 1px;
 	
 	font-size: 18px;
-	line-height: 15px;
+	line-height: 18px;
 }
 
 /*Псевдоклассы настройки параметров отображения текста плейсхолдера в разных браузерах*/
@@ -1384,47 +2312,36 @@ img {
 .lett-text-field::-webkit-input-placeholder {
 	font-family: 'PT Sans', Arial, sans-serif;
 	font-size: 13px;
-	line-height: 13px;
-	color: #a9a9a9;
-}
-
-/* Firefox 18- */
-.full-name-field::-webkit-input-placeholder,
-.e-mail-field::-webkit-input-placeholder,
-.lett-text-field::-webkit-input-placeholder {
-	font-family: 'PT Sans', Arial, sans-serif;
-	font-size: 13px;
-	line-height: 13px;
+	line-height: 18px;
 	color: #a9a9a9;
 }
 
 /* Firefox 19+ */
-.full-name-field::-webkit-input-placeholder,
-.e-mail-field::-webkit-input-placeholder,
-.lett-text-field::-webkit-input-placeholder {
+.full-name-field::-moz-placeholder,
+.e-mail-field::-moz-placeholder,
+.lett-text-field::-moz-placeholder {
 	font-family: 'PT Sans', Arial, sans-serif;
 	font-size: 13px;
-	line-height: 13px;
 	color: #a9a9a9;
 } 
 
 /* IE */
-.full-name-field::-webkit-input-placeholder,
-.e-mail-field::-webkit-input-placeholder,
-.lett-text-field::-webkit-input-placeholder {
+.full-name-field:-ms-input-placeholder,
+.e-mail-field:-ms-input-placeholder,
+.lett-text-field:-ms-input-placeholder {
 	font-family: 'PT Sans', Arial, sans-serif;
 	font-size: 13px;
-	line-height: 13px;
+	line-height: 18px;
 	color: #a9a9a9;
 }
 
 /* Edge */
-.full-name-field::-webkit-input-placeholder,
-.e-mail-field::-webkit-input-placeholder,
-.lett-text-field::-webkit-input-placeholder {
+.full-name-field::-ms-input-placeholder,
+.e-mail-field::-ms-input-placeholder,
+.lett-text-field::-ms-input-placeholder {
 	font-family: 'PT Sans', Arial, sans-serif;
 	font-size: 13px;
-	line-height: 13px;
+	line-height: 18px;
 	color: #a9a9a9;
 }	
 
@@ -1434,12 +2351,7 @@ img {
 	height: 38px;
 	padding-bottom: 3px;
 	padding-left: 14px;
-}
-
-.lett-text-field {
-	width: 460px;
-	height: 114px;
-	padding-top: 10px;
+	margin-bottom: 21px;	
 }
 
 .full-name-field,
@@ -1447,10 +2359,6 @@ img {
 .lett-text-field {
 	border: solid 2px #dee3e4;
 	border-radius: 3px;
-}
-
-.lett-text-field {
-	padding-left: 15px;
 }
 
 .full-name-field:hover,
@@ -1466,18 +2374,26 @@ img {
 	border-color: #ee3643;	
 }
 
-.full-name-div {
-	margin-right: 20px;
-}
-
 .letter-text-div {
-	margin-top: 22px;
 }
 
-
+.lett-text-field {
+	min-width: 460px;
+	max-width: 460px;
+	min-height: 114px;
+	max-height: 114px;
+	padding-top: 8px;
+	padding-left: 14px;	
+	margin-bottom: 21px;
+}
 
 .send-button {
 	width: 460px;
+	margin-bottom: 20px;
+	
+	white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;	
 }
 
 .high-footer {
@@ -1486,42 +2402,61 @@ img {
 	font-size: 18px;
 	line-height: 24px;
 
+	color: #f1f5f7;
+
 	background-color: #32425c;
 }
 
-.marg-bottom-32px {
-	margin-bottom: 32px;
+.comp-column {
+	width: 326px;
+	
+	overflow: hidden;	
 }
 
 .footer-logo {
-	height: 68px;
+	padding-top: 20px;
+	padding-bottom: 13px;
+	padding-left: 40px;
+	padding-right: 39px;
+	margin-bottom: 33px;
+}
+
+.high-footer-p {
+	margin-left: 3px;
+}
+
+.footer-tel-a:active,
+.top-nav-a:active {
+	color: rgba(241, 245, 247, 0.5);
+}
+
+.links-column {
+	width: 547px;
+	padding-top: 38px;	
+	margin-bottom: -34px;
 }
 
 .top-nav,
 .bottom-nav {
-	display: flex;
 	justify-content: space-between;
 	align-content: space-between;
-	flex-wrap: wrap;
+	margin-bottom: 34px;
 }
 
 .top-nav {
 	width: 547px;
-	padding-top: 38px;
 }	
 
-.top-nav-a {
-	color: #f1f5f7;
-}	
+.top-nav-a:hover:not(:active),
+.bottom-nav-a:hover:not(:active),
+.lower-footer-a:hover:not(:active) {
+	text-decoration: underline;
+}
 
 .high-footer-p,
 .lower-footer-p {
 	margin-top: 0px;
 	margin-bottom: 0px;
-}
-
-.high-footer-p {
-	color: #f3f7f9;
 }
 
 .bottom-nav {
@@ -1533,14 +2468,13 @@ img {
 	color: #ffd180;
 }
 
-.footer-logo-img {
-	display: inline-block;
-	margin-top: 20px;
+.bottom-nav-a:active {
+	color: rgba(255, 209, 128, 0.5);
 }
 
 .lower-footer {
-	padding-top: 35px;
-	padding-bottom: 28px;
+	padding-top: 37px;
+	padding-bottom: 31px;
 	
 	font-size: 16px;
 	line-height: 18px;
@@ -1548,78 +2482,105 @@ img {
 	background-color: #293449;
 }
 
-.social-list {
-	display: inline-flex; /* Именно здесь нужен именно inline-flex, так как список соц-ссылок должен быть flex-container'ом и при этом инлайновым элементом, */
-						  /* чтобы вместе с соседними элементами выстроится в строчку. Если укажем просто inline - тогда он не будет flex-container'ом */
-	vertical-align: top;  /* Это значение нужно задавать всем инлайновым элементам, в одной строке с которыми находятся другие элементы, */
-}						  /* Иначе у инлайнового элемента появляется непонятный и непредсказуемый по величине отступ сверху */
+.lower-footer-p {
+	display: block;
+}
 
-.width-135px {
-	width: 135px;
+.copyrights-p {
+	width: 228px;
+	margin-left: 1px;
+	margin-right: 161px;
+}
+
+.social-list {
+	width: 131px;
+	margin-top: -2px;
+	margin-bottom: -4px;
+	margin-right: 120px;
 }
 
 .social-a {
 	display: block;
-	width: 42px;
-	height: 42px;
+	width: 41px;
+	min-height: 41px;
+	padding-left: 8px;
+	padding-right: 7px;
+	margin-bottom: 4px;	
 	
 	text-align: center;
 	
+	overflow: hidden;	
 	background-color: #212a3a;
 	border-radius: 50%;
 }
 
+.social-a:hover,
+.social-a:active {
+	background-color: #ee3643;
+}
+
 .vk-a {
 	padding-top: 13px;
+	padding-bottom: 9px;	
 }
 
 .fb-a,
 .insta-a {
 	padding-top: 10px;
+	padding-bottom: 6px;
 }
 
-.lower-footer-p {
-	display: inline-block;
+.fb-a {
+	padding-bottom: 5px;
 }
 
-.copyrights-p {
-	margin-right: 161px;
-}
-
-.social-list {
-	margin-right: 119px;
+.insta-a {
+	padding-bottom: 6px;
 }
 
 .feedback-p {
-	margin-right: 53px;
+	width: 137px;
+	margin-right: 52px;
 }
 
-.breadcrumbs {
-	display: flex;
-	justify-content: space-between;
-	
-	width: 357px;
+.developer-p {
+	width: 98px;
+}
+
+.lower-footer-a:active {
+	color: #ee3643;
+}
+
+.bg-color-red {
+	background-color: #ee3643;
+}
+
+.breadcrumbs {	
+	width: 940px;
 	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 19px;
+	margin-left: -43px;	
 }
 
 .breadcrumbs-item {
 	position: relative;
+	
+	margin-left: 41px;
 }
 
 .breadcrumbs-item:first-child {
 	margin-top: 1px;
 }
 
-.breadcrumbs-item:not(.unbullet-item)::before {
+.breadcrumbs-item:not(:last-child)::after {
 	content: '>';
 
 	position: absolute;
 	top: -1px;
-	left: -24px;
+	right: -26px;
+	
 	font-family: 'MS Gothic', Arial, sans-serif;
 	font-size: 13pt;
-	font-weight: 550;
 	color: rgb(198 ,202 , 210);
 }
 
@@ -1634,73 +2595,356 @@ img {
 .panel,
 .catalog-h2,
 .filter-body {
-	display: inline-block;
-	
 	font-family: 'PT Sans', Arial, sans-serif;
 
 	text-transform: uppercase;
 	color: #000000;
 }
 
-.bg-color-f2f6f8 {
+.catalog-h1-panel {
 	background-color: #f2f6f8;
 }
 
-.filter-body {
-	font-size: 15px;
-	line-height: 11px;
-}	
-
 .panel {
-	height: 38px;
+	min-height: 38px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	padding-left: 19px;
+	padding-right: 17px;
 	
 	background-color: #f7f3ec;
 	border-radius: 3px;
 }
 
-.width-220px {
+.filter-column {
+	width: 221px;
+	padding-left: 1px;
+	margin-left: -1px;
+	
+	overflow: hidden;
+}
+
+.filter-head,
+.filter-body,
+.switch-name,
+.price-lim-switch,
+.price-range-panel,
+.hr,
+.switch-control,
+.sw-contr-item {
 	width: 220px;
 }
 
+.filter-head {
+	margin-bottom: 11px;
+}
+
+.filter-h2 {
+	margin-top: 2px;
+}
+
+.filter-body {
+	font-size: 15px;
+	line-height: 11px;
+	
+	padding-bottom: 78px;
+}	
+
 .catalog-h2 {
-	margin-right: 139px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 	
 	font-weight: normal;
 }
 
-.width-700px {
+.price-lim-switch {
+	margin-bottom: 16px;
+}
+
+.price-lim-switch,
+.manufact-switch,
+.supp-type-switch {
+	line-height: 30px;	
+}
+
+.switch-name {
+	display: block;
+
+	margin-bottom: 14px;
+	
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.filter-fieldset {
+	margin-left: 0;
+	margin-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;	
+	padding-left: 0;
+	padding-right: 0;
+	
+	border: none;
+}
+
+.price-range-panel {
+	min-height: 80px;
+	margin-bottom: 9px;
+	padding-top: 39px;
+	padding-bottom: 37px;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+	background-color: #f7f3ec;
+	border-radius: 5px;
+}
+
+.styled-price-range {
+	position: relative;
+	
+	width: 180px;
+	height: 2px;
+	margin-bottom: 2px;
+	
+	border-left: 0px solid #d7dcde;
+	border-right: 20px solid #d7dcde;
+	background-color: rgb(0, 203, 117);
+}
+
+.styled-price-range::before {
+	content: '';
+
+	position: absolute;
+	top: -9px;
+	left: 140px;
+	
+	width: 20px;
+	height: 20px;
+	
+	background-color: rgb(172, 172, 172);
+	border: 8px solid #ffffff;
+	border-radius: 50%;
+	box-shadow: 0 2px 0 0 rgb(225, 222, 217);
+	
+	cursor: pointer;
+}
+
+.styled-price-range::after {
+	content: '';	
+
+	position: absolute;
+	top: -9px;
+	
+	width: 20px;
+	height: 20px;
+	
+	background-color: rgb(172, 172, 172);
+	border: 8px solid #ffffff;
+	border-radius: 50%;
+	box-shadow: 0 2px 0 0 rgb(225, 222, 217);	
+	
+	cursor: pointer;	
+}
+
+.price-field {
+	width: 95px;
+
+	padding-top: 9px;
+	padding-bottom: 11px;
+	margin-bottom: 9px;
+
+	font-size: 17px;
+	text-align: center;
+	
+	border: none;	
+}
+
+.min-price-field {
+	padding-left: 23px;
+}
+
+.max-price-field {
+	padding-left: 20px;
+}
+
+.price-field,
+.dash {
+	line-height: 18px;
+}
+
+.dash {
+	padding-top: 9px;
+	padding-left: 2px;
+	margin-bottom: 1px;
+	
+	font-size: 16px;
+	color: #444444;	
+}
+
+.hr {
+	height: 1px;
+	margin-top: 0;
+	margin-bottom: 16px;
+	
+	background-color: rgb(230, 230, 230);
+	border: none;
+}
+
+.manufact-switch {
+	margin-bottom: 22px;
+}
+
+.supp-type-switch {
+	margin-top: 1px;
+	margin-bottom: 78px;
+}
+
+.supp-type-switch .switch-name {
+	letter-spacing: 0.17px;
+}
+
+.switch-control {
+	font-size: 15px;
+	line-height: 20px;
+	
+	margin-bottom: -20px;
+}
+
+.manufact-label,
+.supp-type-label {
+	position: relative;
+	
+	display: block;
+	width: 190px;
+	margin-bottom: 20px;
+	padding-left: 34px;
+}
+
+.checkbox-on-icon,
+.checkbox-off-icon,
+.radio-on-icon,
+.radio-off-icon {	
+	position: absolute;
+	top: -2px;
+}
+
+.checkbox-on-icon,
+.checkbox-off-icon {
+	left: 0;
+}
+
+.radio-on-icon,
+.radio-off-icon {
+	left: -1px;	
+}
+
+.sw-contr-item:first-child .checkbox-on-icon,
+.sw-contr-item:first-child .checkbox-off-icon,
+.sw-contr-item:nth-child(2) .checkbox-on-icon,
+.sw-contr-item:nth-child(2) .checkbox-off-icon {
+	top: -1px;
+}
+
+.sw-contr-item:first-child .radio-on-icon,
+.sw-contr-item:first-child .radio-off-icon {
+	top: -3px;	
+}
+
+.manufact-label:hover,
+.supp-type-label:hover,
+.manufact-label:hover .checkbox-on-icon,
+.manufact-label:hover .checkbox-off-icon,
+.supp-type-label:hover .radio-on-icon,
+.supp-type-label:hover .radio-off-icon {
+	fill: #b5b5b5;
+	
+	cursor: pointer;
+}
+
+.man-checkbox:disabled + .manufact-label .checkbox-on-icon,
+.man-checkbox:disabled + .manufact-label .checkbox-off-icon,
+.supp-type-radio:disabled + .supp-type-label .radio-on-icon,
+.supp-type-radio:disabled + .supp-type-label .radio-off-icon {
+	fill: rgb(234, 234, 234);
+
+	cursor: default;
+}
+
+.man-checkbox:disabled + .manufact-label,
+.supp-type-radio:disabled + .supp-type-label {
+	color: rgba(0, 0, 0, 0.4);
+	
+	cursor: default;
+}
+
+.catalog-btn {
+	display: block;
+	min-height: 38px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	
+	font-family: 'PT Sans', Arial, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #000000;
+	
+	white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;
+
+	background-color: #ffffff;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+}
+
+.cat-rect-btn {
+	width: 140px;
+	padding-left: 22px;
+	padding-right: 20px;
+}
+
+.filter-btn {
+	padding-top: 10px;
+	padding-bottom: 8px;	
+	padding-left: 19px;
+	margin-bottom: 22px;
+}
+
+.sort-prod-col {
+	margin-right: 0;
+}
+
+.sort-prod-col,
+.sorter {
 	width: 700px;
 }
 
-.sorter,
-.sort-kind-item,
-.sort-kind { /* Иначе (при inline) не сможем уменьшить расстояние от текста ссылки до нижней рамки */
-	display: inline-block;
+.sorter {
+	padding-bottom: 8px;
+	margin-bottom: 20px;
+	
+	overflow: hidden;
 }
 
-.sort-kind-item:first-child {
-	margin-right: 71px;
+.product-list {
+	margin-bottom: -20px;
 }
 
-.sort-kind-item:nth-child(2) {
-	margin-right: 65px;
+.sort-head-col {
+	width: 201px;
+	padding-right: 17px;
 }
 
-.sort-kind-item:nth-child(3) {
-	margin-right: 44px;
+.sort-body-col {
+	width: 443px;
+	
+	overflow: hidden;
 }
 
-.sort-kind-item:nth-child(4) {
-	margin-right: 17px;
-}
-
-.sort-kind-item:nth-child(4),
-.sort-kind-item:last-child {
-	font-size: 16px;
-}
-
-.sort-kind {
+.sort-kind-col,
+.sort-type-col {
 	padding-top: 0;
 	padding-bottom: 0;
 	padding-left: 0;
@@ -1710,25 +2954,70 @@ img {
 	border: 0;	
 }
 
+.sort-kind-col,
+.sort-type-col,
+.asc-desc-wrapper {
+	overflow: hidden;
+}
+
+.sort-kind-col {
+	width: 414px;
+	margin-left: -29px;
+	margin-right: -30px;
+}
+
+.sort-type-col {
+	width: 43px;
+
+	font-size: 15px;	
+}
+
+.asc-desc-wrapper {
+	width: 47px;
+	margin-left: -2px;
+	margin-right: -2px;	
+}
+
+.sort-kind-item:nth-child(n) {
+	margin-left: 30px;
+	margin-right: 30px;	
+}
+
+.by-price-item {
+	margin-right: 41px;
+}
+
+.by-type-item {
+	margin-right: 35px;
+}
+
+.ascend-item,
+.descend-item {
+	transform: scaleX(1.1);
+}
+
 .sort-kind-label, /* Для отмены outline'а при даблклике */
-.sort-kind-label:active {
+.sort-kind-label:active,
+.sort-type-label, /* Для отмены outline'а при даблклике */
+.sort-type-label:active {
 	outline: none;
 }
 
-.sort-kind-item:first-child .sort-kind-label,
-.sort-kind-item:nth-child(2) .sort-kind-label,
-.sort-kind-item:nth-child(3) .sort-kind-label {
+.by-price-item .sort-kind-label,
+.by-type-item .sort-kind-label,
+.by-funct-item .sort-kind-label {
 	line-height: 15px; /* Чтобы уменьшить расстояние от текста до нижней рамки */
 	color: rgba(0, 0, 0, 0.3);
 	border-bottom: 1px dotted #ee3643;	
 }
 
-.sort-kind-item:nth-child(4) .sort-kind-label,
-.sort-kind-item:nth-child(5) .sort-kind-label {
+.ascend-item .sort-type-label,
+.descend-item .sort-type-label {
 	color: #c5c5c5;
 }
 
-.sort-kind-label:active {
+.sort-kind-radio:active + .sort-kind-label,
+.sort-type-radio:active + .sort-type-label {
 	color: #ee3643; /* Почему-то не работает */
 	text-decoration: none;  /* Почему-то не работает */
 }
@@ -1762,224 +3051,70 @@ img {
 	cursor: pointer;
 }
 
-.price-lim-switch {
-	margin-bottom: 25px; /* Правильнее было бы указать padding-bottom: 25px, но почему-то не удается задать пэддинг данному филдсету */
+.pagination {
+	width: 700px;
+	margin-top: 52px;
+	margin-bottom: 50px;
+	margin-right: -10px;
 }
 
-.switch-name {
-	margin-bottom: 22px;
-	
-	font-size: 17px;
-	line-height: 13px;
-	font-weight: bold;
+.pagination-item:nth-child(n) {
+	margin-bottom: 10px;
+	margin-right: 10px;
+}	
+
+.page-num-btn {
+	min-width: 38px;
+	max-width: 140px;
+	padding-left: 7px;
+	padding-right: 5px;
 }
 
-.filter-fieldset {
-	margin-left: 0;
-	margin-right: 0;
-	padding-top: 0;
-	padding-bottom: 0;	
-	padding-left: 0;
-	padding-right: 0;
+.active-btn {
+	color: #ffffff;
 	
-	border: none;
+	background-color: #ee3643;
+	border-color: #ee3643;
 }
 
-.price-range-panel {
-	width: 220px;
-	height: 80px;
-	margin-bottom: 9px;
-	padding-top: 39px;
-	padding-left: 20px;
-	
-	background-color: #f7f3ec;
-	border-radius: 5px;
+.pagination :not(.active-btn):hover {
+	border-color: #bdc6ca;
 }
 
-.styled-price-range {
-	position: relative;
-	
-	width: 180px;
-	height: 2px;
-	
-	border-left: 0px solid #d7dcde;
-	border-right: 20px solid #d7dcde;
-	background-color: rgb(0, 203, 117);
+.pagination .catalog-btn:active {
+	border-color: #ee3643;
 }
-
-.styled-price-range::before {
-	content: '';
-
-	position: absolute;
-	top: -8px;
-	left: 140px;
 	
-	width: 20px;
-	height: 20px;
-	
-	background-color: rgb(172, 172, 172);
-	border: 8px solid #ffffff;
-	border-radius: 50%;
-	box-shadow: 0 2px 0 0 rgb(225, 222, 217);
-	
+.cursor-pointer {
 	cursor: pointer;
 }
 
-.styled-price-range::after {
-	content: '';	
-
-	position: absolute;
-	top: -8px;
+.about-perfo {
+	padding-top: 68px;
+	padding-bottom: 44px;
 	
-	width: 20px;
-	height: 20px;
-	
-	background-color: rgb(172, 172, 172);
-	border: 8px solid #ffffff;
-	border-radius: 50%;
-	box-shadow: 0 2px 0 0 rgb(225, 222, 217);	
-	
-	cursor: pointer;	
+	background-color: #f4f7f9;
 }
 
-.price-fields {
-	display: flex;
-	align-items: center;
-	
-	height: 38px;
+.about-perfo-h2 {
+	width: 519px;
 }
 
-.min-price-field,
-.mdash,
-.max-price-field {
-	font-size: 17px;
-	line-height: 13px;
-}
-
-.min-price-field,
-.max-price-field {
-	
-	width: 95px;
-	
-	border: none;	
-}
-
-.min-price-field,
-.mdash {
-	margin-right: 8px;
-}
-
-.mdash {
-	margin-bottom: 1px; /* Странно работает с флексом (прибавляет 1 пиксель после прибавления 3 пикселей), с инлайн-блоком не работает вообще */
-}
-
-.hr {
-	height: 1px;
-	margin-top: 0;
-	margin-bottom: 25px;
-	
-	background-color: rgb(230, 230, 230);
-	border: none;
-}
-
-.manufact-switch,
-.supp-type-switch {
-	padding-bottom: 27px;
-}
-
-.supp-type-switch {
-	margin-top: 26px;
-	margin-bottom: 56px;
-}
-
-.height-994px {
-	height: 994px;
-}
-
-.manufact-label,
-.supp-type-label {
-	position: relative;
-	
-	display: inline-block;
-	margin-top: 4px;
-	margin-bottom: 25px;
-	padding-left: 35px;
-}
-
-.hitachi-label,
-.ac-power-label {
-	margin-bottom: 0;
-}
-
-.checkbox-on-icon,
-.checkbox-off-icon,
-.radio-on-icon,
-.radio-off-icon {	
-	position: absolute;
-	top: -6px;
-	left: 0;
-}
-
-.manufact-label:hover,
-.supp-type-label:hover,
-.manufact-label:hover .checkbox-on-icon,
-.manufact-label:hover .checkbox-off-icon,
-.supp-type-label:hover .radio-on-icon,
-.supp-type-label:hover .radio-off-icon {
-	fill: #b5b5b5;
-	
-	cursor: pointer;
-}
-
-.man-checkbox:disabled + .manufact-label .checkbox-on-icon,
-.man-checkbox:disabled + .manufact-label .checkbox-off-icon,
-.supp-type-radio:disabled + .supp-type-label .radio-on-icon,
-.supp-type-radio:disabled + .supp-type-label .radio-off-icon {
-	fill: rgb(234, 234, 234);
-
-	cursor: default;
-}
-
-.man-checkbox:disabled + .manufact-label,
-.supp-type-radio:disabled + .supp-type-label {
-	color: rgba(0, 0, 0, 0.4);
-	
-	cursor: default;
-}
-
-.catalog-btn {
-	display: block; /* Это нужно для ссылок пагинации, которых большинство (4 из 5) */
-	
-	height: 38px;
-	
-	font-family: 'PT-Sans', Arial, sans-serif; /* Это нужно для ссылок пагинации, которых большинство (4 из 5) */
-	font-size: 13px;
-	line-height: 9px;
-	text-transform: uppercase;
-	text-align: center; /* Это нужно для ссылок пагинации, которых большинство (4 из 5) */
-	color: #000000;  /* Это нужно для ссылок пагинации, которых большинство (4 из 5) */
-
-	background-color: #ffffff;
-	border: 1px solid #e5e5e5;
-	border-radius: 3px;
-}
-
-.width-140px {
-	width: 140px;
-}
-
-.cart-ok-popup {
-	top: 28%;
-	
+.cart-ok-popup {	
 	height: 282px;
+	margin-top: -141px;
 	
 	box-shadow: 0px 20px 40px 0 rgba(41, 52, 73, 0.75);
 }
 
 .cart-ok-p-high {
-	height: 172px;
+	min-height: 163px;
 	padding-top: 65px;
+	padding-bottom: 65px;	
 	padding-left: 179px;
+	padding-right: 100px;
+	overflow: hidden;
+	
 	background-color: #ffffff;
 }
 
@@ -2008,73 +3143,24 @@ img {
 	background-image: url(../img/icon-mark.svg);
 }
 
+.order-btn-col,
+.shopp-btn-col,
 .place-order-btn, /* Разместить заказ */
 .go-on-shopp-btn {
 	width: 220px;
 }
 
-.place-order-btn {
-	margin-right: 20px;
+.place-order-btn,
+.go-on-shopp-btn {
+	padding-left: 4px;
+	margin-bottom: 20px;
+	
+	white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;	
 }
 
 .go-on-shopp-btn {
 	color: #000000;
 	background-color: #ffffff;
-}
-
-.just-cont-end {
-	justify-content: flex-end;
-}
-
-.padd-right-416px {
-	padding-right: 416px;
-}
-
-.pagination {
-	margin-top: 52px;
-	margin-bottom: 60px;
-}
-
-.pagination-item {
-	display: inline-block;
-}
-
-.pagination-item:first-child,
-.pagination-item:nth-child(2),
-.pagination-item:nth-child(3) {
-	margin-right: 10px;
-}	
-
-.width-38px {
-	width: 38px;
-}
-
-.active-btn {
-	color: #ffffff;
-	
-	background-color: #ee3643;
-	border-color: #ee3643;
-}
-
-.pagination :not(.active-btn):hover {
-	border-color: #bdc6ca;
-}
-
-.pagination .catalog-btn:active {
-	border-color: #ee3643;
-}
-
-.padd-top-14px {
-	padding-top: 14px;
-}	
-	
-.cursor-pointer {
-	cursor: pointer;
-}
-
-.about-perfo {
-	padding-top: 67px;
-	padding-bottom: 44px;
-	
-	background-color: #f4f7f9;
 }

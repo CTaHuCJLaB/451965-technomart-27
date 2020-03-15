@@ -3,328 +3,399 @@
 	<head>
 		<meta charset="utf-8">
 		<title>HTML Academy: Техномарт</title>
-		<link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700|PT+Sans:400,700&display=swap&subset=cyrillic" rel="preload" as="font">
-		<!--font-family: 'Cuprum', sans-serif; font-family: 'PT Sans', sans-serif;-->
+		<link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700&display=swap&subset=cyrillic" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 		<link href="css/normalize.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 	</head>
 	<body>
 		<p>Репозиторий создан для обучения на профессиональном онлайн‑курсе «<a tabindex="1" href="https://htmlacademy.ru/intensive/htmlcss">HTML и CSS, уровень 1</a>».</p>
 		<header class="page-header">
-			<div class="buyer-panel">
-				<div class="flex-container centering-wrapper width-940px">
-					<div class="logo-space">
-						<!--Пустое пространство, отведенное под лого. Данный блок необходим для того, чтобы wrapper нормально отцентрировал всё содержимое.-->
+			<div class="top-header flexbox">
+				<div class="logo-buy-wrapper flexbox center">
+					<div class="logo-column flexbox align-cont-fs marg-bottom--5px">
+						<div class="header-logo logo button" tabindex="0">
+							<img class="header-logo-img" src="img/logo-technomart.png" width="109" height="19" alt='Логотип интернет-магазина "Техномарт", в котором Вы сейчас находитесь'>
+						</div>
+					</div>	
+					<div class="buyer-panel flexbox just-cont-fe align-cont-fs">
+						<form class="search-form" action="#" method="get">
+							<input class="search-field" type="search" name="search-field" id="search-field" placeholder="Поиск:" autocomplete ="on">
+							<label class="search-label" for="search-field">
+								<span class="visually-hidden">
+									Поиск
+								</span>
+								<svg class="search-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17px" 
+									height="17px" viewBox="0 0 17 17" enable-background="new 0 0 17 17" xml:space="preserve">
+									<g class="search-icon">
+										<path class="search-icon" fill="#ffffff" fill-opacity="0.3" d="M17,15.586l-3.542-3.542C14.421,10.782,15,9.21,15,7.5C15,3.358,11.643,0,7.5,0C3.358,0,0,3.358,0,7.5
+											C0,11.643,3.358,15,7.5,15c1.71,0,3.282-0.579,4.544-1.542L15.586,17L17,15.586z M2,7.5C2,4.467,4.467,2,7.5,2
+											C10.532,2,13,4.467,13,7.5c0,3.032-2.468,5.5-5.5,5.5C4.467,13,2,10.532,2,7.5z"/>
+									</g>
+								</svg>
+							</label>
+						</form>					
+						<a class="bookmarks-btn buyer-button button" href="">
+							<svg class="bookmark-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+								width="14px" height="16px" viewBox="0 0 14 16" enable-background="new 0 0 14 16" xml:space="preserve">
+								<path class="bookmark-icon" fill="#ffffff" fill-opacity="0.3" d="M14,15c0,0.55-0.368,0.741-0.818,0.426l-5.363-3.765c-0.45-0.315-1.187-0.315-1.637,0l-5.364,3.765
+								C0.368,15.741,0,15.55,0,15V1c0-0.55,0.45-1,1-1h12c0.55,0,1,0.45,1,1V15z"/>
+							</svg>
+							Закладки: 0
+						</a>
+						<a class="cart-button buyer-button button" href="">
+							<svg class="cart-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+								width="15px" height="15px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
+								<g>
+									<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="4.5" cy="13.5" r="1.5"/>
+									<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="12.5" cy="13.5" r="1.5"/>
+									<polygon class="cart-icon" fill="#ffffff" fill-opacity="0.3" points="15,2 4.07,2 3.648,0 0,0 0,2 2.031,2 4.016,11 15,11 15,9 9.441,9 15,6.951 	"/>
+								</g>
+							</svg>
+							Корзина: 0
+						</a>
+						<a class="order-button buyer-button button" href="">Оформить заказ</a>
 					</div>
-					<form action="" method="get">
-						<label class="visually-hidden" for="search">Поиск</label>
-						<input class="search-field" type="search" name="search" id="search" placeholder="Поиск:" autocomplete ="on">
-					</form>
-					<button class="bookmarks-btn buyer-button button" type="button">Закладки: 0</button>
-					<button class="cart-button buyer-button button" type="button">Корзина: 0</button>
-					<button class="order-button buyer-button button" type="button">Оформить заказ</button>
-				</div>
-			</div>
-			<div class="flex-container centering-wrapper width-940px marg-top-46px marg-bottom-44px"> <!-- Без него centering-wrapper будет занимать всю ширину родителя и не отцентрирует содержимое -->
-				<div class="padding-left-53px">
-					<div class="company-info">
-						<p class="description-p">	
-							Интернет-магазин<br>
-							строительных материалов<br>
-							и инструментов для ремонта
-						</p>
-						<p class="contacts-p">
-							<a class="tel-number-a" href="tel:+78125550555">+7 (812) 555-05-55</a>
-							<span class="address">г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8</span>
-						</p>				
-					</div>
-					<div class="space">
-						<!--Пустое пространство, между блоком с информацией о компании и блоком навигации пользователя.-->
-					</div><!--Данный блок необходим для того, чтобы wrapper нормально отцентрировал всё содержимое.-->	
-					<div class="user-nav-space">
-						<!--Пустое пространство, отведенное под блок навигации пользователя. Данный блок необходим для того, чтобы wrapper нормально отцентрировал всё содержимое.-->
-					</div>				
 				</div>	
 			</div>
-			<nav class="main-navigation">
-				<div class="pos-center-wrapper"> <!--Эта обертка нужна для того, чтобы left у header-logo и right у user-navigation рассчитывался бы не от краев страницы, как у main-navigation, а от wrapper left, right-->
-					<a href="index.html" tabindex="2" class="header-logo logo button">
-						<span class="visually-hidden">Главная страница интернет-магазина "Техномарт", </span>
-						<img class="header-logo-img" src="img/logo-technomart.png" width="109" height="19" alt="">
-						<span class="visually-hidden">в котором Вы сейчас находитесь.</span>
-					</a>
-					<div class="user-navigation">
-						<div class="unathorized-nav visually-hidden">
-							<button class="login-button user-button button" type="button">Войти</button>
-							<button class="reg-button user-button button" type="button">Регистрация</button>
+			<div class="middle-header flexbox center width-940px">
+				<div class="flexbox width-537px just-cont-sb">
+					<p class="description-p">	
+						Интернет-магазин<br>
+						строительных материалов<br>
+						и инструментов для ремонта
+					</p>
+					<div class="contacts">
+						<div class="links flexbox">
+							<a class="header-tel-a" href="tel:+78125550555">
+								<span class="visually-hidden">Телефон компании "Техномарт" </span>+7 (812) 555-05-55
+							</a>
 						</div>
-						<div class="authorized-nav">
-							<div class="prof-logout-btn user-button button">
-								<a class="profile-a" href="" tabindex="-1">
-									<span class="visually-hidden">Профиль пользователя </span>
-									<svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18"><!--Без указания класса именно в теге svg не работает позиционирование-->
-										<path class="user-icon" fill="#c5c5c5" d="M17.881 14.166c-2.144-.735-4.256-1.666-5.207-2.39-.657-.501-.77-1.618-.517-2.415 1.118-.903 1.864-2.477 1.864-4.278C14.021 2.276 12.221 0 10 0S5.979 2.276 5.979 5.083c0 1.801.746 3.374 1.863 4.277.253.798.141 1.915-.517 2.416-.95.724-3.063 1.654-5.207 2.39S0 18 0 18h20s.025-3.099-2.119-3.834z"/>
-									</svg>
-									<span class="user-name">Равшан Джамшутович</span>
-								</a>
-								<a class="logout-a" href="" tabindex="-1">
-									<span class="visually-hidden">Выйти</span>	
-									<svg class="logout-icon" xmlns="http://www.w3.org/2000/svg" width="21" height="17" viewBox="0 0 21 17"><!--Без указания класса именно в теге svg не работает позиционирование-->
-										<g class="logout-icon" fill="#c5c5c5">
-											<path d="M21 8.5L12.125 0v6h-6v5h6v6z"/>
-											<path d="M3.106 13.952V3.048c.018-.376.171-1.057 1.01-1.057h5.027V0H4.116C1.938 0 1.112 1.81 1.087 3.027v10.946C1.112 15.189 1.938 17 4.116 17h5.027v-1.99H4.116c-.839 0-.992-.683-1.01-1.058z"/>
-										</g>
-									</svg>
-								</a>
-							</div>
-							<ul class="personal-nav">
-								<li class="pers-nav-item unbullet-item">
-									<a class="pers-nav-a" href="" tabindex="-1">Мои заказы</a>
-								</li><!--"&bull;-->
-								<li class="pers-nav-item">	
-									<a class="pers-nav-a" href="" tabindex="-1">Личный кабинет</a>
-								</li>
-							</ul>
+						<span class="address">г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8</span>
+					</div>
+				</div>
+				<div class="user-navigation padd-left-51px">
+					<div class="unathorized-nav">
+						<a class="login-button user-button button" href="">
+							<svg class="login-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+								<path class="login-icon" fill="#c5c5c5" d="M14.875 8.5L6 0v6H0v5h6v6z"/>
+								<path class="login-icon" fill="#c5c5c5" d="M16.986 15.01h-5.027V17h5.027c2.178 0 3.004-1.81 3.029-3.026V3.028C19.99 1.811 19.164 0 16.986 0h-5.027v1.99h5.027c.839 0 .992.681 1.01 1.057v10.904c-.017.376-.171 1.059-1.01 1.059z"/>
+							</svg>
+							Войти
+						</a>
+						<a class="reg-button user-button button" href="">Регистрация</a>
+					</div>
+					<div class="authorized-nav visually-hidden">
+						<div class="prof-logout-btn flexbox user-button button">
+							<a class="profile-a flexbox" href="" tabindex="-1">
+								<span class="visually-hidden">Профиль пользователя </span>
+								<svg class="user-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18"><!--Без указания класса именно в теге svg не работает позиционирование-->
+									<path class="user-icon" fill="#c5c5c5" d="M17.881 14.166c-2.144-.735-4.256-1.666-5.207-2.39-.657-.501-.77-1.618-.517-2.415 1.118-.903 1.864-2.477 1.864-4.278C14.021 2.276 12.221 0 10 0S5.979 2.276 5.979 5.083c0 1.801.746 3.374 1.863 4.277.253.798.141 1.915-.517 2.416-.95.724-3.063 1.654-5.207 2.39S0 18 0 18h20s.025-3.099-2.119-3.834z"/>
+								</svg>
+								<span class="user-name">Равшан Джамшутович</span>
+							</a>
+							<a class="logout-a" href="" tabindex="-1">
+								<span class="visually-hidden">Выйти</span>	
+								<svg class="logout-icon" xmlns="http://www.w3.org/2000/svg" width="21" height="17" viewBox="0 0 21 17"><!--Без указания класса именно в теге svg не работает позиционирование-->
+									<g class="logout-icon" fill="#c5c5c5">
+										<path d="M21 8.5L12.125 0v6h-6v5h6v6z"/>
+										<path d="M3.106 13.952V3.048c.018-.376.171-1.057 1.01-1.057h5.027V0H4.116C1.938 0 1.112 1.81 1.087 3.027v10.946C1.112 15.189 1.938 17 4.116 17h5.027v-1.99H4.116c-.839 0-.992-.683-1.01-1.058z"/>
+									</g>
+								</svg>
+							</a>
+						</div>
+						<div class="personal-nav">
+							<a class="pers-nav-a" href="" tabindex="-1">Мои заказы</a>
+							<span class="bull">&bull;</span>
+							<a class="pers-nav-a" href="" tabindex="-1">Личный кабинет</a>
 						</div>
 					</div>
-				<div>
-				<ul class="site-navigation flex-container centering-wrapper width-940px clean-list">
-					<li class="site-nav-item button"><a class="site-nav-a" href="index.html">Главная</a></li>
-					<li class="site-nav-item button"><a class="site-nav-a" href="">Компания</a></li>
-					<li class="site-nav-item button"><a class="site-nav-a" href="catalog.html">Каталог</a></li>
-					<li class="site-nav-item button"><a class="site-nav-a" href="">Новости</a></li>
-					<li class="site-nav-item button"><a class="site-nav-a" href="">Спецпредложения</a></li>
-					<li class="site-nav-item button"><a class="site-nav-a" href="">Доставка</a></li>
-					<li class="site-nav-item button"><a class="site-nav-a" href="">Контакты</a></li>
-				</ul>
+				</div>
+			</div>
+			<nav class="site-navigation flexbox center width-940px clean-list">
+				<a class="main-a site-nav-a" href="index.html">Главная</a>
+				<a class="company-a site-nav-a" href="">Компания</a>
+				<a class="catalog-a site-nav-a" href="catalog.html">Каталог</a>
+				<a class="news-a site-nav-a" href="">Новости</a>
+				<a class="special-offers-a site-nav-a" href="">Спецпредложения</a>
+				<a class="delivery-a site-nav-a" href="">Доставка</a>
+				<a class="contacts-a site-nav-a" href="">Контакты</a>
 			</nav>
 		</header>
 		<main class="index-main">
 			<h1 class="visually-hidden">Главная страница</h1>
-			<section class="centering-wrapper width-940px">
+			<section class="flexbox center just-cont-sb width-940px marg-bottom--20px">
 				<h2 class="visually-hidden">Промо-блок</h2>
-					<div class="flex-container marg-bottom-20px">
-						<div class="promo-item marked-item">
-							<span class="promo-item-capt">Материалы</span>
-							<a class="promo-button width-135px common-btn button" href="">На любой вкус</a>
-						</div>
-						<div class="promo-item">
-							<span class="promo-item-capt">Инструмент</span>
-							<a class="promo-button width-135px common-btn button" href="">На все случаи</a>
-						</div>
-						<div class="promo-item">
-							<span class="promo-item-capt">Техника</span>
-							<a class="promo-button width-135px common-btn button" href="">Для стройки</a>
-						</div>
-					</div>	
-					<div class="gallary-slider">
-						<!--gallary-slide-switch - это переключатель слайдов, код вынесен отдельно перед списком, так как семантически и визуально это самостоятельный элемент-->
-						<input class="gall-radio-1 gall-radio visually-hidden" type="radio" name="promo-switch" value="perforator" id="perforator" checked>
-						<label class="gall-label-1 gall-label" for="perforator">&lt;</label>
-						<input class="gall-radio-2 gall-radio visually-hidden" type="radio" name="promo-switch" value="drill" id="drill">
-						<label class="gall-label-2 gall-label" for="drill">&gt;</label>													
-						<!--/gallary-slide-switch-->
-						<ul class="gall-slide-keeper clean-list">
-							<li class="man-n-perfo gallary-slide">
-								<figure class="gall-figure">
-									<figcaption class="gall-fig-capt">
-										<span class="heading">Перфораторы</span>
-										<span class="slogan">Настоящие мужские игрушки</span>
-									</figcaption>						
-									<img src="img/man-&-perfo.jpg" width="620" height="266" alt="Мужчина с перфоратором">
-								</figure>
-							</li>
-							<li class="man-n-drill gallary-slide">
-								<figure class="gall-figure">
-									<figcaption class="gall-fig-capt">
-										<span class="heading">Дрели</span>
-										<span class="slogan">Соседям на радость!</span>
-									</figcaption>
-									<img src="img/man-&-drill.jpg" width="620" height="266" alt="Мужчина сверлит кирпичную стену">						
-								</figure>
-							</li>	
-						</ul>
-						<a class="catalog-a red-button common-btn button" href="catalog.html">Открыть каталог</a>
-					</div><!-- Убираем невидимый пробел между блочно-строчными элементами
-				 --><div class="uniting-wrapper">
-						<div class="promo-item">
-							<span class="promo-item-capt">Скидки 50%</span>
-							<a class="promo-button width-135px common-btn button" href="">На 350 товаров</a>
-						</div>
-						<div class="promo-item">
-							<span class="promo-item-capt">Доставка</span>
-							<a class="promo-button width-135px common-btn button" href="">Бесплатно</a>
-						</div>
-					</div>	
+				<div class="three-pr-items flexbox just-cont-sb width-940px marg-bottom-20px">
+					<div class="promo-item marked-item">					
+						<span class="promo-item-capt">Материалы</span>
+						<a class="promo-button common-btn button" href="">На любой вкус</a>
+					</div>
+					<div class="promo-item">
+						<span class="promo-item-capt">Инструмент</span>
+						<a class="promo-button width-135px common-btn button" href="">На все случаи</a>
+					</div>
+					<div class="promo-item">
+						<span class="promo-item-capt">Техника</span>
+						<a class="promo-button width-135px common-btn button" href="">Для стройки</a>
+					</div>
+				</div>	
+				<div class="gallary-slider flexbox marg-bottom-20px">
+					<input class="gall-radio-1 gall-radio visually-hidden" type="radio" name="promo-switch" value="perforator" id="perforator" checked>
+					<input class="gall-radio-2 gall-radio visually-hidden" type="radio" name="promo-switch" value="drill" id="drill">
+					<div class="gallary-slide-switch">
+						<label class="gall-label-1 gall-label" for="perforator"><span class="visually-hidden">Предыдущий слайд </span>&lt;</label>
+						<label class="gall-label-2 gall-label" for="drill"><span class="visually-hidden">Следующий слайд </span>&gt;</label>
+					</div>
+					<ul class="gall-slide-keeper clean-list">
+						<li class="perfo-slide gallary-slide">
+							<figure class="gall-figure">
+								<figcaption class="gall-fig-capt">
+									<span class="heading">Перфораторы</span>
+									<span class="slogan">Настоящие мужские игрушки</span>
+								</figcaption>						
+								<img src="img/man-n-perfo.jpg" width="620" height="266" alt="Мужчина с перфоратором">
+							</figure>
+						</li>
+						<li class="drill-slide gallary-slide">
+							<figure class="gall-figure">
+								<figcaption class="gall-fig-capt">
+									<span class="heading">Дрели</span>
+									<span class="slogan">Соседям на радость!</span>
+								</figcaption>
+								<img src="img/man-n-drill.jpg" width="620" height="266" alt="Мужчина сверлит кирпичную стену">
+							</figure>
+						</li>	
+					</ul>						
+					<a class="catalog-gall-a slider-btn red-button common-btn button" href="catalog.html">Открыть каталог</a>
+				</div>
+				<div class="two-pr-items marg-bottom-20px">
+					<div class="promo-item marg-bottom-20px">
+						<span class="promo-item-capt">Скидки 50%</span>
+						<a class="promo-button width-135px common-btn button" href="">На 350 товаров</a>
+					</div>
+					<div class="promo-item">
+						<span class="promo-item-capt">Доставка</span>
+						<a class="promo-button width-135px common-btn button" href="">Бесплатно</a>
+					</div>
+				</div>
 			</section>
 			<section class="popular-products">
-				<div class="pos-center-wrapper height-89px marg-bottom-20px bg-color-f9f5f0">
-					<h2 class="popular-h2">Популярные товары:</h2>
-					<a class="popular-btn red-button common-btn button" href="">Все популярные товары</a>
-				</div>	
-				<ul class="flex-container centering-wrapper width-940px height-324px clean-list">	
-					<li class="pop-prod-item">
-						<article class="product-card">
-							<img class="product-img" src="img/perfo-bosch-bfg-9000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с серым верхом, черной рукояткой, красными кнопками, для толстых стен, питание от сети.'>
-							<div class="add-buttons">
-								<button class="cart-add-btn width-135px common-btn button" type="button">
-									<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+				<div class="index-h2-panel heading-panel flexbox just-cont-sb center width-940px">
+					<div class="h2-column flexbox align-cont-fs">
+						<h2 class="popular-h2">Популярные товары:</h2>
+					</div>
+					<div class="button-column flexbox align-cont-fs">
+						<a class="popular-btn red-button common-btn button" href="">Все популярные товары</a>
+					</div>
+				</div>
+				<ul class="pop-prod-list flexbox center just-cont-sb width-940px marg-bottom--20px clean-list">	
+					<li class="product-item marg-bottom-20px">
+						<article class="product-card flexbox just-cont-c">
+							<button class="cart-add-btn flexbox just-cont-sb common-btn button" type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								<svg class="cart-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									width="15px" height="15px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
+									<g>
+										<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="4.5" cy="13.5" r="1.5"/>
+										<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="12.5" cy="13.5" r="1.5"/>
+										<polygon class="cart-icon" fill="#ffffff" fill-opacity="0.3" points="15,2 4.07,2 3.648,0 0,0 0,2 2.031,2 4.016,11 15,11 15,9 9.441,9 15,6.951 	"/>
+									</g>
+								</svg>
+								<span class="ca-btn-capt">
 									купить
-								</button><br>
-								<button class="bookmarks-add-btn width-135px common-btn button" type="button">
-									<span class="visually-hidden">Добавить товар </span>
-									в закладки
-								</button>
-							</div>
+								</span>
+							</button>
+							<button class="bookmarks-add-btn width-135px common-btn button" type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+							<img class="product-img" src="img/perfo-bosch-bfg-9000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с серым верхом, черной рукояткой, красными кнопками, для толстых стен, питание от сети.'>							
 							<div class="pt-sans-bold">
-								<h3 class="prod-card-h3"><span>Перфоратор</span><span>BOSCH<br>BFG 9000</span></h3>
+								<h3 class="prod-card-h3"><span>Перфоратор</span>&nbsp;<span>BOSCH<br>BFG 9000</span></h3>
 								<span class="old-price">32500 р.</span>
 								<button class="prod-detail-btn red-button common-btn button" type="button">25500 р.</button>
 							</div>
 						</article>	
 					</li>
-					<li class="pop-prod-item">
-						<article class="product-card">
-							<img class="product-img" src="img/perfo-bosch-bfg-3000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-							<div class="add-buttons">
-								<button class="cart-add-btn width-135px common-btn button" type="button">
-									<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+					<li class="product-item marg-bottom-20px">
+						<article class="product-card flexbox just-cont-c">
+							<button class="cart-add-btn flexbox just-cont-sb common-btn button" type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								<svg class="cart-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									width="15px" height="15px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
+									<g>
+										<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="4.5" cy="13.5" r="1.5"/>
+										<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="12.5" cy="13.5" r="1.5"/>
+										<polygon class="cart-icon" fill="#ffffff" fill-opacity="0.3" points="15,2 4.07,2 3.648,0 0,0 0,2 2.031,2 4.016,11 15,11 15,9 9.441,9 15,6.951 	"/>
+									</g>
+								</svg>
+								<span class="ca-btn-capt">
 									купить
-								</button><br>
-								<button class="bookmarks-add-btn width-135px common-btn button" type="button">
-									<span class="visually-hidden">Добавить товар </span>
-									в закладки
-								</button>
-							</div>
+								</span>
+							</button>
+							<button class="bookmarks-add-btn width-135px common-btn button" type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+							<img class="product-img" src="img/perfo-bosch-bfg-3000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>							
 							<div class="pt-sans-bold">
-								<h3 class="prod-card-h3"><span>Перфоратор</span><span>BOSCH<br>BFG 3000</span></h3>
+								<h3 class="prod-card-h3"><span>Перфоратор</span>&nbsp;<span>BOSCH<br>BFG 3000</span></h3>
 								<span class="old-price">22500 р.</span>
 								<button class="prod-detail-btn red-button common-btn button" type="button">15500 р.</button>
 							</div>
 						</article>	
 					</li>
-					<li class="pop-prod-item">
-						<article class="product-card">
-							<img class="product-img" src="img/perfo-bosch-bfg-6000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-							<div class="add-buttons">
-								<button class="cart-add-btn width-135px common-btn button" type="button">
-									<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+					<li class="product-item marg-bottom-20px">
+						<article class="product-card flexbox just-cont-c">
+							<button class="cart-add-btn flexbox just-cont-sb common-btn button" type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								<svg class="cart-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									width="15px" height="15px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
+									<g>
+										<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="4.5" cy="13.5" r="1.5"/>
+										<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="12.5" cy="13.5" r="1.5"/>
+										<polygon class="cart-icon" fill="#ffffff" fill-opacity="0.3" points="15,2 4.07,2 3.648,0 0,0 0,2 2.031,2 4.016,11 15,11 15,9 9.441,9 15,6.951 	"/>
+									</g>
+								</svg>
+								<span class="ca-btn-capt">
 									купить
-								</button><br>
-								<button class="bookmarks-add-btn width-135px common-btn button" type="button">
-									<span class="visually-hidden">Добавить товар </span>
-									в закладки
-								</button>
-							</div>
+								</span>
+							</button>
+							<button class="bookmarks-add-btn width-135px common-btn button" type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+							<img class="product-img" src="img/perfo-bosch-bfg-6000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>							
 							<div class="pt-sans-bold">
-								<h3 class="prod-card-h3"><span>Перфоратор</span><span>BOSCH<br>BFG 6000</span></h3>
+								<h3 class="prod-card-h3"><span>Перфоратор</span>&nbsp;<span>BOSCH<br>BFG 6000</span></h3>
 								<span class="old-price">30500 р.</span>
 								<button class="prod-detail-btn red-button common-btn button" type="button">25500 р.</button>
 							</div>
 						</article>	
 					</li>
-					<li class="pop-prod-item">
-						<article class="product-card">
-							<img class="product-img" src="img/perfo-bosch-bfg-2000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>
-							<div class="add-buttons">
-								<button class="cart-add-btn width-135px common-btn button" type="button">
-									<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+					<li class="product-item marg-bottom-20px marked-item">
+						<article class="product-card flexbox just-cont-c">
+							<button class="cart-add-btn flexbox just-cont-sb width-135px common-btn button" type="button">
+								<span class="visually-hidden">Добавить товар в корзину, чтобы потом </span>
+								<svg class="cart-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									width="15px" height="15px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
+									<g>
+										<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="4.5" cy="13.5" r="1.5"/>
+										<circle class="cart-icon" fill="#ffffff" fill-opacity="0.3" cx="12.5" cy="13.5" r="1.5"/>
+										<polygon class="cart-icon" fill="#ffffff" fill-opacity="0.3" points="15,2 4.07,2 3.648,0 0,0 0,2 2.031,2 4.016,11 15,11 15,9 9.441,9 15,6.951 	"/>
+									</g>
+								</svg>							
+								<span class="ca-btn-capt">
 									купить
-								</button><br>
-								<button class="bookmarks-add-btn width-135px common-btn button" type="button">
-									<span class="visually-hidden">Добавить товар </span>
-									в закладки
-								</button>
-							</div>
+								</span>
+							</button>
+							<button class="bookmarks-add-btn width-135px common-btn button" type="button">
+								<span class="visually-hidden">Добавить товар </span>
+								в закладки
+							</button>
+							<img class="product-img" src="img/perfo-bosch-bfg-2000.jpg" width="218" height="170" alt='Перфоратор цвета морской волны с черной рукояткой, красными кнопками, для тонких стен, питание от аккумулятора.'>							
 							<div class="pt-sans-bold">
-								<h3 class="prod-card-h3"><span>Перфоратор</span><span>BOSCH<br>BFG 2000</span></h3>
-								<span class="old-price"></span> <!--Оставляем даже без контента, чтобы не ломать структуру карточки (иначе невозможно будет задать внутренние отступы)-->
+								<h3 class="prod-card-h3"><span>Перфоратор</span>&nbsp;<span>BOSCH<br>BFG 2000</span></h3>
+								<span class="old-price"></span>
 								<button class="prod-detail-btn red-button common-btn button" type="button">12500 р.</button>
 							</div>
-						</article>	
+						</article>
 					</li>
 				</ul>	
 			</section>
 			<section class="pop-manufact-rs">
-				<div class="pos-center-wrapper height-89px marg-bottom-20px bg-color-f9f5f0">
-					<h2 class="popular-h2">Популярные производители:</h2>
-					<a class="red-button popular-btn text-center common-btn button" href="">Все производители</a>	
+				<div class="index-h2-panel heading-panel flexbox just-cont-sb center width-940px">
+					<div class="h2-column flexbox align-cont-fs">
+						<h2 class="popular-h2">Популярные производители:</h2>					
+					</div>
+					<div class="button-column flexbox align-cont-fs">
+						<a class="red-button popular-btn text-center common-btn button" href="">Все производители</a>				
+					</div>
 				</div>	
-				<ul class="flex-container centering-wrapper width-940px height-310px clean-list">
-					<li class="pop-man-item">
-						<a class="manufact-a" href="">
-							<img class="manufact-img" src="img/logo-bosch.png" width="126" height="37" alt='Логотип компании "BOSСH"'>
+				<ul class="flexbox center just-cont-sb width-940px marg-bottom--20px clean-list">
+					<li class="manufact-item marg-bottom-20px">
+						<a class="bosch-a manufact-a" href="https://www.bosch.ru/">
+							<span class="visually-hidden">Компания "BOSСH"</span>
+							<img class="bosch-img manufact-img" src="img/logo-bosch.png" width="126" height="37" alt='Логотип компании "BOSСH"'>
 						</a>
 					</li>
-					<li class="pop-man-item">
-						<a class="manufact-a" href="">
-							<img class="manufact-img" src="img/logo-makita.png" width="123" height="40" alt='Логотип компании "Makita"'>
+					<li class="manufact-item marg-bottom-20px">
+						<a class="makita-a manufact-a" href="http://www.makita.ru/">
+							<span class="visually-hidden">Компания "Makita"</span>						
+							<img class="makita-img manufact-img" src="img/logo-makita.png" width="123" height="40" alt='Логотип компании "Makita"'>
 						</a>
-					</li>					
-					<li class="pop-man-item">
-						<a class="manufact-a" href="">
-							<img class="manufact-img" src="img/logo-dewalt.png" width="146" height="44" alt='Логотип компании "DeWALT"'>
+					</li>
+					<li class="manufact-item marg-bottom-20px">
+						<a class="dewalt-a manufact-a" href="https://www.dewalt.ru/">
+							<span class="visually-hidden">Компания "DeWALT"</span>
+							<img class="dewalt-img manufact-img" src="img/logo-dewalt.png" width="146" height="44" alt='Логотип компании "DeWALT"'>
 						</a>	
-					</li>			
-					<li class="pop-man-item">
-						<a class="manufact-a" href="">
-							<img class="manufact-img" src="img/logo-интерскол.png" width="200" height="88" alt='Логотип компании "ИНТЕРСКОЛ"'>
+					</li>
+					<li class="manufact-item marg-bottom-20px">
+						<a class="interskol-a manufact-a" href="https://www.interskol.ru/">
+							<span class="visually-hidden">Компания "ИНТЕРСКОЛ"</span>
+							<img class="interskol-img manufact-img" src="img/logo-интерскол.png" width="200" height="88" alt='Логотип компании "ИНТЕРСКОЛ"'>
 						</a>	
-					</li>			
-					<li class="pop-man-item">
-						<a class="manufact-a" href="">
-							<img class="manufact-img" src="img/logo-hitachi.png" width="169" height="31" alt='Логотип компании "HITACHI"'>
+					</li>
+					<li class="manufact-item marg-bottom-20px">
+						<a class="hitachi-a manufact-a" href="https://www.hitachi.ru/ru">
+							<span class="visually-hidden">Компания "HITACHI"</span>
+							<img class="hitachi-img manufact-img" src="img/logo-hitachi.png" width="169" height="31" alt='Логотип компании "HITACHI"'>
 						</a>
 					</li>
-					<li class="pop-man-item">
-						<a class="manufact-a" href="">
-							<img class="manufact-img" src="img/logo-lg.png" width="121" height="73" alt='Логотип компании "LG"'>
+					<li class="manufact-item marg-bottom-20px">
+						<a class="lg-a manufact-a" href="https://www.lg.com/ru">
+							<span class="visually-hidden">Компания "LG"</span>
+							<img class="lg-img manufact-img" src="img/logo-lg.png" width="121" height="73" alt='Логотип компании "LG"'>
 						</a>
 					</li>
-					<li class="pop-man-item">
-						<a class="manufact-a" href="">
-							<img class="manufact-img" src="img/logo-aeg.png" width="151" height="96" alt='Логотип компании "AEG"'>
+					<li class="manufact-item marg-bottom-20px">
+						<a class="aeg-a manufact-a" href="https://www.aeg.ru/">
+							<span class="visually-hidden">Компания "AEG"</span>
+							<img class="aeg-img manufact-img" src="img/logo-aeg.png" width="151" height="96" alt='Логотип компании "AEG"'>
 						</a>
 					</li>
-					<li class="pop-man-item">
-						<a class="manufact-a" href="">
-							<img class="manufact-img" src="img/logo-metabo.png" width="204" height="69" alt='Логотип компании "metabo"'>
+					<li class="manufact-item marg-bottom-20px">
+						<a class="metabo-a manufact-a" href="https://www.metabo.com/ru/ru/">
+							<span class="visually-hidden">Компания "metabo"</span>						
+							<img class="metabo-img manufact-img" src="img/logo-metabo.png" width="204" height="69" alt='Логотип компании "metabo"'>
 						</a>	
 					</li>
 				</ul>	
 			</section>
-			<section class="services">
-				<div class="pos-center-wrapper">
-					<h2 class="lower-sections-h2">Сервисы</h2>
-					<p class="lower-sections-p">
+			<section class="services-sect">
+				<div class="center width-960px padd-left-10px">
+					<h2 class="services-h2 lower-sections-h2">Сервисы</h2>
+					<p class="services-p lower-sections-p">
 						Хороший интернет-магазин отличается от плохого не только ценами!<br>
 						Мы стараемся изо всех сил, чтобы сделать ваши покупки приятными.
 					</p>
-					<div class="services-slider">
-						<!--services-slide-switch - это переключатель слайдов, код вынесен отдельно перед списком, так как семантически и визуально это самостоятельный элемент-->
+					<div class="services-slider flexbox just-cont-sb align-cont-fs align-items-fs">
 						<input class="delivery-radio service-radio visually-hidden" type="radio" name="serv-slide-switch" id="delivery" value="delivery" checked>
-						<label class="delivery-radio service-label" for="delivery" tabindex="-1">Доставка</label> <!--Если не указать tabindex="-1", то при нажатии и двойном клике будет outline, который ничем не снять-->
 						<input class="warranty-radio service-radio visually-hidden" type="radio" name="serv-slide-switch" id="warranty" value="warranty">
-						<label class="warranty-label service-label" for="warranty" tabindex="-1">Гарантия</label>
-						<input class="credit-radio service-radio visually-hidden" type="radio" name="serv-slide-switch" id="credit" value="credit">
-						<label class="credit-label service-label" for="credit" tabindex="-1">Кредит</label>								
-						<!--/services-slide-switch-->
-						<ul class="serv-slide-keeper clean-list"> <!--slide-keeper - хранитель слайдов, то есть это место (область), в котором каждый следующий слайд размещен под предыдущим-->
-							<li class="delivery service-slide"><!--Для отмены outline'а при фокусе нужно ставить tabindex="-1"???-->
+						<input class="credit-radio service-radio visually-hidden" type="radio" name="serv-slide-switch" id="credit" value="credit">							
+						<div class="serv-slide-switch flexbox">
+							<label class="delivery-label service-label" for="delivery">Доставка</label>
+							<label class="warranty-label service-label" for="warranty">Гарантия</label>	
+							<label class="credit-label service-label" for="credit">Кредит</label>
+						</div>
+						<ul class="serv-slide-keeper flexbox clean-list"> <!--slide-keeper - хранитель слайдов, то есть это место (область), в котором каждый следующий слайд размещен под предыдущим-->
+							<li class="delivery service-slide">
 								<article>
-									<h3 class="service-h3">Доставка</h3>
-									<p class="lower-sections-p">
+									<h3 class="delivery-h3 service-h3">Доставка</h3>
+									<p class="delivery-p service-p lower-sections-p">
 										Мы с удовольствием доставим ваш товар прямо<br>
 										к вашему подъезду совершенно бесплатно!<br>
 										Ведь мы неплохо заработаем,<br>
-										поднимая его на ваш этаж.
+										поднимая его на ваш этаж!
 									</p>
-								</article>								
+								</article>						
 							</li>
-							<li class="warranty service-slide"><!--Для отмены outline'а при фокусе нужно ставить tabindex="-1"???-->
+							<li class="warranty service-slide">
 								<article>
-									<h3 class="service-h3">Гарантия</h3>
-									<p class="lower-sections-p">
+									<h3 class="warranty-h3 service-h3">Гарантия</h3>
+									<p class="warranty-p service-p lower-sections-p">
 										Если купленный у нас товар поломается или заискрит,<br>
 										а также в случае пожара, спровоцированного его возгоранием,<br>
 										вы всегда можете быть уверены в нашей гарантии. Мы обменяем<br>
@@ -333,28 +404,28 @@
 									</p>
 								</article>
 							</li>						
-							<li class="credit service-slide"><!--Для отмены outline'а при фокусе нужно ставить tabindex="-1"???-->
+							<li class="credit service-slide">
 								<article>
-									<h3 class="service-h3">Кредит</h3>
-									<p class="lower-sections-p">
+									<h3 class="credit-h3 service-h3">Кредит</h3>
+									<p class="credit-p service-p lower-sections-p">
 										Залезть в долговую яму стало проще!<br>
 										Кредитные консультанты придут вам на помощь.
 									</p>
-									<button class="request-btn red-button common-btn button">Отправить заявку</button>
-								</article>								
+									<a class="slider-btn request-btn red-button common-btn button" href="">Отправить заявку</a>
+								</article>						
 							</li>						
 						</ul>
 					</div>	
 				</div>
 			</section>
-			<div class="pos-center-wrapper height-536px padd-top-82px">
-				<section class="company-descript">
-					<h2 class="lower-sections-h2">Компания "Техномарт"</h2>
-					<p class="lower-sections-p">
+			<div class="lower-sections flexbox just-cont-sb center width-940px">
+				<section class="comp-descr-sect">
+					<h2 class="comp-descr-h2 lower-sections-h2">Компания &laquo;Техномарт&raquo;</h2>
+					<p class="comp-descr-p1 lower-sections-p">
 						Настоящий мужской шоппинг начинается здесь! Огромный выбор товаров для ремонта и <br>
 						строительства не оставит равнодушными любителей сэкономить на гастарбайтерах.
 					</p>
-					<p class="lower-sections-p">
+					<p class="comp-descr-p2 lower-sections-p">
 						Мы можем доставить ваш товар в самые отдаленные точки России!<br>
 						Техномарт работает со многими транспортными компаниями:
 					</p>
@@ -363,80 +434,92 @@
 						<li class="partner-item"><span class="bullet">&mdash;</span><span class="partner-name">Автотрейдинг</span></li>
 						<li class="partner-item"><span class="bullet top--3px">&mdash;</span><span class="partner-name">ЖелДорЭкспедиция</span></li>
 					</ul>
-					<button class="comp-detail-btn red-button text-center common-btn button" type="button">Подробнее о компании</button>
+					<a class="comp-detail-btn red-button text-center common-btn button" href="">Подробнее о компании</a>
 				</section>
-				<section class="contacts">
-					<h2 class="lower-sections-h2">Контакты</h2>
-					<p class="lower-sections-p">
+				<section class="contacts-sect">
+					<h2 class="contacts-h2 lower-sections-h2">Контакты</h2>
+					<p class="contacts-p lower-sections-p">
 						Вы можете забрать товар сами,<br>
 						заехав в наш офис:
 					</p>
-					<a class="map-a" href="">
+					<a class="map-a" href="https://www.google.ru/maps/place/Большая+Конюшенная+ул.,+19%2F8,+Санкт-Петербург,+191186">
+						<span class="visually-hidden">Сервис карт "Google Maps"</span>
 						<img src="img/map.png" width="300" height="158" alt="Офис компании по адресу: ул. Большая Конюшенная 19/8, Санкт-Петербург">
 					</a>
-					<button class="write-us-btn red-button common-btn button" type="button">Заблудились? Напишите нам</button>
-					<div class="write-us-popup popup">
-						<form action="" method="post">
-							<div class="w-us-p-high">
-								<div class="full-name-div">
-									<span class="full-name-label">Ваше имя:</span>
-									<label class="visually-hidden" for="full-name">Имя и фамилия</label>
-									<input class="full-name-field" type="text" name="name-surname" id="name-surname" placeholder="Имя Фамилия" autocomplete ="on">
-								</div><!--
-							 --><div class="e-mail-div">						
-									<label class="e-mail-label" for="e-mail">Ваш e-mail:</label>
-									<input class="e-mail-field" type="email" name="e-mail" id="e-mail" placeholder="email@example.com" autocomplete ="on">									
-								</div>
-								<div class="letter-text-div">
-									<label class="lett-text-label" for="letter-text">Текст письма:</label>
-									<textarea class="lett-text-field" name="letter-text" id ="letter-text" placeholder="В свободной форме" autocomplete ="on"></textarea>
-								</div>
-							</div>
-							<div class="popup-lower">
-								<button class="send-button red-button common-btn button" type="submit">Отправить</submit>
-							</div>	
-						</form>
+					<a class="write-us-btn red-button common-btn button" href="">Заблудились? Напишите нам!</a>
+					<div class="fixed-overlay visually-hidden">
+						<div class="map-popup popup">
+						</div>
 					</div>
+					<div class="fixed-overlay visually-hidden">
+						<div class="write-us-popup popup">
+							<form action="#" method="post">
+								<div class="w-us-p-high flexbox just-cont-sb align-items-fs align-cont-fs">
+									<div class="name-email-wrapper flexbox just-cont-sb align-items-fs align-cont-fs">
+										<div class="full-name-col flexbox just-cont-sb align-items-fs align-cont-fs">
+											<span class="full-name-label">Ваше имя:</span>
+											<label class="visually-hidden" for="full-name">Имя и фамилия</label>
+											<input class="full-name-field" type="text" name="name-surname" id="full-name" placeholder="Имя Фамилия" autocomplete ="on" tabindex="-1">
+										</div>
+										<div class="e-mail-col flexbox just-cont-sb align-items-fs align-cont-fs">						
+											<label class="e-mail-label" for="e-mail">Ваш e-mail:</label>
+											<input class="e-mail-field" type="email" name="e-mail" id="e-mail" placeholder="email@example.com" autocomplete ="on" tabindex="-1">					
+										</div>										
+									</div>									
+									<div class="letter-text-div flexbox just-cont-sb align-items-fs align-cont-fs">
+										<label class="lett-text-label" for="letter-text">Текст письма:</label>
+										<textarea class="lett-text-field" name="letter-text" id ="letter-text" placeholder="В свободной форме" autocomplete ="on" tabindex="-1"></textarea>
+									</div>
+								</div>
+								<div class="popup-lower flexbox just-cont-sb align-items-fs align-cont-fs">
+									<button class="send-button red-button common-btn button" type="submit" tabindex="-1">Отправить</button>
+								</div>
+							</form>
+						</div>
+					</div>	
 				</section>
 			</div>
 		</main>
 		<footer>
 			<div class="high-footer">
-				<div class="flex-container centering-wrapper width-940px marg-bottom-32px">
-					<a href="index.html" class="footer-logo logo button">
-						<span class="visually-hidden">Главная страница интернет-магазина "Техномарт", </span>
-						<img class="footer-logo-img" src="img/logo-technomart.png" width="138" height="23" alt="">
-						<span class="visually-hidden">в котором Вы сейчас находитесь.</span>
-					</a>
-					<ul class="top-nav clean-list">
-						<li class="top-nav-item"><a class="top-nav-a" href="">Компания</a></li>
-						<li class="top-nav-item"><a class="top-nav-a" href="">Новости</a></li>		
-						<li class="top-nav-item"><a class="top-nav-a" href="catalog.html">Каталог</a></li>
-						<li class="top-nav-item"><a class="top-nav-a" href="">Доставка</a></li>
-						<li class="top-nav-item"><a class="top-nav-a" href="">Конакты</a></li>
-					</ul>
-				</div>
-				<div class="flex-container centering-wrapper width-940px">
-					<p class="high-footer-p">
-						г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8<br>
-						+7(812)555-05-55
-					</p>
-					<ul class="bottom-nav clean-list">
-						<li class="bottom-nav-item"><a class="bottom-nav-a" href="">Материалы</a></li>		
-						<li class="bottom-nav-item"><a class="bottom-nav-a" href="">Техника</a></li>
-						<li class="bottom-nav-item"><a class="bottom-nav-a" href="">Инструмент</a></li>
-						<li class="bottom-nav-item"><a class="bottom-nav-a" href="">Спецпредложения</a></li>
-					</ul>
-				</div>
+				<div class="flexbox center width-940px just-cont-sb align-items-fs">
+					<div class="comp-column flexbox">
+						<div class="footer-logo logo button" tabindex="0">
+							<img class="footer-logo-img" src="img/logo-technomart-big.png" width="138" height="23" alt='Логотип интернет-магазина "Техномарт", в котором Вы сейчас находитесь'>
+						</div>
+						<p class="high-footer-p">
+							г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8<br>
+							<a class="footer-tel-a" href="tel:+78125550555">
+								<span class="visually-hidden">Телефон компании "Техномарт" </span>
+								+7 (812) 555-05-55
+							</a>
+						</p>
+					</div>
+					<div class="links-column flexbox just-cont-fe">
+						<ul class="top-nav flexbox clean-list">
+							<li class="top-nav-item"><a class="top-nav-a" href="">Компания</a></li>
+							<li class="top-nav-item"><a class="top-nav-a" href="">Новости</a></li>		
+							<li class="top-nav-item"><a class="top-nav-a" href="catalog.html">Каталог</a></li>
+							<li class="top-nav-item"><a class="top-nav-a" href="">Доставка</a></li>
+							<li class="top-nav-item"><a class="top-nav-a" href="">Контакты</a></li>
+						</ul>
+						<ul class="bottom-nav flexbox clean-list">
+							<li class="bottom-nav-item"><a class="bottom-nav-a" href="">Материалы</a></li>		
+							<li class="bottom-nav-item"><a class="bottom-nav-a" href="">Техника</a></li>
+							<li class="bottom-nav-item"><a class="bottom-nav-a" href="">Инструмент</a></li>
+							<li class="bottom-nav-item"><a class="bottom-nav-a" href="">Спецпредложения</a></li>
+						</ul>
+					</div>
+				</div>	
 			</div>
 			<div class="lower-footer">
-				<div class="centering-wrapper width-940px"> <!-- Если зададим это lower-footer'у, то фона по краям не будет -->
+				<div class="flexbox center width-940px">
 					<p class="copyrights-p lower-footer-p">
-						©2010-2016 Компания «Техномарт»<br>
+						© 2010&ndash;2019 Компания «Техномарт»<br>
 						Все права защищены
-					</p><!--
-				 --><ul class="social-list flex-container width-135px clean-list">
-						<li class="social-item">
+					</p>
+					<ul class="social-list flexbox just-cont-sb align-items-fs clean-list">
+						<li class="social-item flexbox align-items-s">
 							<a class="vk-a social-a" href="http://www.vk.com">
 								<span class="visually-hidden">Лого "Вконтакте"</span>
 								<svg xmlns="http://www.w3.org/2000/svg" width="26" height="15" viewBox="0 0 26 15">
@@ -444,7 +527,7 @@
 								</svg>
 							</a>
 						</li>
-						<li class="social-item">
+						<li class="social-item flexbox align-items-s">
 							<a class="fb-a social-a" href="http://www.facebook.com">
 								<span class="visually-hidden">Лого "Facebook"</span>
 								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="22" viewBox="0 0 12 22">
@@ -457,20 +540,22 @@
 								<span class="visually-hidden">Лого "Инстаграм"</span>
 								<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
 									<path fill="#ffffff" d="M18 0H3C1.35 0 0 1.35 0 3v15c0 1.65 1.35 3 3 3h15c1.65 0 3-1.35 3-3V3c0-1.65-1.35-3-3-3zm-7.5 7c1.93 0 3.5 1.57 3.5 3.5S12.43 14 10.5 14 7 12.43 7 10.5 8.57 7 10.5 7zM18 18H3V9h1.181A6.504 6.504 0 0 0 4 10.5a6.5 6.5 0 1 0 13 0 6.45 6.45 0 0 0-.181-1.5H18v9zm0-11h-4V3h4v4z"/>
-								</svg>
+								</svg>				
 							</a>
-						</li>
-					</ul><!--
-				 --><p class="feedback-p lower-footer-p">
-						Обратная связь:</br>
+						</li>	
+					</ul>
+					<p class="feedback-p lower-footer-p">
+						Обратная связь:<br>
+						<span class="visually-hidden">Адрес электронной почты компании "Техномарт" </span>
 						<a class="lower-footer-a" href="mailto:mail@htmlacademy.ru">mail@htmlacademy.ru</a>
-					</p><!--
-				 --><p class="lower-footer-p">
+					</p>
+					<p class="developer-p lower-footer-p">
 						Разработано &mdash;<br>
+						<span class="visually-hidden">Сайт компании "Техномарт" </span>						
 						<a class="lower-footer-a" href="https://htmlacademy.ru">htmlacademy.ru</a>
 					</p>
 				</div>	
 			</div>	
-		</footer>		
+		</footer>
 	</body>
 </html>
