@@ -62,7 +62,10 @@ if (writeUsBtn != null) {
 		if (writeUsModal.classList.contains("close-animation")) {
 			writeUsModal.classList.remove("close-animation");
 		}
-		writeUsModal.classList.add("show");		
+		if (writeUsModal.classList.contains("err-animation")) {	
+			writeUsModal.classList.remove("err-animation");
+		}
+		writeUsModal.classList.add("show");	
 		writeUsModal.classList.add("show-animation");
 		var fullNameField = writeUsModal.querySelector(".full-name-field");
 		fullNameField.focus();
@@ -70,13 +73,27 @@ if (writeUsBtn != null) {
 	var writeUsForm = writeUsModal.querySelector(".write-us-form");
 	var fullNameField = writeUsModal.querySelector(".full-name-field");
 	var eMailField = writeUsModal.querySelector(".e-mail-field");
+	var lettTextField = writeUsModal.querySelector(".lett-text-field");
 	var sendButton = writeUsModal.querySelector(".send-button");
-	writeUsForm.addEventListener("submit", function (evt) {		
-		if (!fullNameField.value || !eMailField.value || fullNameField.value === "" || eMailField.value === "") {
+	sendButton.addEventListener("click", function (evt) {
+		if (!fullNameField.value || !eMailField.value || !lettTextField.value) {
 			evt.preventDefault();
 			writeUsModal.classList.remove("err-animation");
 			writeUsModal.offsetWidth = writeUsModal.offsetWidth;
 			writeUsModal.classList.add("err-animation");
+		}
+		if (!fullNameField.value) {
+			fullNameField.focus();
+		}
+		else {
+			if (!eMailField.value) {
+				eMailField.focus();
+			}
+			else {
+				if (!lettTextField.value) {
+					lettTextField.focus();
+				}
+			}
 		}
 	})
 	var closeBtn = writeUsModal.querySelector(".close-btn");
@@ -86,7 +103,6 @@ if (writeUsBtn != null) {
 			writeUsModal.classList.remove("show-animation");
 		}
 		writeUsModal.classList.add("close-animation");
-		writeUsModal.classList.remove("show");	
 	})
 }
 
@@ -112,17 +128,17 @@ for (var i = 0; i < modalList.length; i++) {
 
 window.addEventListener("keydown", function(evt) {
 	if (evt.keyCode === 27) {
-		for (var i = 0; i < modalList.length; i++) {
-			if (modalList[i].classList.contains("show")) {
-				evt.preventDefault();
-				modalList[i].classList.remove("show");
-			}
-			if (modalList[i].classList.contains("show-animation")) {
-				modalList[i].classList.remove("show-animation");
-			}			
-			if (modalList[i].classList.contains("err-animation")) {
-				modalList[i].classList.remove("err-animation");
-			}	
+		if (cartOkModal.classList.contains("show")) {
+			evt.preventDefault();
+			cartOkModal.classList.remove("show");
 		}
+		if (mapModal.classList.contains("show")) {
+			evt.preventDefault();
+			mapModal.classList.remove("show");
+		}
+		if (writeUsModal.classList.contains("show-animation")) {
+			writeUsModal.classList.remove("show-animation");
+		}
+		writeUsModal.classList.add("close-animation");		
 	}
 })
