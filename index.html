@@ -18,7 +18,7 @@
 						</div>
 					</div>	
 					<div class="buyer-panel flexbox just-cont-fe align-cont-fs">
-						<form class="search-form" action="#" method="get">
+						<form class="search-form" action="https://echo.htmlacademy.ru" method="get">
 							<input class="search-field" type="search" name="search-field" id="search-field" placeholder="Поиск:" autocomplete ="on">
 							<label class="search-label" for="search-field">
 								<span class="visually-hidden">
@@ -443,7 +443,7 @@
 					</p>
 					<a class="map-a" href="https://www.google.ru/maps/place/Большая+Конюшенная+ул.,+19%2F8,+Санкт-Петербург,+191186">
 						<span class="visually-hidden">Сервис карт "Google Maps"</span>
-						<img src="img/map.png" width="300" height="158" alt="Офис компании по адресу: ул. Большая Конюшенная 19/8, Санкт-Петербург">
+						<img src="img/map.jpg" width="300" height="158" alt="Офис компании по адресу: ул. Большая Конюшенная 19/8, Санкт-Петербург">
 					</a>
 					<a class="write-us-btn red-button common-btn button" href="">Заблудились? Напишите нам!</a>
 				</section>
@@ -526,7 +526,8 @@
 				</div>	
 			</div>	
 		</footer>
-		<div class="cart-ok-modal fixed-overlay">
+		<section class="cart-ok-modal fixed-overlay">
+			<h2 class="visually-hidden">Уведомление о добавлении в корзину</h2>
 			<div class="cart-ok-popup popup">
 				<div class="wnd-btn-panel flexbox just-cont-fe">
 					<button class="close-btn" type="button">
@@ -547,15 +548,19 @@
 					</div>
 				</div>
 			</div>
-		</div>
-			<div class="map-modal fixed-overlay">
-				<div class="map-popup popup">
-					<button class="close-map-btn close-btn" type="button">
-						<span class="visually-hidden">Закрыть окно</span>
-					</button>
-				</div>
+		</section>
+		<section class="map-modal fixed-overlay">
+			<h2 class="visually-hidden">Как до нас добраться</h2>
+			<div class="map-popup popup">
+				<iframe class="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1998.6037999040354!2d30.322010416394033!3d59.938716271971415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696310fca5ba729%3A0xea9c53d4493c879f!2sBolshaya+Konyushennaya+ul.%2C+19%2C+Sankt-Peterburg%2C+Russia%2C+191186!5e0!3m2!1sen!2s!4v1441888483426" width="940" height="446" allowfullscreen></iframe>
+				<img src="img/map-big.jpg" width="940" height="446" alt="Офис компании по адресу ул. Большая Конюшенная 19/8, Санкт-Петербург">			
+				<button class="close-map-btn close-btn" type="button">
+					<span class="visually-hidden">Закрыть окно</span>
+				</button>
 			</div>
-		<div class="write-us-modal fixed-overlay">
+		</section>
+		<section class="write-us-modal fixed-overlay">
+			<h2 class="visually-hidden">Форма обратной связи</h2>		
 			<div class="write-us-popup popup">
 				<form class="write-us-form" action="https://echo.htmlacademy.ru" method="post">
 					<div class="wnd-btn-panel flexbox just-cont-fe">
@@ -585,7 +590,7 @@
 					</div>
 				</form>
 			</div>
-		</div>		
+		</section>		
 		<script src="js/script.js"></script>
 	</body>
 </html>

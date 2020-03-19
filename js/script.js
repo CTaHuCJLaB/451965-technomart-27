@@ -42,8 +42,14 @@ if (mapA != null) {
 	mapA.addEventListener("click", function(evt) {
 		evt.preventDefault();
 		mapModal.classList.add("show");
-		var closeBtn = mapModal.querySelector(".close-btn");
-		closeBtn.focus();
+		var iFrame = mapModal.querySelector(".iframe");
+		if (iFrame !== null) {
+			iFrame.focus();
+		}
+		else {
+			var closeBtn = mapModal.querySelector(".close-btn");
+			closeBtn.focus();
+		}
 	})
 }
 

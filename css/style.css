@@ -2264,13 +2264,20 @@ img {
 	height: 446px;
     margin-top: -223.1px;
 	margin-left: -470px;
+	overflow: hidden;
 	
 	background-position: top left;
 	background-repeat: no-repeat;
 	background-color: rgb(245, 243, 237);
-	background-image: url(../img/map-big.png);
+	background-image: url(../img/map-big.jpg);
 	
 	box-shadow: 0px 0 14px 0 rgba(0, 0, 0, 0.55);
+}
+
+.iframe {
+  position: relative;
+
+  border: none;
 }
 
 .write-us-popup,
