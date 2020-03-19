@@ -16,7 +16,7 @@ body {
 	word-wrap: break-word;
 	letter-spacing: normal;
 
-	background-position: top center; /*Почему не top left, например?*/
+	background-position: top center;
 	background-repeat: no-repeat;
 }
 
@@ -432,9 +432,13 @@ img {
 	}	
 }
 
+.active {
+	background-color: #ee3643;
+}
+
 .cat-cart-btn {
 	padding-left: 50px;
-	padding-right: 24px;	
+	padding-right: 24px;
 }
 
 /* Chrome, Edge, Safary, Firefox */
@@ -552,6 +556,16 @@ img {
 	.description-p {
 		margin-top: 2px;	
 	}
+}
+
+.compl-string {
+	display: inline-block;
+	
+	vertical-align: top;	
+}
+
+.width-197px {
+	width: 197px;
 }
 
 .contacts {
@@ -1094,10 +1108,14 @@ img {
 
 	z-index: 2;
 
-	font-family: 'MS Gothic', Arial, sans-serif;
-	font-size: 52px;
-	line-height: 44px;
-	color: #ffffff;
+	width: 25px;
+	min-height: 40px;
+
+	white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;	
+	
+	background-repeat: no-repeat;	
 	
 	cursor: pointer;
 }
@@ -1110,22 +1128,18 @@ img {
 
 .gall-label-1 {
 	left: 22px;
+	
+	background-position: 2px 0;
 
-	width: 25px;
-
-	white-space: nowrap;
-    overflow: hidden;
-	text-overflow: ellipsis;
+	background-image: url(../img/icon-left.svg);
 }
 
 .gall-label-2 {
 	right: 19px;
-	
-	width: 25px;	
-	
-	white-space: nowrap;
-    overflow: hidden;
-	text-overflow: ellipsis;	
+
+	background-position: 1px 0;
+
+	background-image: url(../img/icon-right.svg);
 }
 
 .gall-slide-keeper {
@@ -1231,6 +1245,7 @@ img {
 
 .gall-fig-capt .slogan {
 	display: block;
+	padding-left: 1px;
 	
 	font-family: 'PT Sans', Arial, sans-serif;
 	font-size: 18px;
@@ -1411,6 +1426,7 @@ img {
 }
 
 .prod-card-h3 {	
+	width: 157px;
 	margin-top: 0px;
 	margin-bottom: 11px;
 	margin-right: 1px;
@@ -2160,7 +2176,7 @@ img {
 
 .contacts-h2,
 .contacts-p {
-	width: 300px;
+	width: 180px;
 }
 
 .map-a {
@@ -2174,7 +2190,7 @@ img {
 }
 
 .map-a:active {
-	outline: 2px solid rgba(166, 199, 254, 0.9)
+	outline: 2px solid rgba(166, 199, 254, 0.9);
 	/*box-shadow: 0 0 4px 4px rgb(0, 150, 0);*/
 }
 
@@ -2190,9 +2206,49 @@ img {
     top: 0;
 	z-index: 4;
 
+	display: none;
     width: 100%;
     height: 100%;
     overflow: auto;	
+}
+
+@keyframes bounce {
+	0% { transform: translateY(-2000px); }
+	70% { transform: translateY(30px); }
+	90% { transform: translateY(-10px); }
+	100% { transform: translateY(0px); }
+}
+
+.show {
+	display: block;
+}
+
+.show-animation {
+	animation-name: bounce;
+	animation-duration: 0.6s;	
+}
+
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	10%, 30%, 50%, 70%, 90% { transform: translateX(-10); }
+	20%, 40%, 60%, 80% { transform: translateX(10); }
+}
+
+.err-animation {
+	animation-name: shake;
+	animation-duration: 0.6s;
+}
+
+@keyframes rev-bounce {
+	0% { transform: translateY(0px); }
+	70% { transform: translateY(-10px); }
+	90% { transform: translateY(30px); }
+	100% { transform: translateY(-2000px); }
+}
+
+.close-animation {
+	animation-name: rev-bounce;
+	animation-duration: 0.6s;
 }
 
 .popup {
@@ -2205,7 +2261,7 @@ img {
 
 .map-popup {
 	width: 940px;
-	height: 446.2px;
+	height: 446px;
     margin-top: -223.1px;
 	margin-left: -470px;
 	
@@ -2224,31 +2280,65 @@ img {
 	
 	border-top: 7px solid #ee3643;
 }
+
+.wnd-btn-panel {
+	width: inherit;
+	min-height: 39px;
+	padding-top: 10px;
+	padding-bottom: 9px;
+	padding-left: 8px;
+	padding-right: 8px;
 	
-.popup::before,
-.popup::after {
-	content: '';
+	background-color: #ffffff;
+}
+
+.close-btn {
+	position: relative;
+	min-width: 21px;
+	min-height: 21px;
 	
-	position: absolute;
-	top: 6px;
-	right: 18px;
-	
-	width: 4px;
-	height: 27px;
-	
-	border-radius: 2pt;
-	
-	background-color: #ee3643;
+	background-color: transparent;
+	border: none;
 	
 	cursor: pointer;
 }
 
-.popup::before {
+.close-btn:active,
+.close-btn:active:not(:hover) {
+	outline: none;
+}
+
+.no-outline {
+	outline: none;
+}
+
+.close-btn::before,
+.close-btn::after {
+	content: '';
+	
+	position: absolute;
+	top: -4px;
+	left: 7px;
+	
+	min-width: 4px;
+	min-height: 27px;
+	
+	border-radius: 2pt;
+	background-color: #ee3643;
+}
+
+.close-btn::before {
 	transform: rotate(45deg);
 }
 
-.popup::after {
+.close-btn::after {
 	transform: rotate(-45deg);
+}
+
+.close-map-btn {
+	position: absolute;
+	top: 10px;
+	right: 8px;
 }
 
 .popup-lower {
@@ -2270,8 +2360,8 @@ img {
 }
 
 .w-us-p-high {
-	min-height: 311px;
-	padding-top: 48px;
+	min-height: 271px;
+	padding-top: 8px;
 	padding-bottom: 12px;
 	padding-left: 80px;
 	padding-right: 80px;
@@ -2422,6 +2512,7 @@ img {
 }
 
 .high-footer-p {
+	width: 323px;
 	margin-left: 3px;
 }
 
@@ -2551,37 +2642,36 @@ img {
 	color: #ee3643;
 }
 
-.bg-color-red {
-	background-color: #ee3643;
-}
-
 .breadcrumbs {	
 	width: 940px;
 	margin-top: 20px;
-	margin-bottom: 19px;
+	margin-bottom: 20px;
 	margin-left: -43px;	
 }
 
 .breadcrumbs-item {
 	position: relative;
 	
-	margin-left: 41px;
+	margin-left: 42px;
 }
 
 .breadcrumbs-item:first-child {
-	margin-top: 1px;
+	margin-left: 41px;
 }
 
 .breadcrumbs-item:not(:last-child)::after {
-	content: '>';
+	content: '';
 
 	position: absolute;
-	top: -1px;
+	top: 3px;
 	right: -26px;
 	
-	font-family: 'MS Gothic', Arial, sans-serif;
-	font-size: 13pt;
-	color: rgb(198 ,202 , 210);
+	width: 8px;
+	min-height: 12px;
+	
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-image: url(../img/icon-right-small.svg);
 }
 
 .breadcrumbs-a,
@@ -2599,6 +2689,28 @@ img {
 
 	text-transform: uppercase;
 	color: #000000;
+}
+
+.breadcr-home {
+	display: inline-block;
+	min-width: 13px;
+	
+	vertical-align: top;
+}
+
+.breadcr-home::before {
+	content: '';
+
+	position: absolute;
+	top: 3px;
+	
+	
+	width: 16px;
+	min-height: 12px;
+
+	background-position: left top;
+	background-repeat: no-repeat;	
+	background-image: url(../img/icon-home.svg);
 }
 
 .catalog-h1-panel {
@@ -3100,6 +3212,14 @@ img {
 	width: 519px;
 }
 
+.about-perfo-p {
+	width: 912px;
+}
+
+.width-855px {
+	width: 855px;
+}
+
 .cart-ok-popup {	
 	height: 282px;
 	margin-top: -141px;
@@ -3108,8 +3228,8 @@ img {
 }
 
 .cart-ok-p-high {
-	min-height: 163px;
-	padding-top: 65px;
+	min-height: 123px;
+	padding-top: 25px;
 	padding-bottom: 65px;	
 	padding-left: 179px;
 	padding-right: 100px;
