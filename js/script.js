@@ -62,10 +62,10 @@ if (writeUsBtn != null) {
 		if (writeUsModal.classList.contains("close-animation")) {
 			writeUsModal.classList.remove("close-animation");
 		}
-		if (writeUsModal.classList.contains("err-animation")) {	
+		if (writeUsModal.classList.contains("err-animation")) {
 			writeUsModal.classList.remove("err-animation");
 		}
-		writeUsModal.classList.add("show");	
+		writeUsModal.classList.add("show");
 		writeUsModal.classList.add("show-animation");
 		var fullNameField = writeUsModal.querySelector(".full-name-field");
 		fullNameField.focus();
@@ -118,8 +118,8 @@ for (var i = 0; i < modalList.length; i++) {
 			this.parentNode.parentNode.parentNode.classList.remove("show");
 		}
 		if (this.parentNode.parentNode.parentNode.parentNode.classList.contains("show-animation")) {
-			this.parentNode.parentNode.parentNode.parentNode.classList.remove("show-animation");		
-		}		
+			this.parentNode.parentNode.parentNode.parentNode.classList.remove("show-animation");
+		}
 		if (this.parentNode.parentNode.parentNode.parentNode.classList.contains("err-animation")) {
 			this.parentNode.parentNode.parentNode.parentNode.classList.remove("err-animation");
 		}
@@ -139,6 +139,6 @@ window.addEventListener("keydown", function(evt) {
 		if (writeUsModal.classList.contains("show-animation")) {
 			writeUsModal.classList.remove("show-animation");
 		}
-		writeUsModal.classList.add("close-animation");		
+		writeUsModal.classList.add("close-animation");
 	}
 })
