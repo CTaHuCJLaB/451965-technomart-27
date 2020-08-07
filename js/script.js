@@ -142,3 +142,36 @@ window.addEventListener("keydown", function(evt) {
 		writeUsModal.classList.add("close-animation");
 	}
 })
+
+var rangeArm1 = document.querySelector(".range-arm-1");
+var rangeArm2 = document.querySelector(".range-arm-2");
+var isActive = false;
+var rA1X1, rA2X1;
+
+
+if (rangeArm1 != null) {
+	rangeArm1.addEventListener("mousedown", function(evt) {
+		isActive = true;
+		rA1X1 = evt.clientX;
+	})
+	
+	rangeArm1.addEventListener("mousemove", function(evt) {
+		if (isActive) {
+			if (evt.clientX > rA1X1) {
+				rangeArm1.classList.add("move-right");
+				/*rangeArm1.offsetWidth = rangeArm1.offsetWidth;
+				rangeArm1.classList.remove("move-right");*/
+			}
+			else {
+				rangeArm1.classList.add("move-left");
+				rangeArm1.offsetWidth = rangeArm1.offsetWidth;
+				rangeArm1.classList.remove("move-left");				
+			}
+			rA1X1 = evt.clientX;
+		}
+	})
+
+	rangeArm1.addEventListener("mouseup", function(evt) {
+		isActive = false;
+	})
+}
